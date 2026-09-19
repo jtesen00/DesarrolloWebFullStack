@@ -1,0 +1,706 @@
+/* ============================================================
+   Wayra Academy — Sistema de diseño y hoja de estilos
+   Ver SISTEMA-DE-DISENO.md para la documentación de tokens y componentes.
+   Regla del equipo: ningún valor literal fuera de este bloque :root.
+   ============================================================ */
+
+:root {
+
+  /* --- Color: base --------------------------------------- */
+  --color-tinta:          #1B2A4A;  /* superficies oscuras y texto principal */
+  --color-tinta-clara:    #35456A;  /* separadores sobre superficie oscura */
+  --color-papel:          #F4F6F8;  /* fondo de la página */
+  --color-superficie:     #FFFFFF;  /* tarjetas */
+  --color-marco:          #D9DFE6;  /* bordes sobre fondo claro */
+  --color-vacio:          #E4E9EF;  /* espacio de imagen aún sin cargar */
+
+  /* --- Color: texto -------------------------------------- */
+  --color-texto:          var(--color-tinta);
+  --color-texto-suave:    #47566F;  /* texto secundario sobre fondo claro  — 6.85:1 */
+  --color-texto-claro:    #FFFFFF;  /* texto sobre superficie oscura      — 14.22:1 */
+  --color-texto-tenue:    #C7D2E0;  /* texto secundario sobre oscura       — 9.29:1 */
+
+  /* --- Color: acción y destaque -------------------------- */
+  --color-accion:         #C0006B;  /* botones, foco y enlaces de acción */
+  --color-accion-firme:   #9C0057;  /* estado hover y active */
+  --color-destaque:       #F2B705;  /* solo bloque sólido; nunca texto sobre claro */
+
+  /* --- Tipografía: familias ------------------------------ */
+  --fuente-titulo: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
+  --fuente-texto:  "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+
+  /* --- Tipografía: escala (razón 1.2 aprox.) ------------- */
+  --texto-100: 0.9375rem;  /* 15px — pie de página, eslogan */
+  --texto-200: 1rem;       /* 16px — texto de tarjeta, botones */
+  --texto-300: 1.0625rem;  /* 17px — texto base del documento */
+  --texto-400: 1.125rem;   /* 18px — entrada de la bienvenida */
+  --texto-500: 1.25rem;    /* 20px — título de experiencia */
+  --texto-600: 1.5rem;     /* 24px — nombre de la marca */
+  --texto-700: 1.75rem;    /* 28px — título de sección */
+  --texto-800: clamp(2.25rem, 7vw, 3.5rem); /* título de la página */
+
+  /* --- Tipografía: peso e interlínea --------------------- */
+  --peso-normal: 400;
+  --peso-medio:  600;
+  --peso-fuerte: 800;
+  --interlinea-titulo: 1.15;
+  --interlinea-texto:  1.65;
+
+  /* --- Espaciado: escala de base 0.25rem ----------------- */
+  --espacio-1: 0.25rem;
+  --espacio-2: 0.5rem;
+  --espacio-3: 0.75rem;
+  --espacio-4: 1rem;
+  --espacio-5: 1.5rem;
+  --espacio-6: 2rem;
+  --espacio-7: 2.5rem;
+  --espacio-8: 3rem;
+  --espacio-9: 4.5rem;
+
+  /* --- Bordes -------------------------------------------- */
+  --borde-fino:   1px;
+  --borde-marcado: 2px;
+  --radio-chico:  2px;
+  --radio-medio:  4px;
+  --radio-grande: 6px;
+
+  /* --- Foco ---------------------------------------------- */
+  --foco-grosor: 3px;
+  --foco-color:  var(--color-accion);
+  --foco-margen: 3px;
+
+  /* --- Movimiento ---------------------------------------- */
+  --transicion: 150ms ease-out;
+
+  /* --- Utilidades ---------------------------------------- */
+  --fuera-pantalla: -9999px;  /* posición del enlace de salto en reposo */
+
+  /* --- Medidas ------------------------------------------- */
+  --ancho-pagina:  68rem;
+  --ancho-lectura: 34rem;  /* mantiene la línea bajo 80 caracteres */
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background-color: var(--color-papel);
+  color: var(--color-texto);
+  font-family: var(--fuente-texto);
+  font-size: var(--texto-300);
+  line-height: var(--interlinea-texto);
+  -webkit-text-size-adjust: 100%;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+h1, h2 {
+  font-family: var(--fuente-titulo);
+  line-height: var(--interlinea-titulo);
+  text-wrap: balance;
+  margin: 0;
+}
+
+/* Foco visible, idéntico en todo elemento interactivo.
+   Criterio de accesibilidad 3. */
+a:focus-visible,
+button:focus-visible,
+input[type="radio"]:focus-visible,
+select:focus-visible,
+summary:focus-visible {
+  outline: var(--foco-grosor) solid var(--foco-color);
+  outline-offset: var(--foco-margen);
+  border-radius: var(--radio-chico);
+}
+
+/* ============================================================
+   Componente: enlace de salto
+   ============================================================ */
+
+.salto-contenido {
+  position: absolute;
+  top: 0;
+  left: var(--fuera-pantalla);
+  z-index: 10;
+  background-color: var(--color-destaque);
+  color: var(--color-tinta);
+  font-weight: var(--peso-medio);
+  padding: var(--espacio-3) var(--espacio-5);
+}
+
+.salto-contenido:focus { left: 0; }
+
+/* ============================================================
+   Componente: botón
+   Variantes: --primario, --secundario
+   Estados: reposo, hover, active, focus, disabled
+   ============================================================ */
+
+.boton {
+  display: inline-block;
+  font-family: var(--fuente-texto);
+  font-size: var(--texto-200);
+  font-weight: var(--peso-medio);
+  line-height: var(--interlinea-texto);
+  text-align: center;
+  text-decoration: none;
+  border: var(--borde-marcado) solid var(--color-accion);
+  border-radius: var(--radio-medio);
+  padding: var(--espacio-3) var(--espacio-5);
+  cursor: pointer;
+  transition: background-color var(--transicion), color var(--transicion), border-color var(--transicion);
+}
+
+.boton--primario {
+  background-color: var(--color-accion);
+  color: var(--color-texto-claro);
+}
+
+.boton--primario:hover,
+.boton--primario:active {
+  background-color: var(--color-accion-firme);
+  border-color: var(--color-accion-firme);
+}
+
+.boton--secundario {
+  background-color: var(--color-superficie);
+  color: var(--color-accion);
+  width: 100%;
+}
+
+.boton--secundario:hover,
+.boton--secundario:active {
+  background-color: var(--color-accion);
+  color: var(--color-texto-claro);
+}
+
+.boton:disabled {
+  background-color: var(--color-marco);
+  border-color: var(--color-marco);
+  color: var(--color-texto-suave);
+  cursor: not-allowed;
+}
+
+/* ============================================================
+   Región: encabezado e identidad, con la navegación anidada
+   ============================================================ */
+
+.encabezado {
+  background-color: var(--color-tinta);
+  color: var(--color-texto-claro);
+  padding: var(--espacio-5);
+}
+
+.encabezado__interior {
+  max-width: var(--ancho-pagina);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-5);
+}
+
+.marca {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: var(--espacio-3);
+  align-items: center;
+}
+
+.marca__logo { grid-row: span 2; }
+
+.marca__nombre {
+  margin: 0;
+  font-family: var(--fuente-titulo);
+  font-size: var(--texto-600);
+  font-weight: var(--peso-fuerte);
+  letter-spacing: -0.01em;
+}
+
+.marca__eslogan {
+  margin: 0;
+  font-size: var(--texto-100);
+  color: var(--color-texto-tenue);
+}
+
+.navegacion { position: relative; }
+
+/* Interruptor de menú: casilla real (foco y activación nativos, sin JS)
+   superpuesta en transparente sobre el botón dibujado. Solo se ve por
+   debajo de 40em; desde 40em queda oculto (ver media query más abajo). */
+.navegacion__interruptor {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--espacio-8);
+  height: var(--espacio-8);
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.navegacion__boton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espacio-1);
+  width: var(--espacio-8);
+  height: var(--espacio-8);
+  margin-left: auto;
+}
+
+.navegacion__linea {
+  display: block;
+  width: var(--espacio-5);
+  height: var(--borde-marcado);
+  background-color: var(--color-texto-claro);
+  border-radius: var(--radio-chico);
+}
+
+/* El anillo de foco se dibuja sobre el botón visible, no sobre la casilla
+   transparente, pero lo activa el estado :focus-visible de la casilla. */
+.navegacion__interruptor:focus-visible + .navegacion__boton {
+  outline: var(--foco-grosor) solid var(--foco-color);
+  outline-offset: var(--foco-margen);
+  border-radius: var(--radio-chico);
+}
+
+.navegacion__lista {
+  display: none;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: var(--espacio-4) 0 0;
+  gap: var(--espacio-3);
+}
+
+.navegacion__interruptor:checked ~ .navegacion__lista {
+  display: flex;
+}
+
+.navegacion a {
+  color: var(--color-texto-claro);
+  text-decoration: none;
+  padding: var(--espacio-1) 0;
+  border-bottom: var(--borde-marcado) solid transparent;
+  transition: border-color var(--transicion);
+}
+
+.navegacion a:hover { border-bottom-color: var(--color-destaque); }
+
+.navegacion__acceso {
+  border-bottom-color: var(--color-destaque);
+  font-weight: var(--peso-medio);
+}
+
+/* ============================================================
+   Región: contenido principal
+   ============================================================ */
+
+.principal {
+  max-width: var(--ancho-pagina);
+  margin: 0 auto;
+  padding: var(--espacio-8) var(--espacio-5) var(--espacio-9);
+}
+
+.bienvenida { max-width: var(--ancho-lectura); }
+
+.bienvenida::before {
+  content: "";
+  display: block;
+  width: var(--espacio-9);
+  height: var(--espacio-2);
+  background-color: var(--color-destaque);
+  margin-bottom: var(--espacio-5);
+}
+
+.bienvenida__titulo {
+  font-size: var(--texto-800);
+  font-weight: var(--peso-fuerte);
+  letter-spacing: -0.02em;
+}
+
+.bienvenida__texto {
+  margin: var(--espacio-5) 0 var(--espacio-6);
+  font-size: var(--texto-400);
+}
+
+/* ============================================================
+   Región: experiencias
+   ============================================================ */
+
+.experiencias {
+  margin-top: var(--espacio-9);
+  border-top: var(--borde-fino) solid var(--color-marco);
+  padding-top: var(--espacio-7);
+}
+
+.experiencias__titulo {
+  font-size: var(--texto-700);
+  font-weight: var(--peso-medio);
+}
+
+.experiencias__bajada {
+  margin: var(--espacio-2) 0 var(--espacio-6);
+  color: var(--color-texto-suave);
+}
+
+.experiencias__grilla {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--espacio-5);
+}
+
+/* --- Componente: tarjeta de experiencia --- */
+
+.tarjeta {
+  background-color: var(--color-superficie);
+  border: var(--borde-fino) solid var(--color-marco);
+  border-radius: var(--radio-grande);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.tarjeta__medio {
+  background-color: var(--color-vacio);
+  aspect-ratio: 16 / 10;
+}
+
+.tarjeta__medio img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tarjeta__cuerpo {
+  padding: var(--espacio-5);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.tarjeta__titulo {
+  font-size: var(--texto-500);
+  font-weight: var(--peso-medio);
+}
+
+.tarjeta__texto {
+  margin: var(--espacio-3) 0 var(--espacio-5);
+  font-size: var(--texto-200);
+  flex-grow: 1;
+}
+
+/* ============================================================
+   Región: pie de página
+   ============================================================ */
+
+.pie {
+  background-color: var(--color-tinta);
+  color: var(--color-texto-claro);
+  padding: var(--espacio-8) var(--espacio-5) var(--espacio-6);
+}
+
+.pie__interior {
+  max-width: var(--ancho-pagina);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--espacio-6);
+}
+
+.pie__titulo {
+  font-size: var(--texto-200);
+  font-weight: var(--peso-medio);
+  color: var(--color-destaque);
+  margin-bottom: var(--espacio-3);
+}
+
+.pie__lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pie__lista li { margin-bottom: var(--espacio-1); }
+
+.pie__direccion {
+  margin: 0;
+  font-style: normal;
+}
+
+.pie a {
+  color: var(--color-texto-claro);
+  text-decoration: underline;
+  text-underline-offset: var(--foco-margen);
+}
+
+.pie__copyright {
+  max-width: var(--ancho-pagina);
+  margin: var(--espacio-7) auto 0;
+  padding-top: var(--espacio-5);
+  border-top: var(--borde-fino) solid var(--color-tinta-clara);
+  font-size: var(--texto-100);
+  color: var(--color-texto-tenue);
+}
+
+/* ============================================================
+   Región: páginas de experiencia (explorador, video, test)
+   ============================================================ */
+
+.pagina {
+  max-width: var(--ancho-pagina);
+  margin: 0 auto;
+  padding: var(--espacio-8) var(--espacio-5) var(--espacio-9);
+}
+
+.pagina__volver {
+  display: inline-block;
+  margin-bottom: var(--espacio-5);
+  color: var(--color-accion);
+  font-weight: var(--peso-medio);
+  text-decoration: none;
+}
+
+.pagina__volver:hover { text-decoration: underline; }
+
+.pagina__cabecera { max-width: var(--ancho-lectura); }
+
+.pagina__titulo {
+  font-size: var(--texto-700);
+  font-weight: var(--peso-medio);
+}
+
+.pagina__intro {
+  margin: var(--espacio-3) 0 var(--espacio-7);
+  font-size: var(--texto-400);
+  color: var(--color-texto-suave);
+}
+
+/* --- Explorador interactivo de cursos --- */
+
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-4) var(--espacio-5);
+  margin-bottom: var(--espacio-7);
+}
+
+.filtros__campo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-1);
+  font-size: var(--texto-200);
+  font-weight: var(--peso-medio);
+}
+
+.filtros__campo select {
+  font-family: var(--fuente-texto);
+  font-size: var(--texto-200);
+  font-weight: var(--peso-normal);
+  padding: var(--espacio-2) var(--espacio-3);
+  border: var(--borde-fino) solid var(--color-marco);
+  border-radius: var(--radio-medio);
+  background-color: var(--color-superficie);
+  color: var(--color-texto);
+}
+
+.cursos__grilla {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--espacio-5);
+}
+
+.curso {
+  background-color: var(--color-superficie);
+  border: var(--borde-fino) solid var(--color-marco);
+  border-radius: var(--radio-grande);
+  padding: var(--espacio-5);
+}
+
+.curso__titulo {
+  font-size: var(--texto-500);
+  font-weight: var(--peso-medio);
+  margin-bottom: var(--espacio-2);
+}
+
+.curso__etiquetas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-2);
+  margin-bottom: var(--espacio-3);
+}
+
+.curso__etiqueta {
+  font-size: var(--texto-100);
+  color: var(--color-texto-suave);
+  background-color: var(--color-vacio);
+  border-radius: var(--radio-medio);
+  padding: var(--espacio-1) var(--espacio-3);
+}
+
+.curso__texto {
+  font-size: var(--texto-200);
+  margin: 0 0 var(--espacio-3);
+}
+
+.curso__detalle summary {
+  color: var(--color-accion);
+  font-weight: var(--peso-medio);
+  cursor: pointer;
+}
+
+.curso__detalle[open] summary { margin-bottom: var(--espacio-2); }
+
+.curso__temario {
+  margin: 0;
+  padding-left: var(--espacio-5);
+  color: var(--color-texto-suave);
+  font-size: var(--texto-200);
+}
+
+/* --- Clases muestra en video --- */
+
+.video-marco {
+  border-radius: var(--radio-grande);
+  overflow: hidden;
+  border: var(--borde-fino) solid var(--color-marco);
+  margin-bottom: var(--espacio-6);
+}
+
+.video-marco video { width: 100%; display: block; }
+
+.leccion-info {
+  background-color: var(--color-superficie);
+  border: var(--borde-fino) solid var(--color-marco);
+  border-radius: var(--radio-grande);
+  padding: var(--espacio-5);
+}
+
+.leccion-info__titulo {
+  font-size: var(--texto-500);
+  font-weight: var(--peso-medio);
+  margin-bottom: var(--espacio-2);
+}
+
+.leccion-info__meta {
+  margin: 0;
+  color: var(--color-texto-suave);
+  font-size: var(--texto-200);
+}
+
+/* --- Asesor virtual de ruta de aprendizaje --- */
+
+/* Cada pregunta es un div con role="group" + aria-labelledby, no un
+   <fieldset>/<legend>: el navegador posiciona <legend> montado sobre el
+   borde superior del fieldset e ignora su padding (el título quedaba
+   fuera de la tarjeta) incluso con display:flex en el fieldset. El patrón
+   role="group" es la alternativa que documenta WAI-ARIA para agrupar
+   radios cuando fieldset/legend no se puede maquetar como se necesita, y
+   se comporta como cualquier <div> normal, sin casos especiales. */
+.test__pregunta,
+.test__final {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-superficie);
+  border: var(--borde-fino) solid var(--color-marco);
+  border-radius: var(--radio-grande);
+  padding: var(--espacio-5);
+  margin: 0 0 var(--espacio-5);
+}
+
+.test__titulo {
+  font-size: var(--texto-500);
+  font-weight: var(--peso-medio);
+  padding: 0 0 var(--espacio-3);
+}
+
+.test__opciones {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-2);
+  margin: 0;
+  padding: 0;
+}
+
+.test__opciones label {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-2);
+  font-size: var(--texto-200);
+}
+
+/* Pregunta final: input y label viven en elementos separados (necesitan id
+   propio para el :has() de abajo), así que cada par se envuelve en su
+   propia fila en vez de depender del flex de .test__opciones directamente. */
+.test__opcion {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-2);
+  font-size: var(--texto-200);
+}
+
+.test__resultados { margin-top: var(--espacio-4); }
+
+.test__resultado {
+  display: none;
+  padding: var(--espacio-4);
+  background-color: var(--color-vacio);
+  border-radius: var(--radio-medio);
+  color: var(--color-tinta);
+  font-weight: var(--peso-medio);
+}
+
+/* :has() en vez de un selector de hermanos: el resultado ya no necesita ser
+   hermano directo del radio, solo compartir el <fieldset>. Degrada con
+   gracia en un navegador sin soporte: el resultado simplemente no aparece,
+   sin romper nada más de la página. */
+.test__final:has(#obj-empleo:checked) #resultado-empleo,
+.test__final:has(#obj-mejora:checked) #resultado-mejora,
+.test__final:has(#obj-emprender:checked) #resultado-emprender,
+.test__final:has(#obj-curiosidad:checked) #resultado-curiosidad {
+  display: block;
+}
+
+/* ============================================================
+   Adaptación a pantallas grandes
+   ============================================================ */
+
+@media (min-width: 40em) {
+  .encabezado__interior {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .navegacion__interruptor,
+  .navegacion__boton {
+    display: none;
+  }
+  .navegacion__lista {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0;
+    gap: var(--espacio-2) var(--espacio-5);
+  }
+  .experiencias__grilla { grid-template-columns: repeat(2, 1fr); }
+  .cursos__grilla       { grid-template-columns: repeat(2, 1fr); }
+  .pie__interior        { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 62em) {
+  .experiencias__grilla { grid-template-columns: repeat(3, 1fr); }
+  .cursos__grilla       { grid-template-columns: repeat(3, 1fr); }
+  .pie__interior        { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

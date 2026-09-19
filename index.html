@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wayra Academy — Cursos y talleres en línea con instructores peruanos</title>
+  <meta name="description" content="Plataforma peruana de cursos y talleres en vivo. Explora el catálogo, mira una clase muestra gratis y recibe una ruta de aprendizaje recomendada.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <a class="salto-contenido" href="#contenido">Saltar al contenido principal</a>
+
+  <!-- REGIÓN 1: encabezado e identidad, con la navegación anidada (decisión técnica 3) -->
+  <header class="encabezado">
+    <div class="encabezado__interior">
+
+      <div class="marca">
+        <img class="marca__logo" src="img/logo-wayra.svg" alt="" width="40" height="40">
+        <p class="marca__nombre">Wayra Academy</p>
+        <p class="marca__eslogan">Tu centro de aprendizaje</p>
+      </div>
+
+      <nav class="navegacion" aria-label="Navegación principal">
+        <input type="checkbox" id="interruptor-menu" class="navegacion__interruptor" aria-label="Abrir menú de navegación">
+        <label for="interruptor-menu" class="navegacion__boton">
+          <span class="navegacion__linea"></span>
+          <span class="navegacion__linea"></span>
+          <span class="navegacion__linea"></span>
+        </label>
+        <ul class="navegacion__lista">
+          <li><a href="#contenido">Inicio</a></li>
+          <li><a href="#experiencias">Cursos</a></li>
+          <li><a href="#experiencias">Talleres en vivo</a></li>
+          <li><a href="#pie">Nosotros</a></li>
+          <li><a href="#pie" class="navegacion__acceso">Ingresar o registrarse</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- REGIÓN 2: contenido principal. Un único <main> y un único <h1> (decisión técnica 2) -->
+  <main id="contenido" class="principal">
+
+    <div class="bienvenida">
+      <h1 class="bienvenida__titulo">Aprende con instructores peruanos verificados</h1>
+      <p class="bienvenida__texto">
+        Cursos y talleres en vivo dictados por profesionales que trabajan hoy en lo que enseñan.
+        Cada instructor pasa por una revisión de experiencia y de sus materiales antes de publicar.
+      </p>
+      <a class="boton boton--primario" href="#experiencias">Ver cursos disponibles</a>
+    </div>
+
+    <!-- REGIÓN 3: las tres experiencias. <section> agrupa, cada <article> es autónomo (decisión técnica 1) -->
+    <section id="experiencias" class="experiencias" aria-labelledby="titulo-experiencias">
+      <h2 id="titulo-experiencias" class="experiencias__titulo">Experiencias interactivas</h2>
+      <p class="experiencias__bajada">Tres formas de conocer la plataforma antes de inscribirte.</p>
+
+      <div class="experiencias__grilla">
+
+        <article class="tarjeta" aria-labelledby="exp-1">
+          <div class="tarjeta__medio">
+            <img src="img/explorador-cursos.svg" width="800" height="500"
+                 alt="Buscador de cursos con los filtros de categoría, nivel y duración activos, mostrando cinco cursos comparables con su temario.">
+          </div>
+          <div class="tarjeta__cuerpo">
+            <h2 class="tarjeta__titulo" id="exp-1">Explorador interactivo de cursos</h2>
+            <p class="tarjeta__texto">
+              Filtra por categoría, nivel y duración, compara cursos lado a lado y revisa
+              una vista previa del temario antes de decidir.
+            </p>
+            <a class="boton boton--secundario" href="explorador-cursos.html">Explorar cursos</a>
+          </div>
+        </article>
+
+        <article class="tarjeta" aria-labelledby="exp-2">
+          <div class="tarjeta__medio">
+            <img src="img/clase-muestra.svg" width="800" height="500"
+                 alt="Miniatura de una clase muestra en video, con el control de reproducción y la duración de la lección visibles.">
+          </div>
+          <div class="tarjeta__cuerpo">
+            <h2 class="tarjeta__titulo" id="exp-2">Clases muestra en video</h2>
+            <p class="tarjeta__texto">
+              Una lección real y completa de un curso del catálogo. Se reproduce en el navegador,
+              sin registro y sin tarjeta, para que compruebes cómo se enseña.
+            </p>
+            <a class="boton boton--secundario" href="clase-muestra.html">Ver clase gratis</a>
+          </div>
+        </article>
+
+        <article class="tarjeta" aria-labelledby="exp-3">
+          <div class="tarjeta__medio">
+            <img src="img/asesor-virtual.svg" width="800" height="500"
+                 alt="Pantalla del test de asesor virtual con una pregunta sobre intereses y cuatro opciones de respuesta.">
+          </div>
+          <div class="tarjeta__cuerpo">
+            <h2 class="tarjeta__titulo" id="exp-3">Asesor virtual de ruta de aprendizaje</h2>
+            <p class="tarjeta__texto">
+              Seis preguntas sobre tus intereses, tu tiempo disponible y tu objetivo.
+              Al terminar recibes el curso o la ruta de capacitación que te conviene seguir.
+            </p>
+            <a class="boton boton--secundario" href="asesor-virtual.html">Hacer el test</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- REGIÓN 4: pie de página -->
+  <footer id="pie" class="pie">
+    <div class="pie__interior">
+
+      <div class="pie__bloque">
+        <h2 class="pie__titulo">Contacto</h2>
+        <address class="pie__direccion">
+          Av. Arequipa 1234, Lince, Lima<br>
+          <a href="mailto:hola@wayraacademy.pe">hola@wayraacademy.pe</a><br>
+          <a href="tel:+5115551234">(01) 555 1234</a>
+        </address>
+      </div>
+
+      <div class="pie__bloque">
+        <h2 class="pie__titulo">Redes sociales</h2>
+        <ul class="pie__lista">
+          <li><a href="#pie">Facebook</a></li>
+          <li><a href="#pie">Instagram</a></li>
+          <li><a href="#pie">YouTube</a></li>
+          <li><a href="#pie">LinkedIn</a></li>
+        </ul>
+      </div>
+
+      <div class="pie__bloque">
+        <h2 class="pie__titulo">Métodos de pago</h2>
+        <ul class="pie__lista">
+          <li>Visa y Mastercard</li>
+          <li>Yape y Plin</li>
+          <li>PagoEfectivo</li>
+          <li>Transferencia bancaria</li>
+        </ul>
+      </div>
+
+      <div class="pie__bloque">
+        <h2 class="pie__titulo">Certificaciones</h2>
+        <ul class="pie__lista">
+          <li>Certificado digital verificable por curso</li>
+          <li>Constancia de horas para talleres en vivo</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <p class="pie__copyright">© 2026 Wayra Academy. Todos los derechos reservados.</p>
+  </footer>
+
+</body>
+</html>

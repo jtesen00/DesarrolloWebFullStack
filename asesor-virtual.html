@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asesor virtual de ruta de aprendizaje — Wayra Academy</title>
+  <meta name="description" content="Seis preguntas sobre tus intereses, tu tiempo disponible y tu objetivo. Al terminar recibes el curso o la ruta de capacitación que te conviene seguir.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <a class="salto-contenido" href="#contenido">Saltar al contenido principal</a>
+
+  <header class="encabezado">
+    <div class="encabezado__interior">
+
+      <div class="marca">
+        <img class="marca__logo" src="img/logo-wayra.svg" alt="" width="40" height="40">
+        <p class="marca__nombre">Wayra Academy</p>
+        <p class="marca__eslogan">Tu centro de aprendizaje</p>
+      </div>
+
+      <nav class="navegacion" aria-label="Navegación principal">
+        <input type="checkbox" id="interruptor-menu" class="navegacion__interruptor" aria-label="Abrir menú de navegación">
+        <label for="interruptor-menu" class="navegacion__boton">
+          <span class="navegacion__linea"></span>
+          <span class="navegacion__linea"></span>
+          <span class="navegacion__linea"></span>
+        </label>
+        <ul class="navegacion__lista">
+          <li><a href="index.html#contenido">Inicio</a></li>
+          <li><a href="index.html#experiencias">Cursos</a></li>
+          <li><a href="index.html#experiencias">Talleres en vivo</a></li>
+          <li><a href="index.html#pie">Nosotros</a></li>
+          <li><a href="index.html#pie" class="navegacion__acceso">Ingresar o registrarse</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <main id="contenido" class="pagina">
+
+    <a class="pagina__volver" href="index.html">← Volver a Wayra Academy</a>
+
+    <div class="pagina__cabecera">
+      <h1 class="pagina__titulo">Asesor virtual de ruta de aprendizaje</h1>
+      <p class="pagina__intro">
+        Seis preguntas sobre tus intereses, tu tiempo disponible y tu objetivo. Las cinco primeras son
+        para conocerte (guardar tus respuestas y cruzarlas todas requiere la etapa con JavaScript);
+        la última ya te muestra una recomendación real apenas la respondes, sin recargar la página.
+      </p>
+    </div>
+
+    <div class="test__pregunta" role="group" aria-labelledby="p1-titulo">
+      <h2 class="test__titulo" id="p1-titulo">1. ¿Qué área te interesa más?</h2>
+      <div class="test__opciones">
+        <label><input type="radio" name="p1"> Desarrollo web</label>
+        <label><input type="radio" name="p1"> Datos e inteligencia artificial</label>
+        <label><input type="radio" name="p1"> Diseño</label>
+        <label><input type="radio" name="p1"> Negocios digitales</label>
+      </div>
+    </div>
+
+    <div class="test__pregunta" role="group" aria-labelledby="p2-titulo">
+      <h2 class="test__titulo" id="p2-titulo">2. ¿Cuánto tiempo puedes dedicar por semana?</h2>
+      <div class="test__opciones">
+        <label><input type="radio" name="p2"> Menos de 3 horas</label>
+        <label><input type="radio" name="p2"> Entre 3 y 6 horas</label>
+        <label><input type="radio" name="p2"> Más de 6 horas</label>
+      </div>
+    </div>
+
+    <div class="test__pregunta" role="group" aria-labelledby="p3-titulo">
+      <h2 class="test__titulo" id="p3-titulo">3. ¿Cuál es tu nivel actual?</h2>
+      <div class="test__opciones">
+        <label><input type="radio" name="p3"> Nunca programé ni diseñé nada</label>
+        <label><input type="radio" name="p3"> Ya sé lo básico</label>
+        <label><input type="radio" name="p3"> Tengo experiencia previa</label>
+      </div>
+    </div>
+
+    <div class="test__pregunta" role="group" aria-labelledby="p4-titulo">
+      <h2 class="test__titulo" id="p4-titulo">4. ¿Cómo prefieres aprender?</h2>
+      <div class="test__opciones">
+        <label><input type="radio" name="p4"> Con la teoría primero</label>
+        <label><input type="radio" name="p4"> Con proyectos prácticos desde el inicio</label>
+      </div>
+    </div>
+
+    <div class="test__pregunta" role="group" aria-labelledby="p5-titulo">
+      <h2 class="test__titulo" id="p5-titulo">5. ¿Qué certificación buscas?</h2>
+      <div class="test__opciones">
+        <label><input type="radio" name="p5"> Constancia de horas</label>
+        <label><input type="radio" name="p5"> Certificado digital verificable</label>
+        <label><input type="radio" name="p5"> Ambas</label>
+      </div>
+    </div>
+
+    <div class="test__final" role="group" aria-labelledby="p6-titulo">
+      <h2 class="test__titulo" id="p6-titulo">6. ¿Cuál es tu objetivo principal ahora mismo?</h2>
+      <div class="test__opciones">
+        <div class="test__opcion">
+          <input type="radio" name="objetivo" id="obj-empleo">
+          <label for="obj-empleo">Conseguir mi primer empleo en tecnología</label>
+        </div>
+        <div class="test__opcion">
+          <input type="radio" name="objetivo" id="obj-mejora">
+          <label for="obj-mejora">Mejorar en mi trabajo actual</label>
+        </div>
+        <div class="test__opcion">
+          <input type="radio" name="objetivo" id="obj-emprender">
+          <label for="obj-emprender">Emprender mi propio proyecto</label>
+        </div>
+        <div class="test__opcion">
+          <input type="radio" name="objetivo" id="obj-curiosidad">
+          <label for="obj-curiosidad">Aprender por curiosidad, sin apuro</label>
+        </div>
+      </div>
+
+      <div class="test__resultados">
+        <p class="test__resultado" id="resultado-empleo">
+          Tu ruta: empieza con <strong>Frontend con HTML5, CSS3 y JavaScript</strong> y sigue con
+          <strong>React desde cero</strong> — es la combinación que más piden las vacantes junior.
+        </p>
+        <p class="test__resultado" id="resultado-mejora">
+          Tu ruta: un curso intermedio como <strong>React desde cero</strong> o
+          <strong>Fundamentos de análisis de datos</strong>, según el área en la que ya trabajas.
+        </p>
+        <p class="test__resultado" id="resultado-emprender">
+          Tu ruta: <strong>Marketing digital para emprendedores</strong> primero, y
+          <strong>Frontend con HTML5, CSS3 y JavaScript</strong> para poder construir tu propia página.
+        </p>
+        <p class="test__resultado" id="resultado-curiosidad">
+          Tu ruta: sin apuro, empieza por una <a href="clase-muestra.html">clase muestra gratis</a>
+          y decide desde ahí qué curso completo te interesa más.
+        </p>
+      </div>
+    </div>
+
+  </main>
+
+  <footer id="pie" class="pie">
+    <div class="pie__interior">
+
+      <div class="pie__bloque">
+        <h2 class="pie__titulo">Contacto</h2>
+        <address class="pie__direccion">
+          Av. Arequipa 1234, Lince, Lima<br>
+          <a href="mailto:hola@wayraacademy.pe">hola@wayraacademy.pe</a><br>
+          <a href="tel:+5115551234">(01) 555 1234</a>
+        </address>
+      </div>
+
+      <div class="pie__bloque">
+        <h2 class="pie__titulo">Redes sociales</h2>
+        <ul class="pie__lista">
+          <li><a href="index.html#pie">Facebook</a></li>
+          <li><a href="index.html#pie">Instagram</a></li>
+          <li><a href="index.html#pie">YouTube</a></li>
+          <li><a href="index.html#pie">LinkedIn</a></li>
+        </ul>
+      </div>
+
+      <div class="pie__bloque">
+        <h2 class="pie__titulo">Métodos de pago</h2>
+        <ul class="pie__lista">
+          <li>Visa y Mastercard</li>
+          <li>Yape y Plin</li>
+          <li>PagoEfectivo</li>
+          <li>Transferencia bancaria</li>
+        </ul>
+      </div>
+
+      <div class="pie__bloque">
+        <h2 class="pie__titulo">Certificaciones</h2>
+        <ul class="pie__lista">
+          <li>Certificado digital verificable por curso</li>
+          <li>Constancia de horas para talleres en vivo</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <p class="pie__copyright">© 2026 Wayra Academy. Todos los derechos reservados.</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-hidden="true">
+  <!-- Ilustración plana (no es una captura real). Colores tomados de los
+       tokens de SISTEMA-DE-DISENO.md: color-vacio, color-superficie,
+       color-tinta, color-marco, color-accion. -->
+  <rect width="800" height="500" fill="#E4E9EF"/>
+
+  <!-- tres tarjetas de curso comparadas lado a lado -->
+  <g>
+    <rect x="120" y="120" width="150" height="200" rx="10" fill="#FFFFFF" stroke="#D9DFE6" stroke-width="2"/>
+    <rect x="140" y="145" width="110" height="70" rx="6" fill="#D9DFE6"/>
+    <rect x="140" y="228" width="90" height="12" rx="6" fill="#1B2A4A"/>
+    <rect x="140" y="250" width="70" height="9" rx="4.5" fill="#47566F"/>
+    <rect x="140" y="268" width="70" height="9" rx="4.5" fill="#47566F"/>
+
+    <rect x="325" y="100" width="150" height="240" rx="10" fill="#FFFFFF" stroke="#C0006B" stroke-width="3"/>
+    <rect x="345" y="125" width="110" height="70" rx="6" fill="#D9DFE6"/>
+    <rect x="345" y="208" width="90" height="12" rx="6" fill="#1B2A4A"/>
+    <rect x="345" y="230" width="70" height="9" rx="4.5" fill="#47566F"/>
+    <rect x="345" y="248" width="70" height="9" rx="4.5" fill="#47566F"/>
+    <rect x="345" y="300" width="90" height="24" rx="6" fill="#C0006B"/>
+
+    <rect x="530" y="120" width="150" height="200" rx="10" fill="#FFFFFF" stroke="#D9DFE6" stroke-width="2"/>
+    <rect x="550" y="145" width="110" height="70" rx="6" fill="#D9DFE6"/>
+    <rect x="550" y="228" width="90" height="12" rx="6" fill="#1B2A4A"/>
+    <rect x="550" y="250" width="70" height="9" rx="4.5" fill="#47566F"/>
+    <rect x="550" y="268" width="70" height="9" rx="4.5" fill="#47566F"/>
+  </g>
+
+  <!-- barra de filtros -->
+  <g>
+    <rect x="120" y="60" width="120" height="28" rx="14" fill="#1B2A4A"/>
+    <rect x="252" y="60" width="120" height="28" rx="14" fill="#FFFFFF" stroke="#D9DFE6" stroke-width="2"/>
+    <rect x="384" y="60" width="120" height="28" rx="14" fill="#FFFFFF" stroke="#D9DFE6" stroke-width="2"/>
+  </g>
+
+  <!-- lupa -->
+  <g transform="translate(636,370)">
+    <circle cx="0" cy="0" r="34" fill="none" stroke="#C0006B" stroke-width="10"/>
+    <line x1="24" y1="24" x2="52" y2="52" stroke="#C0006B" stroke-width="10" stroke-linecap="round"/>
+  </g>
+</svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-hidden="true">
+  <!-- Ilustración plana (no es una captura real). Colores tomados de los
+       tokens de SISTEMA-DE-DISENO.md: color-vacio, color-superficie,
+       color-tinta, color-marco, color-accion, color-destaque. -->
+  <rect width="800" height="500" fill="#E4E9EF"/>
+
+  <!-- tarjeta de pregunta -->
+  <rect x="180" y="70" width="440" height="360" rx="16" fill="#FFFFFF" stroke="#D9DFE6" stroke-width="2"/>
+
+  <!-- barra de progreso del test: pregunta 1 de 6 -->
+  <rect x="210" y="102" width="380" height="10" rx="5" fill="#D9DFE6"/>
+  <rect x="210" y="102" width="65" height="10" rx="5" fill="#C0006B"/>
+
+  <!-- signo de interrogación -->
+  <text x="400" y="230" font-family="Georgia, 'Times New Roman', serif" font-size="120"
+        font-weight="700" text-anchor="middle" fill="#1B2A4A">?</text>
+
+  <!-- cuatro opciones de respuesta -->
+  <g>
+    <rect x="220" y="262" width="360" height="30" rx="15" fill="#F4F6F8" stroke="#D9DFE6" stroke-width="2"/>
+    <circle cx="242" cy="277" r="7" fill="#C0006B"/>
+
+    <rect x="220" y="302" width="360" height="30" rx="15" fill="#F4F6F8" stroke="#D9DFE6" stroke-width="2"/>
+    <circle cx="242" cy="317" r="7" fill="none" stroke="#47566F" stroke-width="2"/>
+
+    <rect x="220" y="342" width="360" height="30" rx="15" fill="#F4F6F8" stroke="#D9DFE6" stroke-width="2"/>
+    <circle cx="242" cy="357" r="7" fill="none" stroke="#47566F" stroke-width="2"/>
+
+    <rect x="220" y="382" width="360" height="30" rx="15" fill="#F4F6F8" stroke="#D9DFE6" stroke-width="2"/>
+    <circle cx="242" cy="397" r="7" fill="none" stroke="#47566F" stroke-width="2"/>
+  </g>
+
+  <!-- acento de marca -->
+  <rect x="180" y="70" width="440" height="8" rx="4" fill="#F2B705"/>
+</svg>
