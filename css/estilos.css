@@ -78,6 +78,12 @@
   /* --- Medidas ------------------------------------------- */
   --ancho-pagina:  68rem;
   --ancho-lectura: 34rem;  /* mantiene la línea bajo 80 caracteres */
+  --ancho-lateral: 20rem;  /* techo de la columna complementaria */
+  --toque-minimo:  2.75rem;  /* 44px — blanco táctil cómodo en celular */
+
+  /* --- Medidas relativas a la ventana -------------------- */
+  --alto-minimo-contenido: 60vh;  /* evita que el pie suba en páginas cortas */
+  --alto-maximo-video:     70vh;  /* deja los controles dentro del pantallazo */
 }
 
 /* ============================================================
@@ -298,14 +304,104 @@ summary:focus-visible {
 }
 
 /* ============================================================
-   Región: contenido principal
+   Región: disposición de la página (CSS Grid)
+   Semana 2, decisión técnica 1.
+
+   Es el único Grid bidimensional del proyecto. Contiene <main> y
+   <aside>; el encabezado y el pie quedan fuera a propósito, porque su
+   fondo oscuro debe llegar al borde de la ventana y ya resuelven su
+   propio centrado con .encabezado__interior y .pie__interior.
+
+   El paso de una a dos columnas se hace cambiando solo el mapa de
+   grid-template-areas: el orden del HTML no se toca, así que el orden
+   de lectura y el de tabulación siguen siendo los mismos.
    ============================================================ */
 
-.principal {
+.disposicion {
   max-width: var(--ancho-pagina);
   margin: 0 auto;
   padding: var(--espacio-8) var(--espacio-5) var(--espacio-9);
+  min-height: var(--alto-minimo-contenido);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "principal"
+    "lateral";
+  gap: var(--espacio-8);
 }
+
+/* min-width: 0 evita que un hijo ancho (una tabla, un <pre>, una imagen
+   sin max-width) estire su columna por encima del espacio disponible:
+   el tamaño mínimo automático de un elemento de Grid es su contenido,
+   no cero. */
+.principal,
+.pagina   { grid-area: principal; min-width: 0; }
+.lateral  { grid-area: lateral;   min-width: 0; }
+
+/* ============================================================
+   Componente: columna complementaria
+   ============================================================ */
+
+.lateral {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-5);
+}
+
+.lateral__bloque {
+  background-color: var(--color-superficie);
+  border: var(--borde-fino) solid var(--color-marco);
+  border-radius: var(--radio-grande);
+  padding: var(--espacio-5);
+}
+
+.lateral__titulo {
+  font-size: var(--texto-200);
+  font-weight: var(--peso-medio);
+  color: var(--color-accion);
+  margin: 0 0 var(--espacio-3);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.lateral__texto {
+  margin: 0;
+  font-size: var(--texto-200);
+  color: var(--color-texto-suave);
+}
+
+.lateral__lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: var(--texto-200);
+}
+
+.lateral__lista li + li {
+  margin-top: var(--espacio-3);
+  padding-top: var(--espacio-3);
+  border-top: var(--borde-fino) solid var(--color-marco);
+}
+
+.lateral__dato {
+  display: block;
+  font-weight: var(--peso-medio);
+}
+
+.lateral__apunte {
+  display: block;
+  color: var(--color-texto-suave);
+}
+
+.lateral a {
+  color: var(--color-accion);
+  text-decoration: underline;
+  text-underline-offset: var(--foco-margen);
+}
+
+/* ============================================================
+   Región: contenido principal
+   ============================================================ */
 
 .bienvenida { max-width: var(--ancho-lectura); }
 
@@ -426,7 +522,8 @@ summary:focus-visible {
   padding: 0;
 }
 
-.pie__lista li { margin-bottom: var(--espacio-1); }
+/* El relleno vertical lo da ahora el propio enlace (--toque-minimo). */
+.pie__lista li { margin-bottom: 0; }
 
 .pie__direccion {
   margin: 0;
@@ -437,6 +534,16 @@ summary:focus-visible {
   color: var(--color-texto-claro);
   text-decoration: underline;
   text-underline-offset: var(--foco-margen);
+}
+
+/* Los enlaces del pie medían 24 px de alto: cumplían el mínimo de 24x24
+   (WCAG 2.5.8, AA) por el pelo. inline-flex + min-height los lleva a
+   44 px sin cambiar el texto ni el subrayado. */
+.pie__lista a,
+.pie__direccion a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--toque-minimo);
 }
 
 .pie__copyright {
@@ -453,9 +560,9 @@ summary:focus-visible {
    ============================================================ */
 
 .pagina {
-  max-width: var(--ancho-pagina);
-  margin: 0 auto;
-  padding: var(--espacio-8) var(--espacio-5) var(--espacio-9);
+  /* El ancho máximo, el centrado y el relleno los pone ahora .disposicion
+     (Semana 2): aquí solo queda lo propio de la página. */
+  margin: 0;
 }
 
 .pagina__volver {
@@ -483,10 +590,14 @@ summary:focus-visible {
 
 /* --- Explorador interactivo de cursos --- */
 
+/* Mobile-first: los tres campos en columna y cada select a ancho
+   completo. Antes iban en fila con flex-wrap y, al envolver, cada uno
+   quedaba con un ancho distinto (180 / 160 / 174 px) y el borde derecho
+   no alineaba. */
 .filtros {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--espacio-4) var(--espacio-5);
+  flex-direction: column;
+  gap: var(--espacio-4);
   margin-bottom: var(--espacio-7);
 }
 
@@ -499,6 +610,7 @@ summary:focus-visible {
 }
 
 .filtros__campo select {
+  width: 100%;
   font-family: var(--fuente-texto);
   font-size: var(--texto-200);
   font-weight: var(--peso-normal);
@@ -572,9 +684,20 @@ summary:focus-visible {
   margin-bottom: var(--espacio-6);
 }
 
-.video-marco video { width: 100%; display: block; }
+/* width evita el desborde horizontal; max-height en vh evita el vertical:
+   con height="500" fijo, en una laptop de 700 px de alto los controles
+   caían fuera del primer pantallazo. */
+.video-marco video {
+  width: 100%;
+  height: auto;
+  max-height: var(--alto-maximo-video);
+  display: block;
+}
 
+/* Sin max-width el párrafo medía 990 px en escritorio: muy por encima de
+   la medida de lectura cómoda que el sistema ya tenía definida. */
 .leccion-info {
+  max-width: var(--ancho-lectura);
   background-color: var(--color-superficie);
   border: var(--borde-fino) solid var(--color-marco);
   border-radius: var(--radio-grande);
@@ -644,7 +767,13 @@ summary:focus-visible {
   font-size: var(--texto-200);
 }
 
-.test__resultados { margin-top: var(--espacio-4); }
+/* Los resultados se mudaron al <aside> (Semana 2): en escritorio quedan
+   fijos a la vista mientras se responde, sin bajar al final de la página. */
+.test__resultados { margin: 0; }
+
+/* Se ve mientras no hay respuesta en la pregunta 6; el :has() de mas
+   abajo lo oculta en cuanto se marca una opcion. */
+.test__aviso { margin: 0; }
 
 .test__resultado {
   display: none;
@@ -656,18 +785,32 @@ summary:focus-visible {
 }
 
 /* :has() en vez de un selector de hermanos: el resultado ya no necesita ser
-   hermano directo del radio, solo compartir el <fieldset>. Degrada con
-   gracia en un navegador sin soporte: el resultado simplemente no aparece,
-   sin romper nada más de la página. */
-.test__final:has(#obj-empleo:checked) #resultado-empleo,
-.test__final:has(#obj-mejora:checked) #resultado-mejora,
-.test__final:has(#obj-emprender:checked) #resultado-emprender,
-.test__final:has(#obj-curiosidad:checked) #resultado-curiosidad {
+   hermano directo del radio. En Semana 2 el ámbito subió de .test__final a
+   .disposicion, que es el ancestro común del <main> con los radios y del
+   <aside> con los resultados: el mismo selector cruza ahora de una columna
+   del Grid a la otra. Degrada con gracia en un navegador sin soporte: el
+   resultado no aparece y el aviso inicial se queda, sin romper nada más. */
+.disposicion:has(#obj-empleo:checked) #resultado-empleo,
+.disposicion:has(#obj-mejora:checked) #resultado-mejora,
+.disposicion:has(#obj-emprender:checked) #resultado-emprender,
+.disposicion:has(#obj-curiosidad:checked) #resultado-curiosidad {
   display: block;
+}
+
+/* Aviso mientras no se ha respondido la pregunta 6. */
+.disposicion:has(.test__opcion input:checked) .test__aviso {
+  display: none;
 }
 
 /* ============================================================
    Adaptación a pantallas grandes
+
+   Los dos breakpoints se declaran en em, no en px (decisión técnica 3):
+   dentro de una media query, em se resuelve siempre contra el tamaño de
+   fuente base del navegador, nunca contra el del elemento. Si el usuario
+   la sube de 16 px a 24 px, 40em pasa de 640 px a 960 px y el cambio de
+   layout se adelanta, en vez de dejarle el layout ancho con el texto
+   demasiado grande.
    ============================================================ */
 
 @media (min-width: 40em) {
@@ -690,12 +833,62 @@ summary:focus-visible {
   .experiencias__grilla { grid-template-columns: repeat(2, 1fr); }
   .cursos__grilla       { grid-template-columns: repeat(2, 1fr); }
   .pie__interior        { grid-template-columns: repeat(2, 1fr); }
+
+  /* Las opciones del test se quedaban en columna a cualquier ancho: a
+     1440 px cada pregunta ocupaba 1040 px con las respuestas apiladas. */
+  .test__opciones {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--espacio-3) var(--espacio-5);
+  }
+
+  .test__opciones > label,
+  .test__opcion { flex: 1 1 14rem; }
+
+  /* Los filtros recuperan la fila, pero repartida en partes iguales:
+     ya no dependen de flex-wrap para acomodarse. */
+  .filtros { flex-direction: row; }
+  .filtros__campo { flex: 1 1 0; }
 }
 
 @media (min-width: 62em) {
-  .experiencias__grilla { grid-template-columns: repeat(3, 1fr); }
-  .cursos__grilla       { grid-template-columns: repeat(3, 1fr); }
-  .pie__interior        { grid-template-columns: repeat(4, 1fr); }
+  /* Cambio principal de la Semana 2: main y aside pasan a dos columnas.
+     Lo único que cambia es el mapa de áreas y la definición de columnas;
+     el HTML es el mismo que en mobile.
+
+     Por qué 62em y no los 768 px del ejemplo de la guía: a 768 px,
+     restarle 16rem de columna lateral más el gap deja el contenido
+     principal en unos 460 px, donde las tarjetas volverían a una sola
+     columna y el aside competiría con el contenido en vez de
+     acompañarlo. A 992 px quedan unos 700 px, que aún sostienen dos
+     tarjetas por fila. */
+  .disposicion {
+    grid-template-columns: 1fr minmax(16rem, var(--ancho-lateral));
+    grid-template-areas: "principal lateral";
+    gap: var(--espacio-7);
+  }
+
+  /* Sin align-items: start a propósito. El valor por defecto (stretch)
+     hace que el <aside> ocupe todo el alto de la fila, y eso es lo que le
+     da recorrido a position: sticky de más abajo. Con start, la caja del
+     aside se encogía a la altura de su contenido y el bloque fijo no
+     tenía dónde desplazarse: se quedaba arriba y desaparecía de la vista
+     al bajar. Lo detectamos en la Actividad 6 (ver sección 10). */
+  .lateral { justify-content: start; }
+
+  /* Las grillas de tarjetas se quedan en las dos columnas que ya tenían
+     desde 40em: con la columna lateral ocupando 20rem, el contenido
+     principal mide unos 680 px y una tercera tarjeta las dejaría en
+     210 px, por debajo de lo legible. El pie sí pasa a cuatro porque
+     está fuera del Grid y ocupa todo el ancho de la ventana. */
+  .pie__interior { grid-template-columns: repeat(4, 1fr); }
+
+  /* El bloque se queda a la vista mientras se recorre la página: es el
+     caso del resultado del test, que cambia según lo que se responde. */
+  .lateral__bloque--fijo {
+    position: sticky;
+    top: var(--espacio-5);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

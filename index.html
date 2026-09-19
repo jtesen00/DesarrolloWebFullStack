@@ -45,73 +45,123 @@
   </header>
 
   <!-- REGIÓN 2: contenido principal. Un único <main> y un único <h1> (decisión técnica 2) -->
-  <main id="contenido" class="principal">
+  <!-- REGION 2: disposicion en Grid. <main> y <aside> son las dos
+       areas del layout; el encabezado y el pie quedan fuera porque su
+       fondo debe llegar al borde de la ventana (Semana 2). -->
+  <div class="disposicion">
 
-    <div class="bienvenida">
-      <h1 class="bienvenida__titulo">Aprende con instructores peruanos verificados</h1>
-      <p class="bienvenida__texto">
-        Cursos y talleres en vivo dictados por profesionales que trabajan hoy en lo que enseñan.
-        Cada instructor pasa por una revisión de experiencia y de sus materiales antes de publicar.
-      </p>
-      <a class="boton boton--primario" href="#experiencias">Ver cursos disponibles</a>
-    </div>
+    <main id="contenido" class="principal">
 
-    <!-- REGIÓN 3: las tres experiencias. <section> agrupa, cada <article> es autónomo (decisión técnica 1) -->
-    <section id="experiencias" class="experiencias" aria-labelledby="titulo-experiencias">
-      <h2 id="titulo-experiencias" class="experiencias__titulo">Experiencias interactivas</h2>
-      <p class="experiencias__bajada">Tres formas de conocer la plataforma antes de inscribirte.</p>
-
-      <div class="experiencias__grilla">
-
-        <article class="tarjeta" aria-labelledby="exp-1">
-          <div class="tarjeta__medio">
-            <img src="img/explorador-cursos.svg" width="800" height="500"
-                 alt="Buscador de cursos con los filtros de categoría, nivel y duración activos, mostrando cinco cursos comparables con su temario.">
-          </div>
-          <div class="tarjeta__cuerpo">
-            <h2 class="tarjeta__titulo" id="exp-1">Explorador interactivo de cursos</h2>
-            <p class="tarjeta__texto">
-              Filtra por categoría, nivel y duración, compara cursos lado a lado y revisa
-              una vista previa del temario antes de decidir.
-            </p>
-            <a class="boton boton--secundario" href="explorador-cursos.html">Explorar cursos</a>
-          </div>
-        </article>
-
-        <article class="tarjeta" aria-labelledby="exp-2">
-          <div class="tarjeta__medio">
-            <img src="img/clase-muestra.svg" width="800" height="500"
-                 alt="Miniatura de una clase muestra en video, con el control de reproducción y la duración de la lección visibles.">
-          </div>
-          <div class="tarjeta__cuerpo">
-            <h2 class="tarjeta__titulo" id="exp-2">Clases muestra en video</h2>
-            <p class="tarjeta__texto">
-              Una lección real y completa de un curso del catálogo. Se reproduce en el navegador,
-              sin registro y sin tarjeta, para que compruebes cómo se enseña.
-            </p>
-            <a class="boton boton--secundario" href="clase-muestra.html">Ver clase gratis</a>
-          </div>
-        </article>
-
-        <article class="tarjeta" aria-labelledby="exp-3">
-          <div class="tarjeta__medio">
-            <img src="img/asesor-virtual.svg" width="800" height="500"
-                 alt="Pantalla del test de asesor virtual con una pregunta sobre intereses y cuatro opciones de respuesta.">
-          </div>
-          <div class="tarjeta__cuerpo">
-            <h2 class="tarjeta__titulo" id="exp-3">Asesor virtual de ruta de aprendizaje</h2>
-            <p class="tarjeta__texto">
-              Seis preguntas sobre tus intereses, tu tiempo disponible y tu objetivo.
-              Al terminar recibes el curso o la ruta de capacitación que te conviene seguir.
-            </p>
-            <a class="boton boton--secundario" href="asesor-virtual.html">Hacer el test</a>
-          </div>
-        </article>
-
+      <div class="bienvenida">
+        <h1 class="bienvenida__titulo">Aprende con instructores peruanos verificados</h1>
+        <p class="bienvenida__texto">
+          Cursos y talleres en vivo dictados por profesionales que trabajan hoy en lo que enseñan.
+          Cada instructor pasa por una revisión de experiencia y de sus materiales antes de publicar.
+        </p>
+        <a class="boton boton--primario" href="#experiencias">Ver cursos disponibles</a>
       </div>
-    </section>
 
-  </main>
+      <!-- REGIÓN 3: las tres experiencias. <section> agrupa, cada <article> es autónomo (decisión técnica 1) -->
+      <section id="experiencias" class="experiencias" aria-labelledby="titulo-experiencias">
+        <h2 id="titulo-experiencias" class="experiencias__titulo">Experiencias interactivas</h2>
+        <p class="experiencias__bajada">Tres formas de conocer la plataforma antes de inscribirte.</p>
+
+        <div class="experiencias__grilla">
+
+          <article class="tarjeta" aria-labelledby="exp-1">
+            <div class="tarjeta__medio">
+              <img src="img/explorador-cursos.svg" width="800" height="500"
+                   alt="Buscador de cursos con los filtros de categoría, nivel y duración activos, mostrando cinco cursos comparables con su temario.">
+            </div>
+            <div class="tarjeta__cuerpo">
+              <h2 class="tarjeta__titulo" id="exp-1">Explorador interactivo de cursos</h2>
+              <p class="tarjeta__texto">
+                Filtra por categoría, nivel y duración, compara cursos lado a lado y revisa
+                una vista previa del temario antes de decidir.
+              </p>
+              <a class="boton boton--secundario" href="explorador-cursos.html">Explorar cursos</a>
+            </div>
+          </article>
+
+          <article class="tarjeta" aria-labelledby="exp-2">
+            <div class="tarjeta__medio">
+              <img src="img/clase-muestra.svg" width="800" height="500"
+                   alt="Miniatura de una clase muestra en video, con el control de reproducción y la duración de la lección visibles.">
+            </div>
+            <div class="tarjeta__cuerpo">
+              <h2 class="tarjeta__titulo" id="exp-2">Clases muestra en video</h2>
+              <p class="tarjeta__texto">
+                Una lección real y completa de un curso del catálogo. Se reproduce en el navegador,
+                sin registro y sin tarjeta, para que compruebes cómo se enseña.
+              </p>
+              <a class="boton boton--secundario" href="clase-muestra.html">Ver clase gratis</a>
+            </div>
+          </article>
+
+          <article class="tarjeta" aria-labelledby="exp-3">
+            <div class="tarjeta__medio">
+              <img src="img/asesor-virtual.svg" width="800" height="500"
+                   alt="Pantalla del test de asesor virtual con una pregunta sobre intereses y cuatro opciones de respuesta.">
+            </div>
+            <div class="tarjeta__cuerpo">
+              <h2 class="tarjeta__titulo" id="exp-3">Asesor virtual de ruta de aprendizaje</h2>
+              <p class="tarjeta__texto">
+                Seis preguntas sobre tus intereses, tu tiempo disponible y tu objetivo.
+                Al terminar recibes el curso o la ruta de capacitación que te conviene seguir.
+              </p>
+              <a class="boton boton--secundario" href="asesor-virtual.html">Hacer el test</a>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+    </main>
+
+    <!-- REGION 3: contenido complementario. <aside> expone el landmark
+         "complementary", que el lector de pantalla lista aparte de
+         <main> (decision tecnica 2 de la Semana 2). -->
+    <aside class="lateral" aria-label="Información complementaria">
+
+      <div class="lateral__bloque">
+        <h2 class="lateral__titulo">Próximas fechas de inicio</h2>
+        <ul class="lateral__lista">
+          <li>
+            <span class="lateral__dato">Frontend con HTML5, CSS3 y JavaScript</span>
+            <span class="lateral__apunte">Lunes 21 de septiembre &middot; 19:00 (hora de Lima)</span>
+          </li>
+          <li>
+            <span class="lateral__dato">Fundamentos de análisis de datos</span>
+            <span class="lateral__apunte">Lunes 5 de octubre &middot; 19:00 (hora de Lima)</span>
+          </li>
+          <li>
+            <span class="lateral__dato">Diseño UX/UI para producto digital</span>
+            <span class="lateral__apunte">Lunes 19 de octubre &middot; 20:00 (hora de Lima)</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="lateral__bloque">
+        <h2 class="lateral__titulo">Por qué Wayra Academy</h2>
+        <ul class="lateral__lista">
+          <li>
+            <span class="lateral__dato">Instructores verificados</span>
+            <span class="lateral__apunte">Cada uno pasa por una revisión de experiencia y de materiales antes de publicar.</span>
+          </li>
+          <li>
+            <span class="lateral__dato">Clases en vivo, no grabaciones</span>
+            <span class="lateral__apunte">Con espacio para preguntas y revisión de tus ejercicios.</span>
+          </li>
+          <li>
+            <span class="lateral__dato">Certificado verificable</span>
+            <span class="lateral__apunte">Con código de validación en línea al terminar el curso.</span>
+          </li>
+        </ul>
+      </div>
+
+    </aside>
+
+  </div>
 
   <!-- REGIÓN 4: pie de página -->
   <footer id="pie" class="pie">

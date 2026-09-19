@@ -43,32 +43,88 @@
     </div>
   </header>
 
-  <main id="contenido" class="pagina">
+  <!-- REGION 2: disposicion en Grid. <main> y <aside> son las dos
+       areas del layout; el encabezado y el pie quedan fuera porque su
+       fondo debe llegar al borde de la ventana (Semana 2). -->
+  <div class="disposicion">
 
-    <a class="pagina__volver" href="index.html">← Volver a Wayra Academy</a>
+    <main id="contenido" class="pagina">
 
-    <div class="pagina__cabecera">
-      <h1 class="pagina__titulo">Clases muestra en video</h1>
-      <p class="pagina__intro">
-        Una lección real y completa de un curso del catálogo. Se reproduce aquí mismo, en el
-        navegador, sin registro y sin tarjeta, para que compruebes cómo se enseña.
-      </p>
-    </div>
+      <a class="pagina__volver" href="index.html">← Volver a Wayra Academy</a>
 
-    <div class="video-marco">
-      <video controls poster="img/clase-muestra.svg" width="800" height="500">
-        <source src="media/clase-muestra.mp4" type="video/mp4">
-        Tu navegador no puede reproducir este video. Puedes
-        <a href="media/clase-muestra.mp4">descargarlo directamente</a>.
-      </video>
-    </div>
+      <div class="pagina__cabecera">
+        <h1 class="pagina__titulo">Clases muestra en video</h1>
+        <p class="pagina__intro">
+          Una lección real y completa de un curso del catálogo. Se reproduce aquí mismo, en el
+          navegador, sin registro y sin tarjeta, para que compruebes cómo se enseña.
+        </p>
+      </div>
 
-    <div class="leccion-info">
-      <h2 class="leccion-info__titulo">Frontend con HTML5, CSS3 y JavaScript — Clase 1: Semántica</h2>
-      <p class="leccion-info__meta">Duración: 12 min · Instructor: equipo docente de Wayra Academy</p>
-    </div>
+      <div class="video-marco">
+        <video controls poster="img/clase-muestra.svg" width="800" height="500">
+          <source src="media/clase-muestra.mp4" type="video/mp4">
+          Tu navegador no puede reproducir este video. Puedes
+          <a href="media/clase-muestra.mp4">descargarlo directamente</a>.
+        </video>
+      </div>
 
-  </main>
+      <div class="leccion-info">
+        <h2 class="leccion-info__titulo">Frontend con HTML5, CSS3 y JavaScript — Clase 1: Semántica</h2>
+        <p class="leccion-info__meta">Duración: 12 min · Instructor: equipo docente de Wayra Academy</p>
+      </div>
+
+    </main>
+
+    <!-- Contenido complementario del video: temario de la leccion y las
+         otras clases muestra disponibles. -->
+    <aside class="lateral" aria-label="Sobre esta clase">
+
+      <div class="lateral__bloque">
+        <h2 class="lateral__titulo">Contenido de esta clase</h2>
+        <ul class="lateral__lista">
+          <li>
+            <span class="lateral__dato">Qué significa &laquo;semántica&raquo;</span>
+            <span class="lateral__apunte">Por qué el navegador y el lector de pantalla no leen lo mismo.</span>
+          </li>
+          <li>
+            <span class="lateral__dato">Las regiones de una página</span>
+            <span class="lateral__apunte">header, nav, main, aside y footer, y cuándo corresponde cada uno.</span>
+          </li>
+          <li>
+            <span class="lateral__dato">section frente a article</span>
+            <span class="lateral__apunte">La pregunta de &laquo;¿esto se sostiene solo?&raquo;.</span>
+          </li>
+          <li>
+            <span class="lateral__dato">Ejercicio guiado</span>
+            <span class="lateral__apunte">Convertir una página de puros div en una con regiones reales.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="lateral__bloque">
+        <h2 class="lateral__titulo">Otras clases muestra</h2>
+        <ul class="lateral__lista">
+          <li>
+            <span class="lateral__dato">React desde cero &mdash; Clase 1</span>
+            <span class="lateral__apunte">Qué es un componente. Próximamente.</span>
+          </li>
+          <li>
+            <span class="lateral__dato">Análisis de datos &mdash; Clase 1</span>
+            <span class="lateral__apunte">Leer un dataset sin morir en el intento. Próximamente.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="lateral__bloque">
+        <h2 class="lateral__titulo">¿Te sirvió la clase?</h2>
+        <p class="lateral__texto">
+          Revisa el <a href="explorador-cursos.html">curso completo</a> o descubre tu ruta con el <a href="asesor-virtual.html">asesor virtual</a>.
+        </p>
+      </div>
+
+    </aside>
+
+  </div>
 
   <footer id="pie" class="pie">
     <div class="pie__interior">

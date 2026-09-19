@@ -43,146 +43,192 @@
     </div>
   </header>
 
-  <main id="contenido" class="pagina">
+  <!-- REGION 2: disposicion en Grid. <main> y <aside> son las dos
+       areas del layout; el encabezado y el pie quedan fuera porque su
+       fondo debe llegar al borde de la ventana (Semana 2). -->
+  <div class="disposicion">
 
-    <a class="pagina__volver" href="index.html">← Volver a Wayra Academy</a>
+    <main id="contenido" class="pagina">
 
-    <div class="pagina__cabecera">
-      <h1 class="pagina__titulo">Explorador interactivo de cursos</h1>
-      <p class="pagina__intro">
-        Filtra por categoría, nivel y duración, compara cursos lado a lado y revisa una vista previa
-        del temario de cada uno antes de decidir. Esta es una maqueta navegable: los filtros todavía
-        no reordenan la lista (eso llega en la etapa con JavaScript), pero el temario de cada curso sí
-        se puede abrir de verdad.
-      </p>
-    </div>
+      <a class="pagina__volver" href="index.html">← Volver a Wayra Academy</a>
 
-    <div class="filtros">
-      <div class="filtros__campo">
-        <label for="filtro-categoria">Categoría</label>
-        <select id="filtro-categoria">
-          <option>Todas las categorías</option>
-          <option>Desarrollo web</option>
-          <option>Datos e IA</option>
-          <option>Diseño</option>
-          <option>Negocios digitales</option>
-        </select>
+      <div class="pagina__cabecera">
+        <h1 class="pagina__titulo">Explorador interactivo de cursos</h1>
+        <p class="pagina__intro">
+          Filtra por categoría, nivel y duración, compara cursos lado a lado y revisa una vista previa
+          del temario de cada uno antes de decidir. Esta es una maqueta navegable: los filtros todavía
+          no reordenan la lista (eso llega en la etapa con JavaScript), pero el temario de cada curso sí
+          se puede abrir de verdad.
+        </p>
       </div>
-      <div class="filtros__campo">
-        <label for="filtro-nivel">Nivel</label>
-        <select id="filtro-nivel">
-          <option>Todos los niveles</option>
-          <option>Principiante</option>
-          <option>Intermedio</option>
-          <option>Avanzado</option>
-        </select>
+
+      <div class="filtros">
+        <div class="filtros__campo">
+          <label for="filtro-categoria">Categoría</label>
+          <select id="filtro-categoria">
+            <option>Todas las categorías</option>
+            <option>Desarrollo web</option>
+            <option>Datos e IA</option>
+            <option>Diseño</option>
+            <option>Negocios digitales</option>
+          </select>
+        </div>
+        <div class="filtros__campo">
+          <label for="filtro-nivel">Nivel</label>
+          <select id="filtro-nivel">
+            <option>Todos los niveles</option>
+            <option>Principiante</option>
+            <option>Intermedio</option>
+            <option>Avanzado</option>
+          </select>
+        </div>
+        <div class="filtros__campo">
+          <label for="filtro-duracion">Duración</label>
+          <select id="filtro-duracion">
+            <option>Cualquier duración</option>
+            <option>Menos de 10 horas</option>
+            <option>10 a 30 horas</option>
+            <option>Más de 30 horas</option>
+          </select>
+        </div>
       </div>
-      <div class="filtros__campo">
-        <label for="filtro-duracion">Duración</label>
-        <select id="filtro-duracion">
-          <option>Cualquier duración</option>
-          <option>Menos de 10 horas</option>
-          <option>10 a 30 horas</option>
-          <option>Más de 30 horas</option>
-        </select>
+
+      <div class="cursos__grilla">
+
+        <article class="curso">
+          <h2 class="curso__titulo">Frontend con HTML5, CSS3 y JavaScript</h2>
+          <div class="curso__etiquetas">
+            <span class="curso__etiqueta">Desarrollo web</span>
+            <span class="curso__etiqueta">Principiante</span>
+            <span class="curso__etiqueta">28 horas</span>
+          </div>
+          <p class="curso__texto">Construye interfaces accesibles desde cero, sin frameworks, con buenas prácticas de semántica.</p>
+          <details class="curso__detalle">
+            <summary>Ver temario</summary>
+            <ul class="curso__temario">
+              <li>HTML5 semántico y accesibilidad</li>
+              <li>CSS3: layout, variables y responsive</li>
+              <li>JavaScript: DOM y eventos</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="curso">
+          <h2 class="curso__titulo">React desde cero</h2>
+          <div class="curso__etiquetas">
+            <span class="curso__etiqueta">Desarrollo web</span>
+            <span class="curso__etiqueta">Intermedio</span>
+            <span class="curso__etiqueta">36 horas</span>
+          </div>
+          <p class="curso__texto">Componentes, estado y consumo de APIs para construir interfaces dinámicas.</p>
+          <details class="curso__detalle">
+            <summary>Ver temario</summary>
+            <ul class="curso__temario">
+              <li>Componentes y props</li>
+              <li>Estado y efectos</li>
+              <li>Consumo de APIs REST</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="curso">
+          <h2 class="curso__titulo">Fundamentos de análisis de datos</h2>
+          <div class="curso__etiquetas">
+            <span class="curso__etiqueta">Datos e IA</span>
+            <span class="curso__etiqueta">Principiante</span>
+            <span class="curso__etiqueta">20 horas</span>
+          </div>
+          <p class="curso__texto">Limpieza, visualización e interpretación de datos con herramientas prácticas.</p>
+          <details class="curso__detalle">
+            <summary>Ver temario</summary>
+            <ul class="curso__temario">
+              <li>Limpieza y transformación de datos</li>
+              <li>Visualización con gráficos</li>
+              <li>Interpretación de resultados</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="curso">
+          <h2 class="curso__titulo">Diseño UX/UI para producto digital</h2>
+          <div class="curso__etiquetas">
+            <span class="curso__etiqueta">Diseño</span>
+            <span class="curso__etiqueta">Intermedio</span>
+            <span class="curso__etiqueta">24 horas</span>
+          </div>
+          <p class="curso__texto">Investigación, wireframes y prototipado centrado en accesibilidad.</p>
+          <details class="curso__detalle">
+            <summary>Ver temario</summary>
+            <ul class="curso__temario">
+              <li>Investigación con usuarios</li>
+              <li>Wireframes y prototipado</li>
+              <li>Sistemas de diseño y accesibilidad</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="curso">
+          <h2 class="curso__titulo">Marketing digital para emprendedores</h2>
+          <div class="curso__etiquetas">
+            <span class="curso__etiqueta">Negocios digitales</span>
+            <span class="curso__etiqueta">Avanzado</span>
+            <span class="curso__etiqueta">18 horas</span>
+          </div>
+          <p class="curso__texto">Estrategia de contenido, publicidad y métricas para negocios en línea.</p>
+          <details class="curso__detalle">
+            <summary>Ver temario</summary>
+            <ul class="curso__temario">
+              <li>Estrategia de contenido</li>
+              <li>Publicidad en redes</li>
+              <li>Métricas y analítica</li>
+            </ul>
+          </details>
+        </article>
+
       </div>
-    </div>
 
-    <div class="cursos__grilla">
+    </main>
 
-      <article class="curso">
-        <h2 class="curso__titulo">Frontend con HTML5, CSS3 y JavaScript</h2>
-        <div class="curso__etiquetas">
-          <span class="curso__etiqueta">Desarrollo web</span>
-          <span class="curso__etiqueta">Principiante</span>
-          <span class="curso__etiqueta">28 horas</span>
-        </div>
-        <p class="curso__texto">Construye interfaces accesibles desde cero, sin frameworks, con buenas prácticas de semántica.</p>
-        <details class="curso__detalle">
-          <summary>Ver temario</summary>
-          <ul class="curso__temario">
-            <li>HTML5 semántico y accesibilidad</li>
-            <li>CSS3: layout, variables y responsive</li>
-            <li>JavaScript: DOM y eventos</li>
-          </ul>
-        </details>
-      </article>
+    <!-- Contenido complementario: orienta la eleccion sin formar parte
+         del catalogo. Los filtros se quedan en <main> a proposito:
+         gobiernan el contenido principal, no lo acompanan. -->
+    <aside class="lateral" aria-label="Ayuda para elegir tu curso">
 
-      <article class="curso">
-        <h2 class="curso__titulo">React desde cero</h2>
-        <div class="curso__etiquetas">
-          <span class="curso__etiqueta">Desarrollo web</span>
-          <span class="curso__etiqueta">Intermedio</span>
-          <span class="curso__etiqueta">36 horas</span>
-        </div>
-        <p class="curso__texto">Componentes, estado y consumo de APIs para construir interfaces dinámicas.</p>
-        <details class="curso__detalle">
-          <summary>Ver temario</summary>
-          <ul class="curso__temario">
-            <li>Componentes y props</li>
-            <li>Estado y efectos</li>
-            <li>Consumo de APIs REST</li>
-          </ul>
-        </details>
-      </article>
+      <div class="lateral__bloque">
+        <h2 class="lateral__titulo">Cómo elegir tu curso</h2>
+        <ul class="lateral__lista">
+          <li>
+            <span class="lateral__dato">Empieza por el nivel, no por el tema</span>
+            <span class="lateral__apunte">Un curso avanzado del área que te gusta rinde menos que uno inicial bien elegido.</span>
+          </li>
+          <li>
+            <span class="lateral__dato">Revisa el temario antes de decidir</span>
+            <span class="lateral__apunte">Cada curso abre su temario completo con &laquo;Ver temario&raquo;.</span>
+          </li>
+          <li>
+            <span class="lateral__dato">Calcula tu tiempo real por semana</span>
+            <span class="lateral__apunte">Un curso de 30 horas pide unas 4 horas semanales durante dos meses.</span>
+          </li>
+        </ul>
+      </div>
 
-      <article class="curso">
-        <h2 class="curso__titulo">Fundamentos de análisis de datos</h2>
-        <div class="curso__etiquetas">
-          <span class="curso__etiqueta">Datos e IA</span>
-          <span class="curso__etiqueta">Principiante</span>
-          <span class="curso__etiqueta">20 horas</span>
-        </div>
-        <p class="curso__texto">Limpieza, visualización e interpretación de datos con herramientas prácticas.</p>
-        <details class="curso__detalle">
-          <summary>Ver temario</summary>
-          <ul class="curso__temario">
-            <li>Limpieza y transformación de datos</li>
-            <li>Visualización con gráficos</li>
-            <li>Interpretación de resultados</li>
-          </ul>
-        </details>
-      </article>
+      <div class="lateral__bloque">
+        <h2 class="lateral__titulo">Sobre las certificaciones</h2>
+        <p class="lateral__texto">
+          Todos los cursos entregan constancia de horas. Los marcados como <strong>certificado verificable</strong> incluyen además un código de validación en línea que puedes compartir con un empleador.
+        </p>
+      </div>
 
-      <article class="curso">
-        <h2 class="curso__titulo">Diseño UX/UI para producto digital</h2>
-        <div class="curso__etiquetas">
-          <span class="curso__etiqueta">Diseño</span>
-          <span class="curso__etiqueta">Intermedio</span>
-          <span class="curso__etiqueta">24 horas</span>
-        </div>
-        <p class="curso__texto">Investigación, wireframes y prototipado centrado en accesibilidad.</p>
-        <details class="curso__detalle">
-          <summary>Ver temario</summary>
-          <ul class="curso__temario">
-            <li>Investigación con usuarios</li>
-            <li>Wireframes y prototipado</li>
-            <li>Sistemas de diseño y accesibilidad</li>
-          </ul>
-        </details>
-      </article>
+      <div class="lateral__bloque">
+        <h2 class="lateral__titulo">¿Todavía con dudas?</h2>
+        <p class="lateral__texto">
+          Prueba el <a href="asesor-virtual.html">asesor virtual</a>: seis preguntas y te sugiere una ruta. O mira una <a href="clase-muestra.html">clase muestra gratis</a>.
+        </p>
+      </div>
 
-      <article class="curso">
-        <h2 class="curso__titulo">Marketing digital para emprendedores</h2>
-        <div class="curso__etiquetas">
-          <span class="curso__etiqueta">Negocios digitales</span>
-          <span class="curso__etiqueta">Avanzado</span>
-          <span class="curso__etiqueta">18 horas</span>
-        </div>
-        <p class="curso__texto">Estrategia de contenido, publicidad y métricas para negocios en línea.</p>
-        <details class="curso__detalle">
-          <summary>Ver temario</summary>
-          <ul class="curso__temario">
-            <li>Estrategia de contenido</li>
-            <li>Publicidad en redes</li>
-            <li>Métricas y analítica</li>
-          </ul>
-        </details>
-      </article>
+    </aside>
 
-    </div>
-
-  </main>
+  </div>
 
   <footer id="pie" class="pie">
     <div class="pie__interior">
