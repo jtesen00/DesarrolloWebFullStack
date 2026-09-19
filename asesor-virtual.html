@@ -55,54 +55,54 @@
       <div class="pagina__cabecera">
         <h1 class="pagina__titulo">Asesor virtual de ruta de aprendizaje</h1>
         <p class="pagina__intro">
-          Seis preguntas sobre tus intereses, tu tiempo disponible y tu objetivo. Las cinco primeras son
-          para conocerte (guardar tus respuestas y cruzarlas todas requiere la etapa con JavaScript);
-          la última ya te muestra una recomendación real apenas la respondes, sin recargar la página.
+          Seis preguntas sobre tus intereses, tu tiempo disponible y tu objetivo. La última te muestra
+          una recomendación apenas la respondes; cuando las hayas contestado todas, el botón del final
+          cruza las seis y te propone una ruta con curso y ritmo de estudio.
         </p>
       </div>
 
       <div class="test__pregunta" role="group" aria-labelledby="p1-titulo">
         <h2 class="test__titulo" id="p1-titulo">1. ¿Qué área te interesa más?</h2>
         <div class="test__opciones">
-          <label><input type="radio" name="p1"> Desarrollo web</label>
-          <label><input type="radio" name="p1"> Datos e inteligencia artificial</label>
-          <label><input type="radio" name="p1"> Diseño</label>
-          <label><input type="radio" name="p1"> Negocios digitales</label>
+          <label><input type="radio" name="p1" value="desarrollo-web"> Desarrollo web</label>
+          <label><input type="radio" name="p1" value="datos-ia"> Datos e inteligencia artificial</label>
+          <label><input type="radio" name="p1" value="diseno"> Diseño</label>
+          <label><input type="radio" name="p1" value="negocios"> Negocios digitales</label>
         </div>
       </div>
 
       <div class="test__pregunta" role="group" aria-labelledby="p2-titulo">
         <h2 class="test__titulo" id="p2-titulo">2. ¿Cuánto tiempo puedes dedicar por semana?</h2>
         <div class="test__opciones">
-          <label><input type="radio" name="p2"> Menos de 3 horas</label>
-          <label><input type="radio" name="p2"> Entre 3 y 6 horas</label>
-          <label><input type="radio" name="p2"> Más de 6 horas</label>
+          <label><input type="radio" name="p2" value="poco"> Menos de 3 horas</label>
+          <label><input type="radio" name="p2" value="medio"> Entre 3 y 6 horas</label>
+          <label><input type="radio" name="p2" value="mucho"> Más de 6 horas</label>
         </div>
       </div>
 
       <div class="test__pregunta" role="group" aria-labelledby="p3-titulo">
         <h2 class="test__titulo" id="p3-titulo">3. ¿Cuál es tu nivel actual?</h2>
         <div class="test__opciones">
-          <label><input type="radio" name="p3"> Nunca programé ni diseñé nada</label>
-          <label><input type="radio" name="p3"> Ya sé lo básico</label>
-          <label><input type="radio" name="p3"> Tengo experiencia previa</label>
+          <label><input type="radio" name="p3" value="cero"> Nunca programé ni diseñé nada</label>
+          <label><input type="radio" name="p3" value="basico"> Ya sé lo básico</label>
+          <label><input type="radio" name="p3" value="experiencia"> Tengo experiencia previa</label>
         </div>
       </div>
 
       <div class="test__pregunta" role="group" aria-labelledby="p4-titulo">
         <h2 class="test__titulo" id="p4-titulo">4. ¿Cómo prefieres aprender?</h2>
         <div class="test__opciones">
-          <label><input type="radio" name="p4"> Con la teoría primero</label>
-          <label><input type="radio" name="p4"> Con proyectos prácticos desde el inicio</label>
+          <label><input type="radio" name="p4" value="teoria"> Con la teoría primero</label>
+          <label><input type="radio" name="p4" value="practica"> Con proyectos prácticos desde el inicio</label>
         </div>
       </div>
 
       <div class="test__pregunta" role="group" aria-labelledby="p5-titulo">
         <h2 class="test__titulo" id="p5-titulo">5. ¿Qué certificación buscas?</h2>
         <div class="test__opciones">
-          <label><input type="radio" name="p5"> Constancia de horas</label>
-          <label><input type="radio" name="p5"> Certificado digital verificable</label>
-          <label><input type="radio" name="p5"> Ambas</label>
+          <label><input type="radio" name="p5" value="constancia"> Constancia de horas</label>
+          <label><input type="radio" name="p5" value="certificado"> Certificado digital verificable</label>
+          <label><input type="radio" name="p5" value="ambas"> Ambas</label>
         </div>
       </div>
 
@@ -110,22 +110,33 @@
         <h2 class="test__titulo" id="p6-titulo">6. ¿Cuál es tu objetivo principal ahora mismo?</h2>
         <div class="test__opciones">
           <div class="test__opcion">
-            <input type="radio" name="objetivo" id="obj-empleo">
+            <input type="radio" name="objetivo" value="empleo" id="obj-empleo">
             <label for="obj-empleo">Conseguir mi primer empleo en tecnología</label>
           </div>
           <div class="test__opcion">
-            <input type="radio" name="objetivo" id="obj-mejora">
+            <input type="radio" name="objetivo" value="mejora" id="obj-mejora">
             <label for="obj-mejora">Mejorar en mi trabajo actual</label>
           </div>
           <div class="test__opcion">
-            <input type="radio" name="objetivo" id="obj-emprender">
+            <input type="radio" name="objetivo" value="emprender" id="obj-emprender">
             <label for="obj-emprender">Emprender mi propio proyecto</label>
           </div>
           <div class="test__opcion">
-            <input type="radio" name="objetivo" id="obj-curiosidad">
+            <input type="radio" name="objetivo" value="curiosidad" id="obj-curiosidad">
             <label for="obj-curiosidad">Aprender por curiosidad, sin apuro</label>
           </div>
         </div>
+      </div>
+
+      <!-- Semana 3. El boton no envia nada: dispara la validacion de las seis
+           preguntas y el calculo de la ruta. Es <button type="button"> y no
+           <a> porque la accion se queda en esta misma pagina, que es la regla
+           del sistema de diseno desde la Semana 1. -->
+      <div class="test__accion">
+        <button type="button" class="boton boton--primario" id="ver-ruta">
+          Ver mi ruta completa
+        </button>
+        <p class="test__aviso-validacion" id="aviso-ruta" role="status"></p>
       </div>
 
     </main>
@@ -162,15 +173,20 @@
             y decide desde ahí qué curso completo te interesa más.
           </p>
         </div>
+
+        <!-- Semana 3: aqui escribe JavaScript la ruta que cruza las seis
+             respuestas. Vacio de partida; el bloque de arriba (:has) sigue
+             funcionando solo con CSS si JavaScript no carga. -->
+        <p class="test__ruta" id="ruta-completa" hidden></p>
       </div>
 
       <div class="lateral__bloque">
         <h2 class="lateral__titulo">Cómo funciona</h2>
         <p class="lateral__texto">
-          Las cinco primeras preguntas son para conocerte: guardarlas y
-          cruzarlas todas requiere la etapa con JavaScript. La sexta ya
-          calcula una recomendación real con el selector CSS
-          <strong>:has()</strong>, sin una sola línea de script.
+          La sexta pregunta calcula una recomendación al instante con el
+          selector CSS <strong>:has()</strong>, sin JavaScript. El botón del
+          final va más allá: comprueba que hayas respondido las seis y cruza
+          área, nivel y tiempo disponible para proponerte un ritmo.
         </p>
       </div>
 
@@ -222,6 +238,10 @@
 
     <p class="pie__copyright">© 2026 Wayra Academy. Todos los derechos reservados.</p>
   </footer>
+
+  <!-- Semana 3. Mismo script para todo el sitio: cada bloque comprueba si
+       sus elementos existen en la pagina antes de engancharse. -->
+  <script src="js/interaccion.js" defer></script>
 
 </body>
 </html>

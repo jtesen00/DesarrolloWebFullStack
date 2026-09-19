@@ -1,6 +1,7 @@
 # Wayra Academy — Sistema de diseño
 
-Documentación de los tokens y componentes usados en el primer prototipo.
+Documentación de los tokens y componentes del prototipo.
+Secciones 1 a 6: Semana 1. Sección 7: Semana 2 (layout). Sección 8: Semana 3 (interacción).
 Regla del equipo: **ningún valor literal fuera del bloque `:root` de `css/estilos.css`.**
 Si un valor nuevo hace falta, primero se agrega como token y después se usa.
 
@@ -271,3 +272,78 @@ de foco y tipografía ya existentes. El salto de 131 a 220 usos de `var()`
 es exactamente ese: mucho más CSS, cero valores literales nuevos.
 
 **Cambio con impacto en el HTML:** los modificadores de botón se renombraron. `.boton--principal` pasó a `.boton--primario` y `.boton--tarjeta` a `.boton--secundario`, porque el nombre de una variante debe describir su jerarquía, no el lugar donde apareció por primera vez. Si mañana un botón secundario va fuera de una tarjeta, el nombre viejo habría mentido.
+
+---
+
+## 7. Disposición de página: `.disposicion` y `.lateral`
+
+*Semana 2.* El único Grid bidimensional del proyecto. Envuelve `<main>` y
+`<aside>`; el encabezado y el pie quedan fuera porque su fondo debe llegar al
+borde de la ventana.
+
+### Anatomía
+
+```
+div.disposicion                 Grid. 1 columna hasta 62em, 2 desde ahí.
+├── main.principal | .pagina    area "principal"
+└── aside.lateral               area "lateral"
+    └── div.lateral__bloque     tarjeta de contenido complementario
+        ├── h2.lateral__titulo  rótulo en versalita y color de acción
+        ├── ul.lateral__lista   pares dato + apunte
+        └── p.lateral__texto    párrafo suelto
+```
+
+Modificador: `.lateral__bloque--fijo` aplica `position: sticky` desde 62em.
+Necesita que el `<aside>` se estire a todo el alto de la fila; por eso
+`.disposicion` **no** lleva `align-items: start`.
+
+### Tokens que usa
+
+`--ancho-pagina`, `--ancho-lateral`, `--alto-minimo-contenido`,
+`--espacio-5`, `--espacio-7`, `--espacio-8`, `--espacio-9`,
+`--color-superficie`, `--color-marco`, `--color-accion`, `--radio-grande`.
+
+### Accesibilidad
+
+`<aside>` expone el landmark `complementary`, que el lector de pantalla lista
+junto a `banner`, `navigation`, `main` y `contentinfo`. Va siempre después de
+`<main>` en el HTML, así que el orden del DOM coincide con el visual en todos
+los anchos: el Grid lo recoloca sin tocar el marcado.
+
+---
+
+## 8. Estados de la interacción
+
+*Semana 3.* Clases que añade y quita `js/interaccion.js`; el CSS solo las
+describe. Viven al final de la hoja, **después** de las definiciones de
+componente: con la misma especificidad gana la última regla, y colocarlas antes
+hacía que el borde base del componente pisara el del estado.
+
+| Clase | Sobre qué | Qué cambia |
+|---|---|---|
+| `.filtros__campo--activo` | Un campo de filtro fuera de su valor por defecto | Rótulo en `--color-accion` y `--peso-fuerte`; borde del control en color de acción |
+| `.resultados` | Recuento de cursos | Estilo base del mensaje; existe ya en el HTML con el número inicial |
+| `.resultados--vacio` | El mismo, con 0 coincidencias | Texto `--color-aviso` sobre `--color-aviso-fondo`, con relleno y radio |
+| `.test__grupo--falta` | Pregunta del test sin responder | Borde en color de aviso y franja izquierda de `--espacio-1` |
+| `.test__aviso-validacion--error` | Mensaje bajo el botón | Texto en `--color-aviso` |
+| `.test__ruta` | Ruta calculada, en el `<aside>` | Bloque sólido `--color-destaque` con texto `--color-tinta` |
+
+### Regla de color
+
+Ningún estado se comunica **solo** por color. El filtro activo cambia peso
+tipográfico además de tono; la pregunta pendiente suma una franja gruesa al
+borde; la lista vacía cambia de fondo y de texto. Es la misma regla que ya
+seguía el foco visible desde la Semana 1.
+
+`--color-destaque` se usa aquí como bloque sólido con texto oscuro encima, que
+es su único uso autorizado (sección 1, tabla de color): nunca como color de
+texto sobre fondo claro.
+
+### Contraste medido
+
+| Estado | Relación | Mínimo AA |
+|---|---|---|
+| `.resultados` | 6.85:1 | 4.5:1 |
+| `.resultados--vacio` | 8.46:1 | 4.5:1 |
+| `.test__aviso-validacion--error` | 8.94:1 | 4.5:1 |
+| `.test__ruta` | 7.82:1 | 4.5:1 |

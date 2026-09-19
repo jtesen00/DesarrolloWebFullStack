@@ -55,10 +55,8 @@
       <div class="pagina__cabecera">
         <h1 class="pagina__titulo">Explorador interactivo de cursos</h1>
         <p class="pagina__intro">
-          Filtra por categoría, nivel y duración, compara cursos lado a lado y revisa una vista previa
-          del temario de cada uno antes de decidir. Esta es una maqueta navegable: los filtros todavía
-          no reordenan la lista (eso llega en la etapa con JavaScript), pero el temario de cada curso sí
-          se puede abrir de verdad.
+          Filtra por categoría, nivel y duración, o busca por nombre: la lista se actualiza mientras
+          eliges, sin recargar la página. También puedes abrir el temario completo de cada curso.
         </p>
       </div>
 
@@ -66,36 +64,49 @@
         <div class="filtros__campo">
           <label for="filtro-categoria">Categoría</label>
           <select id="filtro-categoria">
-            <option>Todas las categorías</option>
-            <option>Desarrollo web</option>
-            <option>Datos e IA</option>
-            <option>Diseño</option>
-            <option>Negocios digitales</option>
+            <option value="todas">Todas las categorías</option>
+            <option value="desarrollo-web">Desarrollo web</option>
+            <option value="datos-ia">Datos e IA</option>
+            <option value="diseno">Diseño</option>
+            <option value="negocios">Negocios digitales</option>
           </select>
         </div>
         <div class="filtros__campo">
           <label for="filtro-nivel">Nivel</label>
           <select id="filtro-nivel">
-            <option>Todos los niveles</option>
-            <option>Principiante</option>
-            <option>Intermedio</option>
-            <option>Avanzado</option>
+            <option value="todos">Todos los niveles</option>
+            <option value="principiante">Principiante</option>
+            <option value="intermedio">Intermedio</option>
+            <option value="avanzado">Avanzado</option>
           </select>
         </div>
         <div class="filtros__campo">
           <label for="filtro-duracion">Duración</label>
           <select id="filtro-duracion">
-            <option>Cualquier duración</option>
-            <option>Menos de 10 horas</option>
-            <option>10 a 30 horas</option>
-            <option>Más de 30 horas</option>
+            <option value="cualquiera">Cualquier duración</option>
+            <option value="corta">Menos de 10 horas</option>
+            <option value="media">10 a 30 horas</option>
+            <option value="larga">Más de 30 horas</option>
           </select>
+        </div>
+
+        <!-- Semana 3: el campo de busqueda da el caso real de "campo vacio"
+             de la Actividad 4 del plan. Reutiliza .filtros__campo. -->
+        <div class="filtros__campo">
+          <label for="busqueda-curso">Buscar por nombre</label>
+          <input type="search" id="busqueda-curso" placeholder="Por ejemplo: React">
         </div>
       </div>
 
+      <!-- Semana 3: elemento que cambia de contenido. role="status" hace que
+           el recuento se anuncie sin robar el foco. El texto inicial ya viene
+           escrito para que la pagina no parpadee al cargar, y para que siga
+           teniendo sentido si JavaScript no llega a ejecutarse. -->
+      <p class="resultados" id="aviso-resultados" role="status">5 cursos disponibles</p>
+
       <div class="cursos__grilla">
 
-        <article class="curso">
+        <article class="curso" data-categoria="desarrollo-web" data-nivel="principiante" data-horas="28">
           <h2 class="curso__titulo">Frontend con HTML5, CSS3 y JavaScript</h2>
           <div class="curso__etiquetas">
             <span class="curso__etiqueta">Desarrollo web</span>
@@ -113,7 +124,7 @@
           </details>
         </article>
 
-        <article class="curso">
+        <article class="curso" data-categoria="desarrollo-web" data-nivel="intermedio" data-horas="36">
           <h2 class="curso__titulo">React desde cero</h2>
           <div class="curso__etiquetas">
             <span class="curso__etiqueta">Desarrollo web</span>
@@ -131,7 +142,7 @@
           </details>
         </article>
 
-        <article class="curso">
+        <article class="curso" data-categoria="datos-ia" data-nivel="principiante" data-horas="20">
           <h2 class="curso__titulo">Fundamentos de análisis de datos</h2>
           <div class="curso__etiquetas">
             <span class="curso__etiqueta">Datos e IA</span>
@@ -149,7 +160,7 @@
           </details>
         </article>
 
-        <article class="curso">
+        <article class="curso" data-categoria="diseno" data-nivel="intermedio" data-horas="24">
           <h2 class="curso__titulo">Diseño UX/UI para producto digital</h2>
           <div class="curso__etiquetas">
             <span class="curso__etiqueta">Diseño</span>
@@ -167,7 +178,7 @@
           </details>
         </article>
 
-        <article class="curso">
+        <article class="curso" data-categoria="negocios" data-nivel="avanzado" data-horas="18">
           <h2 class="curso__titulo">Marketing digital para emprendedores</h2>
           <div class="curso__etiquetas">
             <span class="curso__etiqueta">Negocios digitales</span>
@@ -274,6 +285,11 @@
 
     <p class="pie__copyright">© 2026 Wayra Academy. Todos los derechos reservados.</p>
   </footer>
+
+  <!-- Semana 3. defer: el script se descarga en paralelo y se ejecuta cuando
+       el DOM ya existe, asi que las referencias nunca salen null y no hace
+       falta envolver nada en DOMContentLoaded. -->
+  <script src="js/interaccion.js" defer></script>
 
 </body>
 </html>

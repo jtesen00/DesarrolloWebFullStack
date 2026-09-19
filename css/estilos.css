@@ -20,6 +20,10 @@
   --color-texto-claro:    #FFFFFF;  /* texto sobre superficie oscura      — 14.22:1 */
   --color-texto-tenue:    #C7D2E0;  /* texto secundario sobre oscura       — 9.29:1 */
 
+  /* --- Color: estados de la interacción (Semana 3) -------- */
+  --color-aviso:      #8A1200;  /* texto de error sobre fondo claro — 8.1:1 */
+  --color-aviso-fondo:#FDECE8;  /* fondo del aviso de validación */
+
   /* --- Color: acción y destaque -------------------------- */
   --color-accion:         #C0006B;  /* botones, foco y enlaces de acción */
   --color-accion-firme:   #9C0057;  /* estado hover y active */
@@ -79,6 +83,7 @@
   --ancho-pagina:  68rem;
   --ancho-lectura: 34rem;  /* mantiene la línea bajo 80 caracteres */
   --ancho-lateral: 20rem;  /* techo de la columna complementaria */
+  --base-opcion:   14rem;  /* ancho base de cada opción del test en fila */
   --toque-minimo:  2.75rem;  /* 44px — blanco táctil cómodo en celular */
 
   /* --- Medidas relativas a la ventana -------------------- */
@@ -609,7 +614,10 @@ summary:focus-visible {
   font-weight: var(--peso-medio);
 }
 
-.filtros__campo select {
+/* El campo de busqueda de la Semana 3 comparte estilo con los <select>:
+   mismo alto, mismo borde, misma tipografia. */
+.filtros__campo select,
+.filtros__campo input {
   width: 100%;
   font-family: var(--fuente-texto);
   font-size: var(--texto-200);
@@ -803,6 +811,77 @@ summary:focus-visible {
 }
 
 /* ============================================================
+   Estados de la interacción (Semana 3)
+   Los añade y quita JavaScript; el CSS solo los describe.
+   ============================================================ */
+
+/* Filtro activo: explica por qué la lista está recortada. Se marca con
+   el peso y el color de acción, no solo con color, para no depender de
+   que el usuario distinga tonos. */
+.filtros__campo--activo > label {
+  color: var(--color-accion);
+  font-weight: var(--peso-fuerte);
+}
+
+.filtros__campo--activo select,
+.filtros__campo--activo input {
+  border-color: var(--color-accion);
+}
+
+/* Recuento de resultados. Existe ya en el HTML con el número inicial,
+   así que la página no parpadea al cargar ni queda muda sin JavaScript. */
+.resultados {
+  margin: 0 0 var(--espacio-5);
+  font-size: var(--texto-200);
+  font-weight: var(--peso-medio);
+  color: var(--color-texto-suave);
+}
+
+.resultados--vacio {
+  color: var(--color-aviso);
+  background-color: var(--color-aviso-fondo);
+  border-radius: var(--radio-medio);
+  padding: var(--espacio-4);
+}
+
+/* Pregunta del test sin responder, tras pulsar el botón. El borde de
+   color va acompañado de la franja izquierda gruesa: dos señales, no
+   solo el color. */
+.test__grupo--falta {
+  border-color: var(--color-aviso);
+  border-left: var(--espacio-1) solid var(--color-aviso);
+}
+
+.test__accion {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--espacio-3);
+  margin-bottom: var(--espacio-5);
+}
+
+.test__aviso-validacion {
+  margin: 0;
+  font-size: var(--texto-200);
+  font-weight: var(--peso-medio);
+  color: var(--color-texto-suave);
+}
+
+.test__aviso-validacion--error {
+  color: var(--color-aviso);
+}
+
+/* Ruta calculada con las seis respuestas, dentro de la columna lateral. */
+.test__ruta {
+  margin: var(--espacio-4) 0 0;
+  padding: var(--espacio-4);
+  background-color: var(--color-destaque);
+  border-radius: var(--radio-medio);
+  color: var(--color-tinta);
+  font-size: var(--texto-200);
+}
+
+/* ============================================================
    Adaptación a pantallas grandes
 
    Los dos breakpoints se declaran en em, no en px (decisión técnica 3):
@@ -843,7 +922,7 @@ summary:focus-visible {
   }
 
   .test__opciones > label,
-  .test__opcion { flex: 1 1 14rem; }
+  .test__opcion { flex: 1 1 var(--base-opcion); }
 
   /* Los filtros recuperan la fila, pero repartida en partes iguales:
      ya no dependen de flex-wrap para acomodarse. */
