@@ -1,0 +1,149 @@
+[
+  {
+    "id": "P1",
+    "prueba": "Tema: clic en «Modo oscuro»",
+    "esperado": "Se agrega .tema-oscuro a <html>, el fondo cambia y aria-pressed pasa a true",
+    "observado": "Botón visible=True; antes: clase=False, fondo rgb(244, 246, 248); después: clase=True, fondo rgb(15, 23, 40), aria-pressed=true",
+    "ok": true
+  },
+  {
+    "id": "P2",
+    "prueba": "Tema: cambiar de página tras elegir oscuro",
+    "esperado": "La elección se recuerda (localStorage) y la otra página abre en oscuro",
+    "observado": "explorador-cursos.html abre con clase=True, aria-pressed=true",
+    "ok": true
+  },
+  {
+    "id": "P3",
+    "prueba": "Tema con teclado: foco + Espacio, luego Enter",
+    "esperado": "Espacio vuelve a claro y Enter a oscuro (es un <button> nativo)",
+    "observado": "Tras Espacio: oscuro=False; tras Enter: oscuro=True",
+    "ok": true
+  },
+  {
+    "id": "P4",
+    "prueba": "Tema: primera visita con el sistema en modo oscuro",
+    "esperado": "Sin elección guardada se respeta prefers-color-scheme: abre en oscuro",
+    "observado": "clase=True, aria-pressed=true",
+    "ok": true
+  },
+  {
+    "id": "P5",
+    "prueba": "Formulario: enviar vacío",
+    "esperado": "No se envía ni recarga; aviso con lo que falta; 6 grupos marcados; foco en la pregunta 1",
+    "observado": "Aviso: «Te falta completar las preguntas 1, 2, 3, 4, 5, 6 y tu nombre.» · grupos marcados: 6 · foco en name=p1 · error del nombre: «Escribe tu nombre para personalizar la ruta.» · URL sin cambio=True",
+    "ok": true
+  },
+  {
+    "id": "P6",
+    "prueba": "Formulario: nombre «J» y luego «123»",
+    "esperado": "Mensajes distintos para tooShort y patternMismatch, en vivo (evento input)",
+    "observado": "«J» → «El nombre debe tener al menos 2 letras.» · «123» → «Empieza con una letra y usa solo letras, espacios, apóstrofo o guion.»",
+    "ok": true
+  },
+  {
+    "id": "P7",
+    "prueba": "Formulario: corregir el nombre a «Yvette»",
+    "esperado": "El error desaparece sin volver a pulsar el botón y el aviso ya no menciona el nombre",
+    "observado": "Error: «» · aria-invalid=false · aviso: «Te falta completar las preguntas 1, 2, 3, 4, 5, 6.»",
+    "ok": true
+  },
+  {
+    "id": "P8",
+    "prueba": "Formulario: completar las 6 preguntas y pulsar Enter en el nombre",
+    "esperado": "Se valida sin salir de la página y se escribe la ruta personalizada",
+    "observado": "Aviso en vivo antes de enviar: «Todo completo. Pulsa «Ver mi ruta completa».» · tras Enter: «Listo: cruzamos tus seis respuestas.» · ruta: «Yvette, tu ruta: empieza por React desde cero. Al ritmo que indicaste, te llevaría unas 5 semanas, dedicándole de 3 a 6 horas por semana.» · URL sin cambio=True",
+    "ok": true
+  },
+  {
+    "id": "P9",
+    "prueba": "Modal: clic en «Ingresar o registrarse»",
+    "esperado": "Se abre el <dialog>, la entrada se anima con element.animate() y el foco pasa dentro del modal",
+    "observado": "open=True · animaciones en curso=2 (panel y velo) · foco en «Cerrar ventana» (dentro=True)",
+    "ok": true
+  },
+  {
+    "id": "P10",
+    "prueba": "Modal: tecla Esc",
+    "esperado": "Se cierra y el foco vuelve al botón que lo abrió",
+    "observado": "open=False · foco en #abrir-acceso",
+    "ok": true
+  },
+  {
+    "id": "P11",
+    "prueba": "Modal: clic dentro, clic en el velo y botón «Entendido»",
+    "esperado": "Clic dentro no cierra; clic en el velo y «Entendido» sí cierran",
+    "observado": "tras clic dentro open=True · tras clic en velo open=False · tras «Entendido» open=False",
+    "ok": true
+  },
+  {
+    "id": "P12",
+    "prueba": "Modal: pulsar Esc en plena animación de entrada",
+    "esperado": "La animación no bloquea: el modal se cierra aunque no haya terminado de entrar",
+    "observado": "Esc a 2 ms de abrir → open=False",
+    "ok": true
+  },
+  {
+    "id": "P13",
+    "prueba": "Modal con «reducir movimiento» activado en el sistema",
+    "esperado": "Se abre sin animación (prefers-reduced-motion)",
+    "observado": "open=True · animaciones activas=0",
+    "ok": true
+  },
+  {
+    "id": "P14",
+    "prueba": "Móvil 375 px: tema, menú hamburguesa y modal",
+    "esperado": "El botón de tema comparte fila con el menú; el modal cabe en pantalla sin desborde",
+    "observado": "modal de x=20 a x=355 en una ventana de 375 px",
+    "ok": true
+  },
+  {
+    "id": "P15",
+    "prueba": "Responsive: 4 páginas × 3 anchos (375, 768, 1440) × 2 temas",
+    "esperado": "0 desbordes horizontales",
+    "observado": "24 de 24 combinaciones sin desborde",
+    "ok": true
+  },
+  {
+    "id": "P16",
+    "prueba": "Teclado: recorrido con Tab desde el inicio",
+    "esperado": "Salto de contenido → Modo oscuro → enlaces del menú → Ingresar o registrarse, en el orden visual",
+    "observado": "Saltar al contenido principal → cambiar-tema → Inicio → Cursos → Talleres en vivo → Nosotros → abrir-acceso → Ver cursos disponibles",
+    "ok": true
+  },
+  {
+    "id": "P17",
+    "prueba": "Sin JavaScript (mejora progresiva)",
+    "esperado": "No aparecen botones que no funcionarían; el formulario sigue validando con las reglas nativas del navegador",
+    "observado": "botón de tema visible=False · botón de acceso visible=False · al enviar vacío la URL cambia=False",
+    "ok": true
+  },
+  {
+    "id": "P18",
+    "prueba": "Regresión Semana 3: filtro Categoría = Desarrollo web",
+    "esperado": "El filtrado sigue funcionando: «2 cursos coinciden»",
+    "observado": "«2 cursos coinciden»",
+    "ok": true
+  },
+  {
+    "id": "P19",
+    "prueba": "Tema entre páginas abiertas con doble clic (file://)",
+    "esperado": "El tema viaja en la URL de los enlaces internos: la página siguiente abre con el mismo tema, en los dos sentidos; los enlaces #ancla no cambian",
+    "observado": "enlace reescrito a «explorador-cursos.html?tema=oscuro» · explorador abre oscuro=True (?tema=oscuro) · tras volver a claro y regresar a index: oscuro=False (?tema=claro) · anclas intactas: #contenido #contenido #experiencias #experiencias #pie #experiencias #pie #pie #pie #pie",
+    "ok": true
+  },
+  {
+    "id": "P20",
+    "prueba": "Tema con el sitio abierto en dos pestañas",
+    "esperado": "Al cambiar el tema en una pestaña, la otra se actualiza sola (evento storage); con servidor la URL queda limpia",
+    "observado": "otra pestaña: oscuro=True, aria-pressed=true · URL de la primera: index.html",
+    "ok": true
+  },
+  {
+    "id": "P21",
+    "prueba": "Consola en todas las pruebas anteriores",
+    "esperado": "0 errores, 0 advertencias, 0 respuestas HTTP 4xx/5xx",
+    "observado": "0 mensajes",
+    "ok": true
+  }
+]

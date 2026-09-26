@@ -347,3 +347,52 @@ texto sobre fondo claro.
 | `.resultados--vacio` | 8.46:1 | 4.5:1 |
 | `.test__aviso-validacion--error` | 8.94:1 | 4.5:1 |
 | `.test__ruta` | 7.82:1 | 4.5:1 |
+
+---
+
+## 9. Tema oscuro, selector de tema y modal
+
+*Semana 4.* Detalle completo en [`SEMANA-4-INTEGRACION.md`](SEMANA-4-INTEGRACION.md).
+
+### Tema oscuro: `:root.tema-oscuro`
+
+`js/tema.js` pone la clase sobre `<html>`. El bloque redefine **13 tokens** y
+`color-scheme: dark`; ningún componente tiene reglas propias para el modo
+oscuro. `--color-tinta` y `--color-texto-claro` no cambian: el encabezado y el
+pie ya eran oscuros.
+
+| Token | Claro | Oscuro | Contraste en oscuro |
+|---|---|---|---|
+| `--color-papel` | `#F4F6F8` | `#0F1728` | texto 15.07:1 |
+| `--color-superficie` | `#FFFFFF` | `#182238` | texto 13.35:1 · suave 8.17:1 |
+| `--color-texto` | tinta | `#E6ECF5` | — |
+| `--color-texto-suave` | `#47566F` | `#AEBBD0` | sobre vacío 6.79:1 |
+| `--color-accion` | `#C0006B` | `#FF85BF` | sobre superficie 7.06:1 |
+| `--color-sobre-accion` | blanco | tinta | sobre acción 6.34:1 |
+| `--color-aviso` | `#8A1200` | `#FFA08C` | sobre aviso-fondo 7.92:1 |
+
+Además cambian `--color-marco`, `--color-vacio`, `--color-accion-firme`,
+`--color-aviso-fondo`, `--color-velo` y `--sombra-modal`.
+
+### Tokens nuevos
+
+| Token | Valor | Para qué |
+|---|---|---|
+| `--color-sobre-accion` | `var(--color-texto-claro)` | Texto sobre un fondo de acción; pasa a tinta en oscuro |
+| `--color-velo` | `rgb(27 42 74 / 0.72)` | `::backdrop` del modal |
+| `--sombra-modal` | `0 1rem 3rem rgb(0 0 0 / 0.35)` | Sombra del modal |
+| `--radio-pildora` | `999px` | Interruptor del tema |
+
+### Componentes
+
+| Clase | Qué es |
+|---|---|
+| `.tema`, `.tema__interruptor` | `<button aria-pressed>` del encabezado. El estado se ve por la posición de la perilla, no solo por su color |
+| `.modal`, `.modal__caja`, `.modal__cerrar` | `<dialog>` abierto con `showModal()`. El relleno va en `.modal__caja` para detectar el clic en el velo |
+| `.test__dato`, `.test__campo`, `.test__error` | Campo de texto del formulario del asesor y su mensaje de error |
+| `.navegacion__acceso` | Pasa de `<a>` a `<button>`: abre el modal |
+
+### Foco sobre fondo oscuro
+
+`.encabezado` y `.pie` redefinen `--foco-color` como `--color-destaque`. El rosa
+sobre tinta daba 2.34:1, por debajo del 3:1 de WCAG 1.4.11; el amarillo da 7.82:1.

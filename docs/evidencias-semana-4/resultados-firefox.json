@@ -1,0 +1,83 @@
+{
+  "navegador": "firefox/156.0.1",
+  "resultados": [
+    {
+      "id": "F1",
+      "desc": "Firefox soporta el CSS/HTML moderno que usa el proyecto",
+      "observado": "{\"has\":true,\"colorScheme\":true,\"textWrap\":true,\"aspect\":true,\"min\":true,\"dialog\":true,\"patronV\":true}",
+      "pasa": true
+    },
+    {
+      "id": "F2",
+      "desc": "Tema con servidor: index → explorador → clase muestra, luego Atrás",
+      "observado": "inicial=claro · tras clic=true · explorador=true · clase=true · (vuelve a claro) · tras Atrás=claro, aria-pressed=false",
+      "pasa": true
+    },
+    {
+      "id": "F3",
+      "desc": "Tema con dos pestañas abiertas",
+      "observado": "la otra pestaña: oscuro=true, aria-pressed=true",
+      "pasa": true
+    },
+    {
+      "id": "F4",
+      "desc": "Tema con doble clic (file://): index → explorador → asesor → (claro) → index",
+      "observado": "enlace=explorador-cursos.html?tema=oscuro · explorador oscuro=true · asesor oscuro=true · index tras volver a claro: oscuro=false (?tema=claro)",
+      "pasa": true
+    },
+    {
+      "id": "F5",
+      "desc": "Doble clic (file://): Atrás hasta el asesor tras elegir claro en index",
+      "observado": "asesor al volver: claro (en file:// de Firefox cada archivo guarda aparte; se registra, no bloquea)",
+      "pasa": true
+    },
+    {
+      "id": "F6",
+      "desc": "Formulario vacío",
+      "observado": "«Te falta completar las preguntas 1, 2, 3, 4, 5, 6 y tu nombre.» · marcados=6 · foco=p1 · URL igual=true",
+      "pasa": true
+    },
+    {
+      "id": "F7",
+      "desc": "Nombre: «J», «123», « Ana», «José María O'Brien-Ruiz»",
+      "observado": "{\"J\":\"El nombre debe tener al menos 2 letras.\",\"n123\":\"Empieza con una letra y usa solo letras, espacios, apóstrofo o guion.\",\"espacio\":\"Empieza con una letra y usa solo letras, espacios, apóstrofo o guion.\",\"jose\":\"\"}",
+      "pasa": true
+    },
+    {
+      "id": "F8",
+      "desc": "Formulario válido (Datos e IA, poco tiempo) con Enter",
+      "observado": "ruta: «José María O'Brien-Ruiz, tu ruta: empieza por Fundamentos de análisis de datos. Al ritmo que indicaste, te llevaría unas 8 semanas, dedicándole menos de 3 horas por semana.» · parcial oculta=true",
+      "pasa": true
+    },
+    {
+      "id": "F9",
+      "desc": "Nombre con HTML malicioso",
+      "observado": "mensaje: «Empieza con una letra y usa solo letras, espacios, apóstrofo o guion.» (no pasa el pattern; y la ruta usa textContent)",
+      "pasa": true
+    },
+    {
+      "id": "F10",
+      "desc": "Modal: abrir, Tab dentro, Esc",
+      "observado": "open=true · animaciones=::after+::after+DIALOG+::backdrop · foco inicial=«Cerrar ventana» · Tab→«test del asesor virtual» · tras Esc open=false, foco=#abrir-acceso",
+      "pasa": true
+    },
+    {
+      "id": "F11",
+      "desc": "Modal: seleccionar texto y soltar fuera NO cierra; clic en el velo SÍ cierra",
+      "observado": "tras arrastrar=abierto · tras clic en velo=cerrado",
+      "pasa": true
+    },
+    {
+      "id": "F12",
+      "desc": "Regresión Semana 3 en Firefox",
+      "observado": "«Menos de 10 h» → «Ningún curso coincide con estos filtros. Prueba a quitar alguno.» · «REACT» → «1 curso coincide»",
+      "pasa": true
+    },
+    {
+      "id": "F13",
+      "desc": "Consola de Firefox en todas las pruebas",
+      "observado": "0 errores y 0 advertencias",
+      "pasa": true
+    }
+  ]
+}

@@ -9,7 +9,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <!-- Semana 4: favicon declarado. Sin él, el navegador pedía /favicon.ico
+       y la consola mostraba un 404 en cada página. -->
+  <link rel="icon" href="img/logo-wayra.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/estilos.css">
+  <!-- Semana 4: sin defer a propósito. Aplica el tema antes del primer
+       pintado para que no haya destello claro (ver js/tema.js). -->
+  <script src="js/tema.js"></script>
 </head>
 <body>
 
@@ -25,6 +31,14 @@
         <p class="marca__eslogan">Tu centro de aprendizaje</p>
       </div>
 
+      <!-- Semana 4, RF1. .solo-con-js: solo se ve si hay JavaScript
+           (js/tema.js marca <html> antes de pintar). aria-pressed dice si
+           el modo oscuro está activo. -->
+      <button type="button" class="tema solo-con-js" id="cambiar-tema" aria-pressed="false">
+        <span class="tema__interruptor" aria-hidden="true"></span>
+        Modo oscuro
+      </button>
+
       <nav class="navegacion" aria-label="Navegación principal">
         <input type="checkbox" id="interruptor-menu" class="navegacion__interruptor" aria-label="Abrir menú de navegación">
         <label for="interruptor-menu" class="navegacion__boton">
@@ -37,7 +51,9 @@
           <li><a href="#experiencias">Cursos</a></li>
           <li><a href="#experiencias">Talleres en vivo</a></li>
           <li><a href="#pie">Nosotros</a></li>
-          <li><a href="#pie" class="navegacion__acceso">Ingresar o registrarse</a></li>
+          <!-- Semana 4: <button> y no <a>, porque abre un modal en esta misma
+               página. .solo-con-js: sin JavaScript no aparece. -->
+          <li class="solo-con-js"><button type="button" class="navegacion__acceso" id="abrir-acceso">Ingresar o registrarse</button></li>
         </ul>
       </nav>
 
@@ -208,6 +224,29 @@
 
     <p class="pie__copyright">© 2026 Wayra Academy. Todos los derechos reservados.</p>
   </footer>
+
+  <!-- Semana 4, RF3. Modal de acceso. <dialog> nativo: showModal() lo pone
+       en la capa superior, deja inerte el resto de la página y lo cierra
+       con Esc. js/interaccion.js lo abre y anima su entrada. -->
+  <dialog class="modal" id="modal-acceso" aria-labelledby="modal-acceso-titulo">
+    <div class="modal__caja">
+      <h2 class="modal__titulo" id="modal-acceso-titulo">Ingresar o registrarse</h2>
+      <button type="button" class="modal__cerrar" data-cerrar-modal aria-label="Cerrar ventana">&times;</button>
+      <p class="modal__texto">
+        El registro en línea se abre junto con la próxima fecha de inicio. Mientras tanto,
+        puedes dejar lista tu inscripción de dos maneras:
+      </p>
+      <ul class="modal__lista">
+        <li>Haz el <a href="asesor-virtual.html">test del asesor virtual</a> y llega con tu ruta elegida.</li>
+        <li>Escríbenos a <a href="mailto:hola@wayraacademy.pe">hola@wayraacademy.pe</a> y te reservamos un lugar.</li>
+      </ul>
+      <button type="button" class="boton boton--primario" data-cerrar-modal>Entendido</button>
+    </div>
+  </dialog>
+
+  <!-- Semana 4. Mismo script para todo el sitio: cada bloque comprueba si
+       sus elementos existen en la página antes de engancharse. -->
+  <script src="js/interaccion.js" defer></script>
 
 </body>
 </html>

@@ -6,6 +6,10 @@
 
 :root {
 
+  /* Controles nativos (radios, barras de desplazamiento) en claro. El tema
+     oscuro lo cambia a dark más abajo (Semana 4). */
+  color-scheme: light;
+
   /* --- Color: base --------------------------------------- */
   --color-tinta:          #1B2A4A;  /* superficies oscuras y texto principal */
   --color-tinta-clara:    #35456A;  /* separadores sobre superficie oscura */
@@ -28,6 +32,11 @@
   --color-accion:         #C0006B;  /* botones, foco y enlaces de acción */
   --color-accion-firme:   #9C0057;  /* estado hover y active */
   --color-destaque:       #F2B705;  /* solo bloque sólido; nunca texto sobre claro */
+  --color-sobre-accion:   var(--color-texto-claro);  /* texto sobre fondo de acción — 6.08:1 */
+
+  /* --- Color: capas (Semana 4) --------------------------- */
+  --color-velo:   rgb(27 42 74 / 0.72);         /* fondo tras el modal */
+  --sombra-modal: 0 1rem 3rem rgb(0 0 0 / 0.35);
 
   /* --- Tipografía: familias ------------------------------ */
   --fuente-titulo: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
@@ -67,6 +76,7 @@
   --radio-chico:  2px;
   --radio-medio:  4px;
   --radio-grande: 6px;
+  --radio-pildora: 999px;  /* interruptor del tema */
 
   /* --- Foco ---------------------------------------------- */
   --foco-grosor: 3px;
@@ -92,6 +102,46 @@
 }
 
 /* ============================================================
+   Tema oscuro (Semana 4, RF1)
+
+   La clase la pone y la quita js/tema.js sobre <html>. Como todos los
+   componentes leen el color de un token, basta con redefinir los tokens
+   aquí: ninguna regla de componente tiene una versión "oscura".
+
+   Contraste medido (WCAG AA pide 4.5:1 en texto):
+     texto / papel 15.07 · texto / superficie 13.35 · suave / superficie 8.17
+     suave / vacío 6.79 · acción / superficie 7.06 · tinta / acción 6.34
+     aviso / aviso-fondo 7.92 · aviso / superficie 8.05
+
+   --color-tinta y --color-texto-claro no cambian: el encabezado y el pie
+   ya eran oscuros, y la ruta sigue siendo texto tinta sobre amarillo.
+   ============================================================ */
+
+:root.tema-oscuro {
+  color-scheme: dark;
+
+  --color-papel:        #0F1728;
+  --color-superficie:   #182238;
+  --color-marco:        #33415F;
+  --color-vacio:        #243049;
+
+  --color-texto:        #E6ECF5;
+  --color-texto-suave:  #AEBBD0;
+
+  --color-aviso:        #FFA08C;
+  --color-aviso-fondo:  #3B1A16;
+
+  /* El rosa de acción se aclara para leerse sobre superficie oscura; por
+     eso el texto encima de un botón pasa de blanco a tinta. */
+  --color-accion:       #FF85BF;
+  --color-accion-firme: #FFB3D6;
+  --color-sobre-accion: var(--color-tinta);
+
+  --color-velo:   rgb(0 0 0 / 0.72);
+  --sombra-modal: 0 1rem 3rem rgb(0 0 0 / 0.6);
+}
+
+/* ============================================================
    Base
    ============================================================ */
 
@@ -109,6 +159,19 @@ body {
 
 img { max-width: 100%; height: auto; display: block; }
 
+/* El atributo hidden debe ganar siempre. Sin esto, un componente con
+   display propio (el botón de tema es inline-flex) ignora hidden, porque
+   la regla del navegador para [hidden] tiene la especificidad más baja. */
+[hidden] { display: none !important; }
+
+/* Controles que solo funcionan con JavaScript (botón de tema, botón del
+   modal). js/tema.js pone .con-js en <html> desde el <head>, ANTES del
+   primer pintado: con JavaScript aparecen desde el primer cuadro y el
+   encabezado no salta; sin JavaScript no aparecen nunca.
+   (Con hidden + mostrarlos después, entre 640 y 992 px el menú pasaba a
+   una segunda fila al cargar y la página se desplazaba: CLS de 0.53.) */
+:root:not(.con-js) .solo-con-js { display: none !important; }
+
 h1, h2 {
   font-family: var(--fuente-titulo);
   line-height: var(--interlinea-titulo);
@@ -120,13 +183,20 @@ h1, h2 {
    Criterio de accesibilidad 3. */
 a:focus-visible,
 button:focus-visible,
-input[type="radio"]:focus-visible,
+input:focus-visible,
 select:focus-visible,
 summary:focus-visible {
   outline: var(--foco-grosor) solid var(--foco-color);
   outline-offset: var(--foco-margen);
   border-radius: var(--radio-chico);
 }
+
+/* Semana 4, RF4. El rosa de acción sobre el azul tinta del encabezado y
+   del pie daba 2.34:1, por debajo del 3:1 que WCAG 1.4.11 pide a un
+   indicador de foco. Sobre fondo oscuro el anillo pasa al amarillo de
+   destaque: 7.82:1. */
+.encabezado,
+.pie { --foco-color: var(--color-destaque); }
 
 /* ============================================================
    Componente: enlace de salto
@@ -168,7 +238,7 @@ summary:focus-visible {
 
 .boton--primario {
   background-color: var(--color-accion);
-  color: var(--color-texto-claro);
+  color: var(--color-sobre-accion);
 }
 
 .boton--primario:hover,
@@ -186,7 +256,7 @@ summary:focus-visible {
 .boton--secundario:hover,
 .boton--secundario:active {
   background-color: var(--color-accion);
-  color: var(--color-texto-claro);
+  color: var(--color-sobre-accion);
 }
 
 .boton:disabled {
@@ -206,12 +276,76 @@ summary:focus-visible {
   padding: var(--espacio-5);
 }
 
+/* Mobile: Grid de una columna. El botón de tema y la navegación comparten
+   la segunda fila (Semana 4): el tema a la izquierda, el menú hamburguesa
+   a la derecha, en el mismo orden en que se recorren con Tab. Así el
+   botón nuevo no le agrega una fila más al encabezado en celular. */
 .encabezado__interior {
   max-width: var(--ancho-pagina);
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: var(--espacio-5);
+}
+
+.encabezado__interior > .tema,
+.encabezado__interior > .navegacion { grid-row: 2; grid-column: 1; }
+
+/* ============================================================
+   Componente: selector de tema (Semana 4, RF1)
+   Un <button> con aria-pressed: el lector de pantalla lo anuncia como
+   "Modo oscuro, botón de alternancia, pulsado / no pulsado". El nombre
+   no cambia; lo que cambia es el estado. El estado se ve por la posición
+   de la perilla, no solo por su color.
+   ============================================================ */
+
+.tema {
+  /* Encima de la caja de .navegacion, que ocupa la misma celda. */
+  position: relative;
+  z-index: 1;
+  justify-self: start;
+  align-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espacio-2);
+  min-height: var(--toque-minimo);
+  padding: 0 var(--espacio-3);
+  font-family: var(--fuente-texto);
+  font-size: var(--texto-200);
+  font-weight: var(--peso-medio);
+  color: var(--color-texto-claro);
+  background-color: transparent;
+  border: var(--borde-fino) solid var(--color-tinta-clara);
+  border-radius: var(--radio-medio);
+  cursor: pointer;
+}
+
+.tema:hover { border-color: var(--color-texto-tenue); }
+
+.tema__interruptor {
+  position: relative;
+  flex: none;
+  width: var(--espacio-7);
+  height: var(--espacio-5);
+  border: var(--borde-marcado) solid currentColor;
+  border-radius: var(--radio-pildora);
+}
+
+.tema__interruptor::after {
+  content: "";
+  position: absolute;
+  top: var(--espacio-1);
+  left: var(--espacio-1);
+  width: var(--espacio-3);
+  height: var(--espacio-3);
+  border-radius: var(--radio-pildora);
+  background-color: currentColor;
+  transition: transform var(--transicion), background-color var(--transicion);
+}
+
+.tema[aria-pressed="true"] .tema__interruptor::after {
+  transform: translateX(var(--espacio-4));
+  background-color: var(--color-destaque);
 }
 
 .marca {
@@ -303,9 +437,20 @@ summary:focus-visible {
 
 .navegacion a:hover { border-bottom-color: var(--color-destaque); }
 
+/* Semana 4: "Ingresar o registrarse" dejó de ser un enlace al pie y es un
+   <button> que abre el modal: la acción se queda en la página. Se ve
+   como el resto de la navegación, con el subrayado amarillo fijo.
+   (Como <a>, ese subrayado nunca se veía: .navegacion a, con más
+   especificidad, lo reescribía en transparente.) */
 .navegacion__acceso {
-  border-bottom-color: var(--color-destaque);
+  font: inherit;
   font-weight: var(--peso-medio);
+  color: var(--color-texto-claro);
+  background: none;
+  border: 0;
+  border-bottom: var(--borde-marcado) solid var(--color-destaque);
+  padding: var(--espacio-1) 0;
+  cursor: pointer;
 }
 
 /* ============================================================
@@ -734,7 +879,8 @@ summary:focus-visible {
    radios cuando fieldset/legend no se puede maquetar como se necesita, y
    se comporta como cualquier <div> normal, sin casos especiales. */
 .test__pregunta,
-.test__final {
+.test__final,
+.test__dato {
   display: flex;
   flex-direction: column;
   background-color: var(--color-superficie);
@@ -788,7 +934,7 @@ summary:focus-visible {
   padding: var(--espacio-4);
   background-color: var(--color-vacio);
   border-radius: var(--radio-medio);
-  color: var(--color-tinta);
+  color: var(--color-texto);  /* era --color-tinta: en tema oscuro quedaba tinta sobre fondo oscuro */
   font-weight: var(--peso-medio);
 }
 
@@ -882,6 +1028,123 @@ summary:focus-visible {
 }
 
 /* ============================================================
+   Formulario del asesor (Semana 4, RF2)
+   Campo de texto con validación de la Constraint Validation API.
+   ============================================================ */
+
+.test__etiqueta {
+  font-family: var(--fuente-titulo);
+  font-size: var(--texto-500);
+  font-weight: var(--peso-medio);
+  line-height: var(--interlinea-titulo);
+}
+
+.test__ayuda {
+  margin: var(--espacio-2) 0 var(--espacio-3);
+  font-size: var(--texto-200);
+  color: var(--color-texto-suave);
+}
+
+.test__campo {
+  width: 100%;
+  max-width: var(--ancho-lectura);
+  min-height: var(--toque-minimo);
+  font-family: var(--fuente-texto);
+  font-size: var(--texto-300);
+  padding: var(--espacio-2) var(--espacio-3);
+  border: var(--borde-fino) solid var(--color-marco);
+  border-radius: var(--radio-medio);
+  background-color: var(--color-superficie);
+  color: var(--color-texto);
+}
+
+/* aria-invalid lo pone JavaScript solo después del primer intento de
+   envío: no se marca en rojo un campo que el usuario todavía no tocó. */
+.test__campo[aria-invalid="true"] {
+  border: var(--borde-marcado) solid var(--color-aviso);
+}
+
+.test__error {
+  margin: var(--espacio-2) 0 0;
+  font-size: var(--texto-200);
+  font-weight: var(--peso-medio);
+  color: var(--color-aviso);
+}
+
+.test__error:empty { display: none; }
+
+/* ============================================================
+   Componente: modal (Semana 4, RF3)
+   Un <dialog> nativo abierto con showModal(): el navegador ya resuelve
+   la capa superior, el fondo inerte, Esc para cerrar y el foco atrapado
+   dentro. La animación de entrada la hace JavaScript con la Web
+   Animations API; aquí solo está el estado final.
+   ============================================================ */
+
+.modal {
+  width: min(var(--ancho-lectura), 100% - var(--espacio-6));
+  max-height: calc(100% - var(--espacio-6));
+  padding: 0;
+  border: 0;
+  border-radius: var(--radio-grande);
+  background-color: var(--color-superficie);
+  color: var(--color-texto);
+  box-shadow: var(--sombra-modal);
+}
+
+.modal::backdrop { background-color: var(--color-velo); }
+
+/* El relleno vive en la caja interior y no en el <dialog>: así un clic
+   cuyo destino es el propio <dialog> solo puede venir del fondo, y
+   JavaScript lo usa para cerrar al pulsar fuera. */
+.modal__caja {
+  position: relative;
+  padding: var(--espacio-6) var(--espacio-5) var(--espacio-5);
+}
+
+.modal__titulo {
+  font-size: var(--texto-700);
+  font-weight: var(--peso-medio);
+  padding-right: var(--espacio-8);
+  margin-bottom: var(--espacio-3);
+}
+
+.modal__texto {
+  margin: 0 0 var(--espacio-4);
+  color: var(--color-texto-suave);
+}
+
+.modal__lista {
+  margin: 0 0 var(--espacio-5);
+  padding-left: var(--espacio-5);
+}
+
+.modal__lista li + li { margin-top: var(--espacio-2); }
+
+.modal a {
+  color: var(--color-accion);
+  font-weight: var(--peso-medio);
+  text-underline-offset: var(--foco-margen);
+}
+
+.modal__cerrar {
+  position: absolute;
+  top: var(--espacio-3);
+  right: var(--espacio-3);
+  width: var(--toque-minimo);
+  height: var(--toque-minimo);
+  font-size: var(--texto-600);
+  line-height: var(--interlinea-titulo);
+  color: var(--color-texto);
+  background: none;
+  border: var(--borde-fino) solid var(--color-marco);
+  border-radius: var(--radio-medio);
+  cursor: pointer;
+}
+
+.modal__cerrar:hover { border-color: var(--color-accion); }
+
+/* ============================================================
    Adaptación a pantallas grandes
 
    Los dos breakpoints se declaran en em, no en px (decisión técnica 3):
@@ -893,11 +1156,17 @@ summary:focus-visible {
    ============================================================ */
 
 @media (min-width: 40em) {
+  /* Desde 40em el encabezado vuelve a ser una fila: marca a la izquierda,
+     luego el botón de tema y la navegación. margin-right: auto en la marca
+     empuja a los otros dos hacia la derecha sin alterar el orden del HTML. */
   .encabezado__interior {
-    flex-direction: row;
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
+    column-gap: var(--espacio-5);
   }
+  .marca { margin-right: auto; }
+  .encabezado__interior > .tema { align-self: center; }
   .navegacion__interruptor,
   .navegacion__boton {
     display: none;
