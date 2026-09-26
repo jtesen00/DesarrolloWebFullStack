@@ -1,0 +1,44 @@
+{
+  "A_scroll_375": [
+    600,
+    375
+  ],
+  "B_E_siguiente_x2": {
+    "contador": "Curso 3 de 5",
+    "activas": [
+      1
+    ],
+    "visible": [
+      "Frontend con HTML5, CSS3 y JavaScript"
+    ]
+  },
+  "C_anterior_en_primera": {
+    "contador": "Curso 0 de 5",
+    "errores_consola": [
+      "Cannot read properties of undefined (reading 'classList')"
+    ]
+  },
+  "D_1000px": {
+    "main": 592,
+    "slide": 592,
+    "imagen": 384,
+    "texto": 206
+  },
+  "D_experiencias_900": [
+    [
+      24,
+      141,
+      414
+    ],
+    [
+      462,
+      141,
+      414
+    ],
+    [
+      24,
+      665,
+      414
+    ]
+  ]
+}

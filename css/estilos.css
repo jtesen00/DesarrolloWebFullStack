@@ -1145,6 +1145,248 @@ summary:focus-visible {
 .modal__cerrar:hover { border-color: var(--color-accion); }
 
 /* ============================================================
+   Semana 4 (Plan B) — Carrusel de cursos destacados
+
+   Reparto de responsabilidades (Parte I, pregunta 2):
+   · Flexbox  → la pista: las cinco diapositivas en una fila, cada una
+                del 100 % del ancho de la ventana del carrusel.
+   · Grid     → dentro de cada diapositiva (imagen + texto) y en la
+                barra de controles.
+   · Container Queries → deciden la distribución según el ancho del
+                CARRUSEL, no el de la pantalla. El carrusel vive en
+                <main>, que a 1000 px de ventana mide unos 590 px (el
+                <aside> se lleva el resto): una media query de ventana
+                ahí elegía la distribución de escritorio para una caja
+                estrecha (síntoma D).
+
+   JavaScript no escribe colores ni anchos: solo cambia la variable
+   --indice, la clase .diapositiva--activa y atributos aria-*.
+   ============================================================ */
+
+.destacados {
+  margin-top: var(--espacio-9);
+  border-top: var(--borde-fino) solid var(--color-marco);
+  padding-top: var(--espacio-7);
+}
+
+.destacados__titulo {
+  font-size: var(--texto-700);
+  font-weight: var(--peso-medio);
+}
+
+.destacados__bajada {
+  margin: var(--espacio-2) 0 var(--espacio-6);
+  color: var(--color-texto-suave);
+}
+
+.carrusel {
+  container: carrusel / inline-size;
+}
+
+/* Sin JavaScript: las cinco diapositivas se apilan como una lista. */
+.carrusel__pista {
+  display: grid;
+  gap: var(--espacio-5);
+}
+
+.diapositiva {
+  background-color: var(--color-superficie);
+  border: var(--borde-fino) solid var(--color-marco);
+  border-radius: var(--radio-grande);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.diapositiva__medio {
+  background-color: var(--color-vacio);
+  aspect-ratio: 16 / 10;
+}
+
+.diapositiva__medio img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.diapositiva__cuerpo {
+  padding: var(--espacio-5);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.diapositiva__datos {
+  margin: 0 0 var(--espacio-2);
+  font-size: var(--texto-100);
+  font-weight: var(--peso-medio);
+  color: var(--color-accion);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.diapositiva__titulo {
+  margin: 0;
+  font-family: var(--fuente-titulo);
+  font-size: var(--texto-500);
+  font-weight: var(--peso-medio);
+  line-height: var(--interlinea-titulo);
+  text-wrap: balance;
+}
+
+.diapositiva__texto {
+  margin: var(--espacio-3) 0 var(--espacio-5);
+  font-size: var(--texto-200);
+}
+
+/* --- Con JavaScript: una diapositiva a la vez ------------------ */
+
+/* overflow: clip y no hidden: recorta la pista sin crear un contenedor
+   de desplazamiento, así ni el ratón ni Tab pueden «arrastrar» la pista
+   fuera de su sitio. Sin este recorte, las cuatro diapositivas ocultas
+   quedaban a la derecha y la página tenía scroll horizontal (síntoma A). */
+.con-js .carrusel__ventana {
+  overflow: clip;
+  border-radius: var(--radio-grande);
+}
+
+.con-js .carrusel__pista {
+  display: flex;
+  gap: 0;
+  transform: translateX(calc(var(--indice, 0) * -100%));
+  transition: transform 300ms ease-out;
+}
+
+/* min-width: 0 + flex-basis 100 %: cada diapositiva mide exactamente la
+   ventana. Sin min-width: 0, una palabra o imagen ancha la estiraba. */
+.con-js .diapositiva {
+  flex: 0 0 100%;
+  min-width: 0;
+}
+
+/* Barra de controles: en caja estrecha, el contador arriba y los dos
+   botones compartiendo la fila de abajo. */
+.carrusel__controles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "contador  contador"
+    "anterior  siguiente";
+  align-items: center;
+  gap: var(--espacio-3);
+  margin-top: var(--espacio-4);
+}
+
+#carrusel-anterior  { grid-area: anterior; }
+#carrusel-siguiente { grid-area: siguiente; }
+
+.carrusel__contador {
+  grid-area: contador;
+  margin: 0;
+  text-align: center;
+  font-weight: var(--peso-medio);
+  color: var(--color-texto-suave);
+}
+
+.carrusel__boton {
+  min-height: var(--toque-minimo);
+  padding: var(--espacio-2) var(--espacio-4);
+  border: var(--borde-marcado) solid var(--color-accion);
+  border-radius: var(--radio-medio);
+  background-color: var(--color-superficie);
+  color: var(--color-accion);
+  font: inherit;
+  font-weight: var(--peso-medio);
+  cursor: pointer;
+  transition: background-color var(--transicion), color var(--transicion);
+}
+
+.carrusel__boton:hover {
+  background-color: var(--color-accion);
+  color: var(--color-sobre-accion);
+}
+
+/* Extremo alcanzado: el botón sigue en el orden de tabulación, pero se
+   ve apagado y el lector de pantalla lo anuncia como «no disponible». */
+.carrusel__boton[aria-disabled="true"] {
+  border-color: var(--color-marco);
+  background-color: var(--color-superficie);
+  color: var(--color-texto-suave);
+  cursor: not-allowed;
+}
+
+.carrusel__puntos {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: var(--espacio-2);
+}
+
+/* Blanco táctil de 44 px; el punto visible se dibuja con ::before. */
+.carrusel__punto {
+  width: var(--toque-minimo);
+  height: var(--toque-minimo);
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.carrusel__punto::before {
+  content: "";
+  width: var(--espacio-3);
+  height: var(--espacio-3);
+  border-radius: var(--radio-pildora);
+  border: var(--borde-marcado) solid var(--color-texto-suave);
+  transition: background-color var(--transicion), transform var(--transicion);
+}
+
+/* Solo un punto activo a la vez: el que tiene aria-current. El estado
+   visual sale del mismo atributo que lee el lector de pantalla, así que
+   no pueden contradecirse (síntoma E). */
+.carrusel__punto[aria-current="true"]::before {
+  background-color: var(--color-accion);
+  border-color: var(--color-accion);
+  transform: scale(1.3);
+}
+
+/* --- Container Queries: distribución según el ancho del carrusel --- */
+
+@container carrusel (min-width: 30rem) {
+  .carrusel__controles {
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: "anterior contador siguiente";
+  }
+}
+
+@container carrusel (min-width: 38rem) {
+  .diapositiva {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    align-items: center;
+  }
+  .diapositiva__medio { height: 100%; aspect-ratio: auto; min-height: 14rem; }
+  /* contain: en la columna alta, cover recortaba los lados del dibujo. */
+  .diapositiva__medio img { object-fit: contain; }
+  .diapositiva__cuerpo { padding: var(--espacio-6); }
+}
+
+/* --- Experiencias: la grilla responde a su contenedor (síntoma D) ---
+   Antes: repeat(2, 1fr) desde 40em de VENTANA. Entre 830 y 991 px,
+   <main> medía más de 800 px y la tercera tarjeta quedaba sola en una
+   fila, a media anchura. Ahora cuenta el ancho real de la sección. */
+.experiencias { container: experiencias / inline-size; }
+
+@container experiencias (min-width: 34rem) {
+  .experiencias__grilla { grid-template-columns: repeat(2, 1fr); }
+}
+
+@container experiencias (min-width: 50rem) {
+  .experiencias__grilla { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ============================================================
    Adaptación a pantallas grandes
 
    Los dos breakpoints se declaran en em, no en px (decisión técnica 3):
@@ -1178,7 +1420,7 @@ summary:focus-visible {
     padding: 0;
     gap: var(--espacio-2) var(--espacio-5);
   }
-  .experiencias__grilla { grid-template-columns: repeat(2, 1fr); }
+  /* .experiencias__grilla pasó a Container Queries (Semana 4, Plan B). */
   .cursos__grilla       { grid-template-columns: repeat(2, 1fr); }
   .pie__interior        { grid-template-columns: repeat(2, 1fr); }
 

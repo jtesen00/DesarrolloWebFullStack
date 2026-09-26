@@ -1,0 +1,315 @@
+{
+  "T0_inicial": {
+    "contador": "Curso 1 de 5: Frontend con HTML5, CSS3 y JavaScript",
+    "activas": [
+      1
+    ],
+    "noInertes": [
+      1
+    ],
+    "puntoActual": [
+      1
+    ],
+    "enVista": [
+      "Frontend con HTML5, CSS3 y JavaScript"
+    ],
+    "antDis": "true",
+    "sigDis": "false",
+    "foco": ""
+  },
+  "T1_siguiente": {
+    "contador": "Curso 2 de 5: React desde cero",
+    "activas": [
+      2
+    ],
+    "noInertes": [
+      2
+    ],
+    "puntoActual": [
+      2
+    ],
+    "enVista": [
+      "React desde cero"
+    ],
+    "antDis": "false",
+    "sigDis": "false",
+    "foco": "carrusel-siguiente"
+  },
+  "T2_anterior_desde_3": {
+    "contador": "Curso 2 de 5: React desde cero",
+    "activas": [
+      2
+    ],
+    "noInertes": [
+      2
+    ],
+    "puntoActual": [
+      2
+    ],
+    "enVista": [
+      "React desde cero"
+    ],
+    "antDis": "false",
+    "sigDis": "false",
+    "foco": "carrusel-anterior"
+  },
+  "T3_anterior_en_primera_x2": {
+    "contador": "Curso 1 de 5: Frontend con HTML5, CSS3 y JavaScript",
+    "activas": [
+      1
+    ],
+    "noInertes": [
+      1
+    ],
+    "puntoActual": [
+      1
+    ],
+    "enVista": [
+      "Frontend con HTML5, CSS3 y JavaScript"
+    ],
+    "antDis": "true",
+    "sigDis": "false",
+    "foco": "carrusel-anterior"
+  },
+  "T4_siguiente_x7_ultima": {
+    "contador": "Curso 5 de 5: Marketing digital para emprendedores",
+    "activas": [
+      5
+    ],
+    "noInertes": [
+      5
+    ],
+    "puntoActual": [
+      5
+    ],
+    "enVista": [
+      "Marketing digital para emprendedores"
+    ],
+    "antDis": "false",
+    "sigDis": "true",
+    "foco": "carrusel-siguiente"
+  },
+  "T5_punto_3": {
+    "contador": "Curso 3 de 5: Fundamentos de análisis de datos",
+    "activas": [
+      3
+    ],
+    "noInertes": [
+      3
+    ],
+    "puntoActual": [
+      3
+    ],
+    "enVista": [
+      "Fundamentos de análisis de datos"
+    ],
+    "antDis": "false",
+    "sigDis": "false",
+    "foco": "carrusel__punto"
+  },
+  "T6_teclado": {
+    "Enter+Espacio": {
+      "contador": "Curso 3 de 5: Fundamentos de análisis de datos",
+      "activas": [
+        3
+      ],
+      "noInertes": [
+        3
+      ],
+      "puntoActual": [
+        3
+      ],
+      "enVista": [
+        "Fundamentos de análisis de datos"
+      ],
+      "antDis": "false",
+      "sigDis": "false",
+      "foco": "carrusel-siguiente"
+    },
+    "End": {
+      "contador": "Curso 5 de 5: Marketing digital para emprendedores",
+      "activas": [
+        5
+      ],
+      "noInertes": [
+        5
+      ],
+      "puntoActual": [
+        5
+      ],
+      "enVista": [
+        "Marketing digital para emprendedores"
+      ],
+      "antDis": "false",
+      "sigDis": "true",
+      "foco": "carrusel-siguiente"
+    },
+    "Enter_en_ultima": {
+      "contador": "Curso 5 de 5: Marketing digital para emprendedores",
+      "activas": [
+        5
+      ],
+      "noInertes": [
+        5
+      ],
+      "puntoActual": [
+        5
+      ],
+      "enVista": [
+        "Marketing digital para emprendedores"
+      ],
+      "antDis": "false",
+      "sigDis": "true",
+      "foco": "carrusel-siguiente"
+    },
+    "Home": {
+      "contador": "Curso 1 de 5: Frontend con HTML5, CSS3 y JavaScript",
+      "activas": [
+        1
+      ],
+      "noInertes": [
+        1
+      ],
+      "puntoActual": [
+        1
+      ],
+      "enVista": [
+        "Frontend con HTML5, CSS3 y JavaScript"
+      ],
+      "antDis": "true",
+      "sigDis": "false",
+      "foco": "carrusel-siguiente"
+    },
+    "FlechaDerecha": {
+      "contador": "Curso 2 de 5: React desde cero",
+      "activas": [
+        2
+      ],
+      "noInertes": [
+        2
+      ],
+      "puntoActual": [
+        2
+      ],
+      "enVista": [
+        "React desde cero"
+      ],
+      "antDis": "false",
+      "sigDis": "false",
+      "foco": "carrusel-siguiente"
+    },
+    "enlaces_tabulables": [
+      false,
+      true,
+      false,
+      false,
+      false
+    ]
+  },
+  "T7_mobile_375": {
+    "scroll": [
+      375,
+      375
+    ],
+    "columnasDiapositiva": "325px",
+    "controles": "\"contador contador\" \"anterior siguiente\""
+  },
+  "T7_mobile_320": {
+    "scroll": [
+      320,
+      320
+    ],
+    "columnasDiapositiva": "270px",
+    "controles": "\"contador contador\" \"anterior siguiente\""
+  },
+  "T8_ancho_1440": {
+    "scroll": [
+      1440,
+      1440
+    ],
+    "main": 680,
+    "carrusel": 680,
+    "columnasDiapositiva": "271.188px 406.812px",
+    "tarjetas": [
+      [
+        200,
+        328
+      ],
+      [
+        552,
+        328
+      ],
+      [
+        200,
+        328
+      ]
+    ]
+  },
+  "T8_ancho_1000": {
+    "scroll": [
+      1000,
+      1000
+    ],
+    "main": 592,
+    "carrusel": 592,
+    "columnasDiapositiva": "590px",
+    "tarjetas": [
+      [
+        24,
+        284
+      ],
+      [
+        332,
+        284
+      ],
+      [
+        24,
+        284
+      ]
+    ]
+  },
+  "T8_ancho_900": {
+    "scroll": [
+      900,
+      900
+    ],
+    "main": 852,
+    "carrusel": 852,
+    "columnasDiapositiva": "340px 510px",
+    "tarjetas": [
+      [
+        24,
+        268
+      ],
+      [
+        316,
+        268
+      ],
+      [
+        608,
+        268
+      ]
+    ]
+  },
+  "T9_oscuro": true,
+  "T10_barrido": {
+    "combinaciones": 48,
+    "desbordes": []
+  },
+  "T11_movimiento_reducido": "1e-05s",
+  "T12_sin_js": {
+    "diapositivasVisibles": 5,
+    "controlesVisibles": false,
+    "scroll": [
+      375,
+      375
+    ]
+  },
+  "T13_regresion": {
+    "tema_oscuro": true,
+    "modal_abre": true,
+    "modal_cierra_esc": true,
+    "filtro": "2 cursos coinciden"
+  },
+  "T14_consola": []
+}

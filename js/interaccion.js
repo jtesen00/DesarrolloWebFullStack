@@ -6,6 +6,7 @@
      A. Filtrado en vivo del catálogo  → explorador-cursos.html
      B. Formulario validado del asesor → asesor-virtual.html
      C. Modal «Ingresar o registrarse» → las cuatro páginas
+     D. Carrusel de cursos destacados  → index.html (Plan B)
    El selector de tema vive en js/tema.js (ver por qué en ese archivo).
 
    Reglas del equipo para esta capa:
@@ -383,6 +384,101 @@ function iniciarModal() {
   modal.addEventListener("close", () => abrir.focus());
 }
 
+/* ============================================================
+   D. Carrusel de cursos destacados (Semana 4, Plan B)
+   index.html. Botones Anterior/Siguiente, puntos y flechas.
+
+   Estado mínimo: UN número, «actual» (0 a total − 1). Todo lo que
+   se ve (qué diapositiva, qué punto, el contador, qué botón está
+   apagado) se deriva de ese número en una sola función, pintar().
+   Así el texto y el estado visual no pueden desincronizarse (E).
+   ============================================================ */
+
+function iniciarCarrusel() {
+  const carrusel = document.getElementById("carrusel-cursos");
+  const pista = document.getElementById("carrusel-pista");
+  const anterior = document.getElementById("carrusel-anterior");
+  const siguiente = document.getElementById("carrusel-siguiente");
+  const contador = document.getElementById("carrusel-contador");
+
+  if (!carrusel || !pista || !anterior || !siguiente || !contador) return;
+
+  // querySelectorAll: son cinco diapositivas y cinco puntos con la misma
+  // clase. Se leen una vez; JavaScript no crea ni copia tarjetas.
+  const diapositivas = carrusel.querySelectorAll(".diapositiva");
+  const puntos = carrusel.querySelectorAll(".carrusel__punto");
+  const total = diapositivas.length;
+  if (total === 0) return;
+
+  let actual = 0;
+
+  // Todo cambio de posición pasa por aquí. El índice se ACOTA entre 0 y
+  // total − 1: desde la primera, Anterior no puede producir −1, y desde
+  // la última, Siguiente no puede producir 5 (síntoma C).
+  function irA(indice) {
+    const acotado = Math.min(Math.max(indice, 0), total - 1);
+    if (acotado === actual) return;
+    actual = acotado;
+    pintar();
+  }
+
+  function pintar() {
+    // La posición la dibuja el CSS: translateX(calc(--indice * -100%)).
+    // JavaScript solo le pasa el número.
+    pista.style.setProperty("--indice", actual);
+
+    // Un solo elemento activo: el bucle quita la clase a todos y se la
+    // deja al actual (Parte I, pregunta 3).
+    for (const [i, diapositiva] of diapositivas.entries()) {
+      const activa = i === actual;
+      diapositiva.classList.toggle("diapositiva--activa", activa);
+      // inert en las ocultas: su enlace sale del orden de Tab y el lector
+      // de pantalla no las lee, aunque sigan en el DOM.
+      diapositiva.inert = !activa;
+    }
+
+    for (const [i, punto] of puntos.entries()) {
+      if (i === actual) punto.setAttribute("aria-current", "true");
+      else punto.removeAttribute("aria-current");
+    }
+
+    const titulo = diapositivas[actual].querySelector(".diapositiva__titulo").textContent;
+    contador.textContent = "Curso " + (actual + 1) + " de " + total + ": " + titulo;
+
+    // aria-disabled y no disabled: un botón disabled pierde el foco, y
+    // quien llega a la última con el teclado quedaría «en ninguna parte».
+    anterior.setAttribute("aria-disabled", String(actual === 0));
+    siguiente.setAttribute("aria-disabled", String(actual === total - 1));
+  }
+
+  anterior.addEventListener("click", () => irA(actual - 1));
+  siguiente.addEventListener("click", () => irA(actual + 1));
+
+  for (const [i, punto] of puntos.entries()) {
+    punto.addEventListener("click", () => irA(i));
+  }
+
+  // Flechas del teclado cuando el foco está en los controles o puntos.
+  // No dentro de una diapositiva: su enlace quedaría inerte con el foco
+  // encima y el foco se perdería.
+  carrusel.addEventListener("keydown", (evento) => {
+    if (!evento.target.closest(".carrusel__controles, .carrusel__puntos")) return;
+    const TECLAS = {
+      ArrowLeft: () => irA(actual - 1),
+      ArrowRight: () => irA(actual + 1),
+      Home: () => irA(0),
+      End: () => irA(total - 1),
+    };
+    const accion = TECLAS[evento.key];
+    if (!accion) return;
+    evento.preventDefault();
+    accion();
+  });
+
+  pintar();
+}
+
 iniciarFiltrado();
 iniciarAsesor();
 iniciarModal();
+iniciarCarrusel();

@@ -132,6 +132,108 @@
         </div>
       </section>
 
+      <!-- Semana 4 (Plan B). Carrusel de cursos destacados: contenido real,
+           los mismos cinco cursos de explorador-cursos.html. Sin JavaScript
+           es una lista vertical de cinco artículos (mejora progresiva);
+           con JavaScript (.con-js) muestra uno a la vez con Anterior/Siguiente.
+           Las cinco diapositivas se escriben una sola vez aquí: JavaScript
+           no crea ni duplica tarjetas, solo cambia cuál está activa. -->
+      <section id="destacados" class="destacados" aria-labelledby="titulo-destacados">
+        <h2 id="titulo-destacados" class="destacados__titulo">Cursos destacados</h2>
+        <p class="destacados__bajada">Los cinco cursos del catálogo, uno a la vez. Usa los botones o las flechas del teclado.</p>
+
+        <div class="carrusel" id="carrusel-cursos" role="group" aria-roledescription="carrusel" aria-labelledby="titulo-destacados">
+
+          <div class="carrusel__ventana">
+            <div class="carrusel__pista" id="carrusel-pista">
+
+              <article class="diapositiva" aria-roledescription="diapositiva" aria-label="1 de 5">
+                <div class="diapositiva__medio">
+                  <img src="img/cursos/frontend.svg" width="800" height="500" alt="Ventana de navegador con el símbolo de etiqueta de cierre de HTML.">
+                </div>
+                <div class="diapositiva__cuerpo">
+                  <p class="diapositiva__datos">Desarrollo web · Principiante · 28 horas</p>
+                  <h3 class="diapositiva__titulo">Frontend con HTML5, CSS3 y JavaScript</h3>
+                  <p class="diapositiva__texto">Construye interfaces accesibles desde cero, sin frameworks, con buenas prácticas de semántica.</p>
+                  <a class="boton boton--secundario" href="explorador-cursos.html">Ver en el catálogo</a>
+                </div>
+              </article>
+
+              <article class="diapositiva" aria-roledescription="diapositiva" aria-label="2 de 5">
+                <div class="diapositiva__medio">
+                  <img src="img/cursos/react.svg" width="800" height="500" alt="Átomo con tres órbitas alrededor de un núcleo, símbolo de React.">
+                </div>
+                <div class="diapositiva__cuerpo">
+                  <p class="diapositiva__datos">Desarrollo web · Intermedio · 36 horas</p>
+                  <h3 class="diapositiva__titulo">React desde cero</h3>
+                  <p class="diapositiva__texto">Componentes, estado y consumo de APIs para construir interfaces dinámicas.</p>
+                  <a class="boton boton--secundario" href="explorador-cursos.html">Ver en el catálogo</a>
+                </div>
+              </article>
+
+              <article class="diapositiva" aria-roledescription="diapositiva" aria-label="3 de 5">
+                <div class="diapositiva__medio">
+                  <img src="img/cursos/datos.svg" width="800" height="500" alt="Gráfico de barras con una línea de tendencia que sube.">
+                </div>
+                <div class="diapositiva__cuerpo">
+                  <p class="diapositiva__datos">Datos e IA · Principiante · 20 horas</p>
+                  <h3 class="diapositiva__titulo">Fundamentos de análisis de datos</h3>
+                  <p class="diapositiva__texto">Limpieza, visualización e interpretación de datos con herramientas prácticas.</p>
+                  <a class="boton boton--secundario" href="explorador-cursos.html">Ver en el catálogo</a>
+                </div>
+              </article>
+
+              <article class="diapositiva" aria-roledescription="diapositiva" aria-label="4 de 5">
+                <div class="diapositiva__medio">
+                  <img src="img/cursos/ux-ui.svg" width="800" height="500" alt="Boceto de pantalla de celular junto a un lápiz.">
+                </div>
+                <div class="diapositiva__cuerpo">
+                  <p class="diapositiva__datos">Diseño · Intermedio · 24 horas</p>
+                  <h3 class="diapositiva__titulo">Diseño UX/UI para producto digital</h3>
+                  <p class="diapositiva__texto">Investigación, wireframes y prototipado centrado en accesibilidad.</p>
+                  <a class="boton boton--secundario" href="explorador-cursos.html">Ver en el catálogo</a>
+                </div>
+              </article>
+
+              <article class="diapositiva" aria-roledescription="diapositiva" aria-label="5 de 5">
+                <div class="diapositiva__medio">
+                  <img src="img/cursos/marketing.svg" width="800" height="500" alt="Megáfono con ondas de sonido.">
+                </div>
+                <div class="diapositiva__cuerpo">
+                  <p class="diapositiva__datos">Negocios digitales · Avanzado · 18 horas</p>
+                  <h3 class="diapositiva__titulo">Marketing digital para emprendedores</h3>
+                  <p class="diapositiva__texto">Estrategia de contenido, publicidad y métricas para negocios en línea.</p>
+                  <a class="boton boton--secundario" href="explorador-cursos.html">Ver en el catálogo</a>
+                </div>
+              </article>
+
+            </div>
+          </div>
+
+          <!-- Controles: <button> nativos (Enter y Espacio sin código extra).
+               aria-disabled y no disabled en los extremos: el botón sigue
+               enfocable, así el foco no se pierde al llegar al final. -->
+          <div class="carrusel__controles solo-con-js">
+            <button type="button" class="carrusel__boton" id="carrusel-anterior" aria-controls="carrusel-pista">
+              <span aria-hidden="true">←</span> Anterior
+            </button>
+            <p class="carrusel__contador" id="carrusel-contador" aria-live="polite">Curso 1 de 5</p>
+            <button type="button" class="carrusel__boton" id="carrusel-siguiente" aria-controls="carrusel-pista">
+              Siguiente <span aria-hidden="true">→</span>
+            </button>
+          </div>
+
+          <div class="carrusel__puntos solo-con-js">
+            <button type="button" class="carrusel__punto" aria-label="Curso 1: Frontend con HTML5, CSS3 y JavaScript"></button>
+            <button type="button" class="carrusel__punto" aria-label="Curso 2: React desde cero"></button>
+            <button type="button" class="carrusel__punto" aria-label="Curso 3: Fundamentos de análisis de datos"></button>
+            <button type="button" class="carrusel__punto" aria-label="Curso 4: Diseño UX/UI para producto digital"></button>
+            <button type="button" class="carrusel__punto" aria-label="Curso 5: Marketing digital para emprendedores"></button>
+          </div>
+
+        </div>
+      </section>
+
     </main>
 
     <!-- REGION 3: contenido complementario. <aside> expone el landmark
