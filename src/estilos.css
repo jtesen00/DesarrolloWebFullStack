@@ -165,7 +165,7 @@ img { max-width: 100%; height: auto; display: block; }
 [hidden] { display: none !important; }
 
 /* Controles que solo funcionan con JavaScript (botón de tema, botón del
-   modal). js/tema.js pone .con-js en <html> desde el <head>, ANTES del
+   modal). index.html pone .con-js en <html> desde el <head>, ANTES del
    primer pintado: con JavaScript aparecen desde el primer cuadro y el
    encabezado no salta; sin JavaScript no aparecen nunca.
    (Con hidden + mostrarlos después, entre 640 y 992 px el menú pasaba a
@@ -1487,3 +1487,120 @@ summary:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ============================================================
+   Semana 5 — React
+   Estilos específicos para nuevos componentes funcionales.
+   Usa exclusivamente tokens de :root para preservar el sistema de diseño.
+   ============================================================ */
+
+/* --- Componente Saludo --- */
+.saludo {
+  margin: 0 0 var(--espacio-2);
+  font-size: var(--texto-300);
+  color: var(--color-texto);
+}
+
+.saludo__hola {
+  color: var(--color-accion);
+  font-weight: var(--peso-medio);
+}
+
+/* Dentro de la recomendación del asesor, Saludo hereda colores para máximo contraste */
+.test__ruta .saludo {
+  margin: 0 0 var(--espacio-2);
+  color: inherit;
+  font-size: inherit;
+}
+
+.test__ruta .saludo__hola {
+  color: inherit;
+  font-weight: var(--peso-fuerte);
+}
+
+.test__ruta-texto { margin: 0; }
+
+/* --- Componente CuentaRegresiva --- */
+.cuenta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-3);
+}
+
+.cuenta__curso {
+  margin: 0;
+  font-size: var(--texto-200);
+  font-weight: var(--peso-medio);
+  color: var(--color-texto);
+}
+
+.cuenta__reloj {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--espacio-2);
+}
+
+.cuenta__parte {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-superficie);
+  border: var(--borde-fino) solid var(--color-marco);
+  border-radius: var(--radio-medio);
+  padding: var(--espacio-2) var(--espacio-1);
+}
+
+.cuenta__valor {
+  font-family: var(--fuente-titulo);
+  font-size: var(--texto-600);
+  font-weight: var(--peso-fuerte);
+  line-height: var(--interlinea-titulo);
+  color: var(--color-accion);
+  font-variant-numeric: tabular-nums;
+}
+
+.cuenta__unidad {
+  font-size: var(--texto-100);
+  color: var(--color-texto-suave);
+}
+
+/* --- Estado de carga y esqueleto del explorador de cursos --- */
+@keyframes esqueleto-pulso {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+.curso--cargando {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-3);
+  min-height: 12rem;
+}
+
+.curso__esqueleto {
+  display: block;
+  height: 1.25rem;
+  background-color: var(--color-vacio);
+  border-radius: var(--radio-medio);
+  animation: esqueleto-pulso 1.5s ease-in-out infinite;
+}
+
+.curso__esqueleto:first-child {
+  width: 70%;
+  height: 1.75rem;
+}
+
+.curso__esqueleto:nth-child(2) {
+  width: 45%;
+}
+
+.curso__esqueleto:nth-child(3) {
+  width: 90%;
+  height: 3rem;
+}
+
