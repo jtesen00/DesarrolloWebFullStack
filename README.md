@@ -41,6 +41,7 @@ src/
 │   ├── Layout.jsx              # Estructura compartida (header, main/aside, pie, modal)
 │   ├── ListaLateral.jsx        # Lista de datos y apuntes para la columna lateral
 │   ├── ModalAcceso.jsx         # Ventana modal nativa dialog con animación accesible
+│   ├── Monitor.jsx             # Monitor de tiempo de estudio con setInterval y controles
 │   ├── Pie.jsx                 # Pie de página institucional y enlaces
 │   ├── Saludo.jsx              # Saludo contextual según la hora del día con props
 │   ├── TarjetaCurso.jsx        # Tarjeta de curso con detalles y temario desplegable
@@ -70,3 +71,42 @@ src/
 | **`setInterval`** | `src/componentes/CuentaRegresiva.jsx` | Actualización periódica cada segundo del contador hacia la próxima fecha de inicio. |
 | **Limpieza `clearTimeout` / `clearInterval`** | `src/hooks/useCargaSimulada.js`, `src/componentes/CuentaRegresiva.jsx` | Funciones de saneamiento retornadas en `useEffect` para prevenir fugas de memoria. |
 | **Presentación coherente** | `src/estilos.css` (reutilizado) | Adopción de la hoja de estilos original y sus variables CSS personalizadas sin colores literales. |
+| **`setInterval` / `clearInterval` con controles** | `src/componentes/Monitor.jsx` (en `src/paginas/Inicio.jsx`) | Monitor «Tu tiempo de estudio» con botones Activar, Detener y Reiniciar; el efecto depende de `[activo]` y limpia el intervalo. |
+| **`useRef` en la búsqueda** | `src/paginas/ExploradorCursos.jsx` | El botón «Limpiar búsqueda» usa una referencia a `input#busqueda-curso` para devolver el foco. |
+| **Búsqueda sin tildes** | `src/paginas/ExploradorCursos.jsx` | La función `normalizar` ignora tildes y mayúsculas al comparar el texto buscado. |
+
+## Laboratorio: efectos, temporizadores y referencias
+
+### Cambios realizados
+
+- **Monitor de estudio** (`src/componentes/Monitor.jsx`): usa `useState`, `useEffect`, `setInterval` y `clearInterval`, con controles Activar, Detener y Reiniciar. El efecto depende de `[activo]` y limpia el intervalo, por lo que nunca existen dos intervalos a la vez y el contador no se acelera. Se actualiza con la forma funcional `setSegundos(p => p + 1)`.
+- **Búsqueda sin tildes** (`src/paginas/ExploradorCursos.jsx`): la función `normalizar` permite que «diseno» encuentre «Diseño».
+- **Botón «Limpiar búsqueda»**: usa `useRef` sobre `input#busqueda-curso` para devolver el foco al campo.
+- **Hook personalizado**: no se creó uno nuevo. Se conservan `useCargaSimulada`, que aísla la simulación de red y es reutilizable por cualquier página que reciba datos (pasar a una API real solo modifica el hook), y `useTema`. Un hook para el monitor no aportaría una reutilización clara.
+
+### Pruebas realizadas
+
+| Prueba | Valor medido | Resultado |
+| :--- | :--- | :--- |
+| Activar y esperar 5 s reales | 0 → 5 s en 5,02 s (~1 por segundo) | Pasa |
+| Detener/Activar 3 veces seguidas y esperar 5 s (con `StrictMode`) | 5 → 10 (+5 en 5 s): no se acelera | Pasa |
+| Detener y esperar 3 s | 10 → 10, «Monitor detenido» | Pasa |
+| Reiniciar | `00:00`, «Monitor detenido · 0 s registrados» | Pasa |
+| Buscar «diseno» | 1 curso: «Diseño UX/UI para producto digital» | Pasa |
+| Limpiar búsqueda | Campo vacío y foco en `#busqueda-curso` | Pasa |
+
+Las capturas están en `docs/evidencias-laboratorio/` (`01-monitor-activo.png` … `05-busqueda-limpia-foco.png`) junto con `resultados.json`.
+
+### Limitaciones
+
+- La carga simulada no es una API real.
+- El monitor no persiste al recargar ni al cambiar de página.
+- `setInterval` puede retrasarse en pestañas en segundo plano.
+- La búsqueda solo mira el título del curso.
+
+### Entrega
+
+- **Repositorio**: https://github.com/jtesen00/DesarrolloWebFullStack
+- **Rama de laboratorio**: `react`
+- **Commit base de Desarrollo Web**: `93dd62e` (Migrar el sitio a React con Vite)
+- **Video explicativo**: _(pendiente de enlazar)_

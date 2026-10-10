@@ -6,6 +6,7 @@ import Carrusel from "../componentes/Carrusel.jsx";
 import BloqueLateral from "../componentes/BloqueLateral.jsx";
 import ListaLateral from "../componentes/ListaLateral.jsx";
 import CuentaRegresiva from "../componentes/CuentaRegresiva.jsx";
+import Monitor from "../componentes/Monitor.jsx";
 import { CURSOS, PROXIMOS_INICIOS } from "../datos/cursos.js";
 
 const EXPERIENCIAS = [
@@ -87,6 +88,10 @@ export default function Inicio() {
       <aside className="lateral" aria-label="Información complementaria">
         <BloqueLateral titulo="Próximo inicio de clases">
           <CuentaRegresiva inicios={PROXIMOS_INICIOS} />
+        </BloqueLateral>
+
+        <BloqueLateral titulo="Tu tiempo de estudio">
+          <Monitor />
         </BloqueLateral>
 
         <BloqueLateral titulo="Próximas fechas de inicio">

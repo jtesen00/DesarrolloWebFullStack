@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import CabeceraPagina from "../componentes/CabeceraPagina.jsx";
 import BloqueLateral from "../componentes/BloqueLateral.jsx";
@@ -30,6 +30,11 @@ const RANGOS = {
   larga: (horas) => horas > 30,
 };
 
+/* Pasa a minúsculas y quita las tildes para que "diseno" encuentre "Diseño". */
+function normalizar(texto) {
+  return texto.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
 /* Evalúa si un curso cumple simultáneamente con todos los filtros activos. */
 function coincide(curso, filtros) {
   if (filtros.categoria !== "todas" && curso.categoria !== filtros.categoria) {
@@ -43,7 +48,7 @@ function coincide(curso, filtros) {
     if (!RANGOS[filtros.duracion](horas)) return false;
   }
   if (filtros.busqueda !== "") {
-    const titulo = curso.titulo.toLowerCase();
+    const titulo = normalizar(curso.titulo);
     if (!titulo.includes(filtros.busqueda)) return false;
   }
   return true;
@@ -55,6 +60,10 @@ export default function ExploradorCursos() {
   const [duracion, setDuracion] = useState("cualquiera");
   const [busqueda, setBusqueda] = useState("");
 
+  // useRef guarda el <input> para devolverle el foco al limpiar: sin él, el foco se perdería
+  // porque el botón "Limpiar búsqueda" desaparece al vaciarse el campo.
+  const inputBusqueda = useRef(null);
+
   // useCargaSimulada mantiene la referencia estática de CURSOS para no reejecutar el efecto.
   const { cargando, datos: cursos } = useCargaSimulada(CURSOS);
 
@@ -62,8 +71,13 @@ export default function ExploradorCursos() {
     categoria,
     nivel,
     duracion,
-    busqueda: busqueda.trim().toLowerCase(),
+    busqueda: normalizar(busqueda.trim()),
   };
+
+  function limpiarBusqueda() {
+    setBusqueda("");
+    inputBusqueda.current.focus();
+  }
 
   // Se calculan los cursos visibles derivando el estado sin duplicar datos.
   const cursosFiltrados = cursos.filter((curso) => coincide(curso, filtros));
@@ -136,12 +150,18 @@ export default function ExploradorCursos() {
           <div className={`filtros__campo${busqueda.trim() !== "" ? " filtros__campo--activo" : ""}`}>
             <label htmlFor="busqueda-curso">Buscar por nombre</label>
             <input
+              ref={inputBusqueda}
               type="search"
               id="busqueda-curso"
               placeholder="Por ejemplo: React"
               value={busqueda}
               onChange={(evento) => setBusqueda(evento.target.value)}
             />
+            {busqueda !== "" && (
+              <button type="button" className="boton boton--secundario" onClick={limpiarBusqueda}>
+                Limpiar búsqueda
+              </button>
+            )}
           </div>
         </div>
 

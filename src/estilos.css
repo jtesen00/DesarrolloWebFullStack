@@ -1604,3 +1604,31 @@ summary:focus-visible {
   height: 3rem;
 }
 
+
+/* --- Componente Monitor --- */
+.monitor {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-3);
+}
+
+.monitor__tiempo {
+  margin: 0;
+  font-family: var(--fuente-titulo);
+  font-size: var(--texto-600);
+  font-weight: var(--peso-fuerte);
+  line-height: var(--interlinea-titulo);
+  color: var(--color-accion);
+  font-variant-numeric: tabular-nums;
+}
+
+.monitor__controles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--espacio-2);
+}
+
+.monitor__controles .boton {
+  width: 100%;
+  padding-inline: var(--espacio-2);
+}
