@@ -381,7 +381,7 @@ video:focus-visible {
 
 .navegacion__interruptor:checked ~ .navegacion__lista { display: flex; }
 
-.navegacion__lista a,
+.navegacion__lista a:not(.boton),
 .navegacion__acceso {
   display: flex;
   align-items: center;
@@ -396,7 +396,7 @@ video:focus-visible {
   cursor: pointer;
 }
 
-.navegacion__lista a:hover,
+.navegacion__lista a:not(.boton):hover,
 .navegacion__acceso:hover { color: var(--color-acento-texto); }
 
 .navegacion__solo-movil .boton { width: 100%; }
@@ -1525,9 +1525,9 @@ h1:focus, main:focus, [tabindex="-1"]:focus { outline: none; }
 .boton { transition: background-color var(--transicion), color var(--transicion), transform var(--transicion); }
 .boton:active { transform: translateY(1px); }
 
-.navegacion__lista a { position: relative; }
+.navegacion__lista a:not(.boton) { position: relative; }
 
-.navegacion__lista a::after {
+.navegacion__lista a:not(.boton)::after {
   content: "";
   position: absolute;
   left: 0;

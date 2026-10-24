@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+<meta charset="utf-8">
+<title>Informe técnico – Examen Parcial Integrado Semana 8 – Wayra Academy</title>
+<style>
+  @page { size: A4; margin: 20mm 18mm 20mm 18mm; }
+  * { box-sizing: border-box; }
+  body { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 10.5pt; line-height: 1.45; color: #111; margin: 0; }
+  h1 { font-size: 20pt; margin: 0 0 6pt; }
+  h2 { font-size: 14pt; margin: 18pt 0 6pt; padding-bottom: 3pt; border-bottom: 1.5pt solid #2447f5; break-after: avoid; }
+  h3 { font-size: 11.5pt; margin: 12pt 0 4pt; break-after: avoid; }
+  p { margin: 0 0 6pt; text-align: justify; }
+  table { width: 100%; border-collapse: collapse; margin: 4pt 0 10pt; font-size: 9.5pt; break-inside: auto; }
+  th, td { border: 0.75pt solid #9aa3b5; padding: 4pt 5pt; vertical-align: top; text-align: left; }
+  th { background: #e8ecf8; }
+  tr { break-inside: avoid; }
+  code { font-family: Menlo, Consolas, monospace; font-size: 8.8pt; background: #f1f3f8; padding: 0 2pt; }
+  pre { font-family: Menlo, Consolas, monospace; font-size: 8.4pt; background: #f4f6fb; border: 0.75pt solid #d5dae6; padding: 6pt 8pt; white-space: pre-wrap; break-inside: avoid; margin: 4pt 0 8pt; }
+  ul, ol { margin: 0 0 6pt; padding-left: 16pt; }
+  li { margin-bottom: 2pt; }
+  .pend { background: #fff176; padding: 0 2pt; font-weight: 600; }
+  .ok { color: #0a7a32; font-weight: 700; }
+  .warn { color: #a15c00; font-weight: 700; }
+  figure { margin: 8pt 0 12pt; break-inside: avoid; text-align: center; }
+  figure img { max-width: 100%; border: 0.75pt solid #c8cede; }
+  figure img.movil { max-height: 120mm; }
+  figure img.media { max-height: 95mm; }
+  figcaption { font-size: 9pt; text-align: left; margin-top: 3pt; }
+  figcaption b { display: block; }
+  .par { display: flex; gap: 8pt; justify-content: center; align-items: flex-start; }
+  .par figure { flex: 1; margin: 0; }
+  .salto { break-before: page; }
+  /* Portada */
+  .portada { text-align: center; padding-top: 6mm; }
+  .portada .inst { font-size: 13pt; font-weight: 700; letter-spacing: .5pt; }
+  .portada .esc { font-size: 10.5pt; margin-bottom: 14mm; }
+  .portada .tit { font-size: 18pt; font-weight: 700; margin: 4mm 0 2mm; }
+  .portada .cursos { font-size: 11pt; margin-bottom: 10mm; }
+  .portada .proy { font-size: 24pt; font-weight: 800; color: #2447f5; margin: 8mm 0 2mm; }
+  .portada .sub { font-size: 11pt; color: #444; margin-bottom: 10mm; }
+  .portada table { text-align: left; }
+  .portada td:first-child { width: 34%; font-weight: 600; background: #f4f6fb; }
+  .aviso { border: 1pt solid #d9a400; background: #fffbe0; padding: 6pt 8pt; font-size: 9.5pt; margin: 8pt 0; }
+  .indice li { margin-bottom: 1pt; }
+</style>
+</head>
+<body>
+
+<!-- ======================= PORTADA ======================= -->
+<section class="portada">
+  <div class="inst">UNIVERSIDAD AUTÓNOMA DEL PERÚ</div>
+  <div class="esc">ESCUELA PROFESIONAL DE INGENIERÍA DE SOFTWARE</div>
+  <div class="tit">EXAMEN PARCIAL INTEGRADO – SEMANA 8</div>
+  <div class="cursos">Desarrollo Web Full Stack FrontEnd (PISOP03055)<br>Laboratorio de Experiencias Web Inmersivas (PISOP03056)</div>
+  <div class="proy">Wayra Academy</div>
+  <div class="sub">Plataforma web de cursos y talleres en línea con instructores peruanos<br>Informe técnico grupal · MVP del hito de Semana 8</div>
+
+  <table>
+    <tr><td>Título del proyecto</td><td>Wayra Academy — Plataforma Web de Experiencias Interactivas de aprendizaje</td></tr>
+    <tr><td>Docente(s)</td><td><span class="pend">[PENDIENTE: nombre del docente]</span></td></tr>
+    <tr><td>Sección / turno</td><td><span class="pend">[PENDIENTE]</span></td></tr>
+    <tr><td>Equipo / grupo</td><td><span class="pend">[PENDIENTE: nombre o número del grupo]</span></td></tr>
+    <tr><td>Fecha de entrega</td><td><span class="pend">[PENDIENTE: DD/MM/AAAA]</span></td></tr>
+    <tr><td>Aplicación desplegada</td><td>https://wayra.tsdfact.com/</td></tr>
+    <tr><td>Repositorio</td><td>https://github.com/jtesen00/DesarrolloWebFullStack</td></tr>
+  </table>
+
+  <table>
+    <tr><th>N.º</th><th>Apellidos y nombres</th><th>Código</th><th>Responsabilidad principal</th></tr>
+    <tr><td>1</td><td>Chauca, Jhordi <span class="pend">[completar]</span></td><td><span class="pend">[PENDIENTE]</span></td><td><span class="pend">[PENDIENTE]</span></td></tr>
+    <tr><td>2</td><td>Tesen Tantachuco, José Antonio</td><td><span class="pend">[PENDIENTE]</span></td><td><span class="pend">[PENDIENTE]</span></td></tr>
+    <tr><td>3</td><td><span class="pend">[PENDIENTE: integrante con usuario Git «azrahel98»]</span></td><td><span class="pend">[PENDIENTE]</span></td><td><span class="pend">[PENDIENTE]</span></td></tr>
+    <tr><td>4</td><td><span class="pend">[PENDIENTE o eliminar fila]</span></td><td></td><td></td></tr>
+    <tr><td>5</td><td><span class="pend">[PENDIENTE o eliminar fila]</span></td><td></td><td></td></tr>
+  </table>
+  <p style="text-align:center">Semestre académico 2026-2</p>
+</section>
+
+<!-- ======================= RESUMEN ======================= -->
+<section class="salto">
+<h2>Resumen ejecutivo</h2>
+<p>Muchas personas en el Perú quieren aprender tecnología, diseño o negocios digitales, pero no saben por qué curso empezar ni cómo se enseña antes de pagar. <b>Wayra Academy</b> es una aplicación web de una sola página (SPA) construida con React 19, Vite 8 y React Router 7 que ayuda a ese público —estudiantes, egresados y trabajadores que buscan reconvertirse— a explorar un catálogo de 16 cursos, ver una clase muestra gratuita y obtener una ruta de aprendizaje personalizada.</p>
+<p>El flujo principal del MVP es el <b>asesor virtual</b>: la persona responde seis preguntas y escribe su nombre; la aplicación valida el formulario, señala lo que falta y, sin recargar la página, recomienda un curso y un ritmo de estudio. Se complementa con un explorador de cursos con filtros en vivo y búsqueda que ignora tildes, una clase muestra en video con un monitor de tiempo de estudio, un tema claro/oscuro persistente y el modal accesible «Ingresar o registrarse» de la semana 7, implementado con el elemento <code>&lt;dialog&gt;</code> nativo.</p>
+<p>En este hito la aplicación está publicada en https://wayra.tsdfact.com/. Lighthouse sobre la versión desplegada obtuvo 93/100/100/100 en móvil y 98/100/100/100 en escritorio (Rendimiento/Accesibilidad/Buenas prácticas/SEO). axe-core reportó 0 violaciones WCAG 2.2 AA en 5 rutas × tema claro/oscuro × móvil/escritorio, y los 8 casos de prueba manuales y automatizados con teclado pasaron. Durante la validación se detectaron y corrigieron dos fallos reales: rutas internas que devolvían 404 en el servidor y un botón del menú móvil que perdía su estilo. Los datos de cursos, instructores y fechas son de prueba.</p>
+</section>
+
+<!-- ======================= 1 ======================= -->
+<h2>1. Descripción del proyecto</h2>
+<table>
+  <tr><th style="width:24%">Elemento</th><th>Descripción del equipo</th></tr>
+  <tr><td>Nombre del proyecto</td><td>Wayra Academy («wayra» significa «viento» en quechua).</td></tr>
+  <tr><td>Problema o necesidad</td><td>Quien quiere aprender una habilidad digital enfrenta catálogos largos y genéricos: no sabe qué curso le corresponde según su nivel y tiempo disponible, ni cómo se enseña antes de inscribirse.</td></tr>
+  <tr><td>Público objetivo</td><td>Jóvenes y adultos peruanos (estudiantes, egresados, trabajadores y emprendedores) que buscan su primer empleo en tecnología, mejorar en su trabajo o emprender. Incluye usuarios de teclado y lector de pantalla y usuarios que navegan desde el celular.</td></tr>
+  <tr><td>Objetivo general</td><td>Ofrecer una SPA accesible y responsive que permita explorar el catálogo, probar una clase gratuita y recibir una ruta de aprendizaje personalizada en pocos pasos y sin recargar la página.</td></tr>
+  <tr><td>Propuesta de valor</td><td>Recomendación personalizada en menos de un minuto (asesor virtual), clase muestra sin registro ni tarjeta, búsqueda tolerante a tildes, tema claro/oscuro y una interfaz usable por completo con teclado.</td></tr>
+</table>
+
+<!-- ======================= 2 ======================= -->
+<h2>2. Alcance del MVP – Hito de Semana 8</h2>
+<h3>2.1 Funcionalidades implementadas</h3>
+<table>
+  <tr><th>N.º</th><th>Funcionalidad</th><th>Estado</th><th>Evidencia o ruta</th></tr>
+  <tr><td>1</td><td><b>Asesor virtual (flujo principal):</b> 6 preguntas + nombre, validación con mensajes en español, foco al primer campo inválido y ruta recomendada (curso + ritmo) sin recargar.</td><td>Completa</td><td><code>/asesor-virtual</code> · <code>src/paginas/AsesorVirtual.jsx</code> · Fig. 4, 5 · CP-01</td></tr>
+  <tr><td>2</td><td><b>Explorador de cursos:</b> filtros por categoría, nivel y duración; búsqueda sin tildes; contador de resultados anunciado (<code>role="status"</code>); «Limpiar filtros» devuelve el foco; enlace profundo <code>?curso=id</code>; carga simulada con esqueletos.</td><td>Completa</td><td><code>/explorador-cursos</code> · <code>ExploradorCursos.jsx</code>, <code>TarjetaCurso.jsx</code> · Fig. 2, 6 · CP-02</td></tr>
+  <tr><td>3</td><td><b>Modal accesible «Ingresar o registrarse» (semana 7):</b> <code>&lt;dialog&gt;</code> nativo con <code>showModal()</code>, cierre con Esc, botón ✕, «Entendido» o clic en el velo; el foco vuelve al botón que lo abrió.</td><td>Completa</td><td>Botón «Ingresar» en todas las páginas · <code>ModalAcceso.jsx</code> · Fig. 7 · CP-03, CP-04</td></tr>
+  <tr><td>4</td><td><b>Clase muestra + monitor de estudio:</b> video con controles nativos; monitor con Activar/Detener/Reiniciar (<code>setInterval</code> con cleanup).</td><td>Completa</td><td><code>/clase-muestra</code> · <code>ClaseMuestra.jsx</code>, <code>Monitor.jsx</code> · Fig. 3 · CP-06</td></tr>
+  <tr><td>5</td><td><b>Portada:</b> hero, cifras animadas, mosaico de cursos destacados, carrusel accesible con teclado, cuenta regresiva al próximo inicio.</td><td>Completa</td><td><code>/</code> · <code>Inicio.jsx</code>, <code>Carrusel.jsx</code>, <code>CuentaRegresiva.jsx</code> · Fig. 1, 9</td></tr>
+  <tr><td>6</td><td><b>Tema claro/oscuro</b> persistente en <code>localStorage</code>, sincronizado entre pestañas, sin parpadeo en la primera carga.</td><td>Completa</td><td><code>useTema.js</code>, <code>BotonTema.jsx</code> · Fig. 12</td></tr>
+  <tr><td>7</td><td><b>Navegación SPA accesible:</b> enlace «Saltar al contenido», enlace activo, menú móvil, foco al <code>&lt;h1&gt;</code> al cambiar de ruta, página 404.</td><td>Completa</td><td><code>Layout.jsx</code>, <code>Encabezado.jsx</code>, <code>NoEncontrada.jsx</code> · CP-05, CP-07</td></tr>
+  <tr><td>8</td><td>Registro e inicio de sesión reales.</td><td>No implementada</td><td>El modal informa que el registro abre con la próxima fecha de inicio. Planificado (ver 2.2).</td></tr>
+</table>
+
+<h3>2.2 Funcionalidades planificadas para semanas posteriores</h3>
+<p>El MVP es la base del proyecto semestral. Las siguientes capacidades <b>no están implementadas todavía</b> y se incorporarán según la secuencia de los sílabos:</p>
+<ul>
+  <li><b>Animaciones avanzadas con Framer Motion</b> para transiciones entre rutas y del modal, respetando «reducir movimiento».</li>
+  <li><b>Estado global con Zustand:</b> cursos favoritos y «mi ruta» guardada, compartidos entre páginas.</li>
+  <li><b>Tiempo real con WebSockets:</b> preguntas en vivo durante la clase y aviso de cupos disponibles.</li>
+  <li><b>API real</b> para el catálogo en lugar de <code>useCargaSimulada</code> (solo cambia el cuerpo del hook) y registro/inicio de sesión reales en el modal.</li>
+  <li><b>Optimización y Core Web Vitals:</b> división del bundle por ruta con <code>React.lazy</code> y caché larga de recursos con hash.</li>
+  <li><b>Pruebas automatizadas y despliegue continuo:</b> Vitest + Testing Library y publicación automática al hacer <i>push</i>.</li>
+</ul>
+
+<!-- ======================= 3 ======================= -->
+<h2>3. Diseño y arquitectura FrontEnd</h2>
+<h3>3.1 Estructura de componentes</h3>
+<p>El componente principal es <code>App</code>, que define las rutas con <code>BrowserRouter</code>. Todas las rutas comparten <code>Layout</code>, que contiene el encabezado, el pie y el modal, y muestra la página activa mediante <code>&lt;Outlet /&gt;</code>.</p>
+<pre>App  (BrowserRouter · Routes)
+└── Layout                       estado: accesoAbierto · hooks: useTema, useAparicion
+    ├── Encabezado               props: oscuro, onAlternarTema, onAbrirAcceso
+    │   ├── Chakana · BotonTema (oscuro, onAlternar) · Boton
+    ├── &lt;Outlet /&gt;  → página según la ruta
+    │   ├── Inicio               "/"
+    │   │   ├── ReproductorMuestra · CifraAnimada (valor, sufijo)
+    │   │   ├── CursoMosaico (curso, tono) · Carrusel (cursos, idTitulo)
+    │   │   └── CuentaRegresiva (inicios) · Boton
+    │   ├── ExploradorCursos     "/explorador-cursos"  · hook: useCargaSimulada
+    │   │   ├── CabeceraPagina (titulo, miga, children)
+    │   │   └── TarjetaCurso (curso, posicion) · Boton
+    │   ├── ClaseMuestra         "/clase-muestra"
+    │   │   ├── CabeceraPagina · BloqueLateral (titulo, tono)
+    │   │   └── ListaLateral (elementos, numerada) · Monitor · Boton
+    │   ├── AsesorVirtual        "/asesor-virtual"
+    │   │   └── CabeceraPagina · BloqueLateral · Saludo (nombre, mensaje)
+    │   └── NoEncontrada         "*"
+    ├── Pie
+    └── ModalAcceso              props: abierto, onCerrar</pre>
+
+<h3>3.2 Uso de React</h3>
+<table>
+  <tr><th style="width:17%">Concepto</th><th>Cómo se utiliza en el proyecto</th><th style="width:27%">Componente / archivo de evidencia</th></tr>
+  <tr><td>Componentes</td><td>18 componentes funcionales reutilizables y 5 páginas. Cada uno tiene una responsabilidad: p. ej. <code>Boton</code> renderiza <code>&lt;Link&gt;</code>, <code>&lt;a&gt;</code> o <code>&lt;button&gt;</code> según reciba <code>to</code>, <code>href</code> u <code>onClick</code>, con el mismo estilo.</td><td><code>src/componentes/*.jsx</code>, <code>src/paginas/*.jsx</code></td></tr>
+  <tr><td>Props</td><td><code>ModalAcceso</code> recibe <code>abierto</code> y <code>onCerrar</code> (el padre decide cuándo se abre); <code>TarjetaCurso</code> recibe el objeto <code>curso</code> y <code>posicion</code>; <code>Encabezado</code> recibe callbacks <code>onAlternarTema</code> y <code>onAbrirAcceso</code>; <code>Saludo</code> recibe <code>nombre</code> y <code>mensaje</code>.</td><td><code>Layout.jsx</code>, <code>ModalAcceso.jsx</code>, <code>TarjetaCurso.jsx</code>, <code>Saludo.jsx</code></td></tr>
+  <tr><td>Estado (useState / useRef)</td><td><code>accesoAbierto</code> (modal); filtros <code>categoria</code>, <code>nivel</code>, <code>duracion</code>, <code>busqueda</code>; respuestas, errores y <code>rutaCalculada</code> del asesor; <code>segundos</code>/<code>activo</code> del monitor; <code>actual</code> del carrusel; <code>oscuro</code> del tema. La lista visible de cursos <b>se deriva</b> del estado en el render, sin duplicarla. <code>useRef</code> guarda el <code>&lt;dialog&gt;</code>, el campo de búsqueda (para devolverle el foco) y el formulario.</td><td><code>Layout.jsx</code>, <code>ExploradorCursos.jsx</code>, <code>AsesorVirtual.jsx</code>, <code>Monitor.jsx</code>, <code>Carrusel.jsx</code></td></tr>
+  <tr><td>Eventos e interacción</td><td><code>onChange</code> en filtros, radios y nombre; <code>onSubmit</code> con <code>preventDefault()</code> y validación; <code>onClick</code> en botones, modal y tema; <code>onKeyDown</code> en el carrusel (flechas, Inicio, Fin); <code>onClose</code>/<code>onPointerDown</code> en el <code>&lt;dialog&gt;</code>.</td><td><code>AsesorVirtual.jsx</code>, <code>ExploradorCursos.jsx</code>, <code>Carrusel.jsx</code>, <code>ModalAcceso.jsx</code></td></tr>
+  <tr><td>Efectos (useEffect)</td><td>Ver tabla 3.2.1. Los efectos se usan solo para sincronizar con sistemas externos al render (DOM nativo, temporizadores, eventos del navegador). El cálculo de resultados y de la ruta <b>no</b> usa efectos: se hace en el render o en el manejador del evento.</td><td>Tabla 3.2.1</td></tr>
+  <tr><td>Composición</td><td><code>Layout</code> + <code>&lt;Outlet /&gt;</code> compone la estructura común; <code>CabeceraPagina</code> y <code>BloqueLateral</code> reciben contenido como <code>children</code>; el estado del modal vive en <code>Layout</code> y se comparte con <code>Encabezado</code> (abrir) y <code>ModalAcceso</code> (mostrar/cerrar) elevando el estado.</td><td><code>App.jsx</code>, <code>Layout.jsx</code>, <code>CabeceraPagina.jsx</code>, <code>BloqueLateral.jsx</code></td></tr>
+</table>
+
+<h3>3.2.1 Efectos, dependencias y cleanup</h3>
+<table>
+  <tr><th>Efecto</th><th>Dependencias</th><th>Finalidad</th><th>Cleanup</th></tr>
+  <tr><td><code>ModalAcceso</code></td><td><code>[abierto]</code></td><td>Sincroniza la prop <code>abierto</code> con el <code>&lt;dialog&gt;</code> nativo (<code>showModal()</code>/<code>close()</code>).</td><td>No necesita: no crea temporizadores ni listeners propios.</td></tr>
+  <tr><td><code>Monitor</code></td><td><code>[activo]</code></td><td>Mientras está activo, suma 1 s con <code>setInterval</code> y actualización funcional.</td><td><code>clearInterval</code>: evita intervalos duplicados (StrictMode, reactivar).</td></tr>
+  <tr><td><code>CuentaRegresiva</code></td><td><code>[proximo]</code></td><td>Actualiza la hora cada segundo hasta el próximo inicio.</td><td><code>clearInterval</code> al salir de la página.</td></tr>
+  <tr><td><code>useCargaSimulada</code></td><td><code>[datos, demora]</code></td><td>Simula la respuesta de un servidor con <code>setTimeout</code>.</td><td><code>clearTimeout</code>: no actualiza un componente desmontado.</td></tr>
+  <tr><td><code>useTema</code> (2 efectos)</td><td><code>[oscuro]</code> y <code>[]</code></td><td>Refleja el tema en <code>&lt;html&gt;</code>; escucha <code>storage</code> para sincronizar pestañas.</td><td><code>removeEventListener("storage")</code>.</td></tr>
+  <tr><td><code>useAparicion</code>, <code>CifraAnimada</code></td><td><code>[clave]</code> / <code>[valor]</code></td><td><code>IntersectionObserver</code> para animar al entrar en pantalla.</td><td><code>disconnect()</code> y <code>cancelAnimationFrame</code>.</td></tr>
+  <tr><td><code>Layout</code></td><td><code>[pathname, hash]</code></td><td>Al cambiar de ruta: subir arriba y mover el foco al <code>&lt;h1&gt;</code>.</td><td>No necesita (acción puntual).</td></tr>
+  <tr><td><code>CabeceraPagina</code>, <code>Inicio</code>, <code>NoEncontrada</code></td><td><code>[titulo]</code> / <code>[]</code></td><td>Actualizan <code>document.title</code> por página.</td><td>No necesita.</td></tr>
+  <tr><td><code>ExploradorCursos</code></td><td><code>[cargando, cursoPedido]</code></td><td>Con <code>?curso=id</code> abre el temario de ese curso y lo desplaza a la vista.</td><td>No necesita.</td></tr>
+</table>
+<p>Fragmento clave (efecto con cleanup del monitor de estudio):</p>
+<pre>useEffect(() =&gt; {
+  if (!activo) return;                       // detenido: no se crea intervalo
+  const intervalo = setInterval(() =&gt; setSegundos((previo) =&gt; previo + 1), 1000);
+  return () =&gt; clearInterval(intervalo);     // al detener, salir o re-ejecutar
+}, [activo]);</pre>
+
+<h3>3.3 Organización del código</h3>
+<pre>src/
+├── App.jsx · main.jsx · estilos.css   enrutador, entrada (StrictMode) y sistema de diseño
+├── componentes/   18 componentes reutilizables (Boton, ModalAcceso, Monitor, Carrusel…)
+├── paginas/       5 vistas, una por ruta (Inicio, ExploradorCursos, ClaseMuestra, AsesorVirtual, NoEncontrada)
+├── hooks/         useCargaSimulada, useTema, useAparicion
+└── datos/         cursos.js — 16 cursos de prueba, categorías, niveles y fechas de inicio
+public/            .htaccess (rutas SPA en Apache), img/, media/clase-muestra.mp4, robots.txt</pre>
+<ul>
+  <li><b>Convenciones:</b> nombres en español; componentes en PascalCase (<code>TarjetaCurso.jsx</code>); hooks con prefijo <code>use</code>; CSS con metodología BEM (<code>.curso__titulo</code>, <code>.boton--primario</code>) y tokens de diseño en variables CSS, redefinidos para el tema oscuro.</li>
+  <li><b>Reutilización:</b> un único <code>Boton</code> para enlaces internos, externos y acciones; <code>CabeceraPagina</code> y <code>BloqueLateral</code> compartidos por las páginas internas; datos centralizados en <code>datos/cursos.js</code>.</li>
+  <li><b>Decisiones técnicas:</b> <code>&lt;dialog&gt;</code> nativo en lugar de un modal hecho con <code>div</code> (el navegador aporta foco atrapado, Esc e inertidad del fondo); estado mínimo y valores derivados (el carrusel guarda un solo número); validación con la Constraint Validation API; animaciones como mejora progresiva que se desactivan con «reducir movimiento».</li>
+</ul>
+
+<!-- ======================= 4 ======================= -->
+<h2 class="salto">4. Interfaz, responsive y accesibilidad</h2>
+<h3>4.1 Vistas principales</h3>
+<p>Capturas tomadas el 24/10/2026 sobre la versión desplegada (https://wayra.tsdfact.com/).</p>
+
+<figure><img class="media" src="../evidencias-parcial/01-inicio-escritorio.png">
+<figcaption><b>Figura 1. Portada (escritorio, 1366 px)</b>Hero con llamadas a la acción «Explorar cursos» y «Ver clase gratis», navegación principal, botón de tema y botón «Ingresar», que abre el modal.</figcaption></figure>
+
+<figure><img class="media" src="../evidencias-parcial/02-explorador-escritorio.png">
+<figcaption><b>Figura 2. Explorador de cursos (escritorio)</b>Filtros con etiqueta visible, contador «Mostrando 16 de 16 cursos» y tarjetas con temario desplegable.</figcaption></figure>
+
+<figure><img class="media" src="../evidencias-parcial/03-clase-muestra-escritorio.png">
+<figcaption><b>Figura 3. Clase muestra (escritorio)</b>Video con controles nativos, contenido de la clase y monitor de tiempo de estudio en la columna lateral.</figcaption></figure>
+
+<figure><img class="media" src="../evidencias-parcial/06-asesor-validacion.png">
+<figcaption><b>Figura 4. Asesor virtual: validación al enviar vacío</b>Las preguntas pendientes se marcan, el aviso dice «Te falta completar las preguntas 1, 2, 3, 4, 5, 6 y tu nombre» y el foco va al primer campo inválido.</figcaption></figure>
+
+<figure><img class="media" src="../evidencias-parcial/07-asesor-ruta.png">
+<figcaption><b>Figura 5. Asesor virtual: ruta personalizada (fin del flujo principal)</b>Con todas las respuestas y el nombre de prueba «Lucía», la columna lateral muestra el saludo, el curso recomendado y el ritmo, sin recargar la página.</figcaption></figure>
+
+<figure><img class="media" src="../evidencias-parcial/08-explorador-busqueda.png">
+<figcaption><b>Figura 6. Búsqueda sin tildes</b>Al escribir «diseno» aparecen los 2 cursos con «Diseño» en el título, y se muestra el botón «Limpiar filtros».</figcaption></figure>
+
+<figure><img class="media" src="../evidencias-parcial/09-modal-abierto.png">
+<figcaption><b>Figura 7. Modal «Ingresar o registrarse» abierto con teclado</b>Se abrió con Tab + Enter; el foco inicial está en el botón «Cerrar ventana» (contorno azul visible) y el fondo queda oscurecido e inerte.</figcaption></figure>
+
+<figure><img class="media" src="../evidencias-parcial/10-foco-visible.png">
+<figcaption><b>Figura 8. Foco visible al navegar con teclado</b>Tras pasar a «Cursos», el foco se movió al título de la página; el siguiente Tab muestra el contorno de foco sobre el primer control.</figcaption></figure>
+
+<div class="par">
+  <figure><img class="movil" src="../evidencias-parcial/11-inicio-movil.png"><figcaption><b>Figura 9. Portada en móvil (375 px)</b>Menú compacto y contenido en una columna.</figcaption></figure>
+  <figure><img class="movil" src="../evidencias-parcial/13-explorador-movil.png"><figcaption><b>Figura 10. Explorador en móvil</b>Filtros apilados a ancho completo, sin desbordamiento horizontal.</figcaption></figure>
+  <figure><img class="movil" src="../evidencias-parcial/14-asesor-movil.png"><figcaption><b>Figura 11. Asesor en móvil</b>Opciones como bloques grandes y fáciles de pulsar.</figcaption></figure>
+</div>
+
+<div class="par">
+  <figure><img class="media" src="../evidencias-parcial/15-explorador-tableta.png"><figcaption><b>Figura 12a. Explorador en tableta (768 px)</b>Navegación horizontal y rejilla de tarjetas a dos columnas.</figcaption></figure>
+  <figure><img class="media" src="../evidencias-parcial/16-inicio-oscuro.png"><figcaption><b>Figura 12b. Tema oscuro</b>Mismo contenido con los tokens de color redefinidos; contraste verificado con axe-core.</figcaption></figure>
+</div>
+
+<h3>4.2 Diseño adaptable</h3>
+<p>Se revisaron las 4 rutas principales en tres anchos midiendo desbordamiento horizontal (<code>scrollWidth − clientWidth</code>), tamaño mínimo de texto y controles.</p>
+<table>
+  <tr><th>Dispositivo / tamaño probado</th><th>Resultado observado</th><th>Ajustes realizados</th></tr>
+  <tr><td>Móvil (375 × 812, táctil)</td><td>0 px de desborde en las 4 rutas. Menú hamburguesa operativo. Texto mínimo de 12 px (solo etiquetas en mayúsculas y monoespaciada). <span class="warn">Fallo:</span> dentro del menú abierto, el botón «Empieza gratis» se veía como texto plano, sin fondo azul (Fig. 13a).</td><td>Se corrigió la regla CSS que lo pisaba (ver sección 8, dificultad 2). Verificado en la compilación local (Fig. 13b): fondo <code>rgb(36,71,245)</code> y texto blanco. <span class="pend">Pendiente subir al servidor.</span></td></tr>
+  <tr><td>Tableta (768 × 1024)</td><td>0 px de desborde. La navegación pasa a horizontal; tarjetas en 2 columnas; columna lateral bajo el contenido.</td><td>Ninguno necesario.</td></tr>
+  <tr><td>Escritorio (1366 × 820)</td><td>0 px de desborde. Diseño a dos columnas (contenido + lateral) en Clase muestra y Asesor; la recomendación del asesor queda fija a la vista.</td><td>Ninguno necesario.</td></tr>
+</table>
+<div class="par">
+  <figure><img class="movil" src="../evidencias-parcial/12a-menu-movil-antes.png"><figcaption><b>Figura 13a. Antes: menú móvil en producción</b>«Empieza gratis» sin fondo de botón.</figcaption></figure>
+  <figure><img class="movil" src="../evidencias-parcial/12b-menu-movil-corregido-local.png"><figcaption><b>Figura 13b. Después: corrección en la compilación local</b>El botón recupera su fondo azul y su contraste.</figcaption></figure>
+</div>
+
+<h3>4.3 Accesibilidad</h3>
+<table>
+  <tr><th style="width:24%">Verificación</th><th>Resultado / evidencia</th><th style="width:26%">Mejora pendiente</th></tr>
+  <tr><td>Uso de etiquetas y estructura semántica</td><td>Regiones <code>header</code>, <code>nav</code> (con <code>aria-label</code>), <code>main#contenido</code>, <code>aside</code> y <code>footer</code>; un <code>&lt;h1&gt;</code> por página. Todos los campos tienen <code>&lt;label&gt;</code>; las preguntas del asesor son <code>role="group"</code> con <code>aria-labelledby</code>; el error del nombre se asocia con <code>aria-describedby</code> y <code>aria-invalid</code>; los avisos dinámicos usan <code>role="status"</code>. axe-core: 0 violaciones.</td><td>Usar <code>&lt;fieldset&gt;/&lt;legend&gt;</code> nativos en las preguntas del asesor en lugar de <code>role="group"</code>.</td></tr>
+  <tr><td>Contraste y legibilidad</td><td>axe-core (regla <code>color-contrast</code>, WCAG 2.2 AA) sin fallos en tema claro y oscuro. Lighthouse Accesibilidad 100 en móvil y escritorio.</td><td>Revisar el contraste del botón del menú móvil en producción tras subir la corrección.</td></tr>
+  <tr><td>Navegación por teclado / foco visible</td><td>Primer Tab → «Saltar al contenido principal». Modal: Tab + Enter abre, el foco entra al modal, Esc cierra y el foco vuelve a «Ingresar» (CP-03). Carrusel con flechas, Inicio y Fin. Al cambiar de ruta, el foco pasa al <code>&lt;h1&gt;</code>. Contorno de foco visible en todos los controles (Fig. 7 y 8).</td><td>Repetir la prueba con un lector de pantalla real (VoiceOver o NVDA).</td></tr>
+  <tr><td>Texto alternativo para imágenes relevantes</td><td>No hay <code>&lt;img&gt;</code> de contenido. Los SVG decorativos (logo Chakana, iconos de tema) llevan <code>aria-hidden="true"</code>; la maqueta del reproductor tiene <code>aria-label</code> descriptivo; el video tiene <code>poster</code> y un enlace alternativo de descarga.</td><td>Agregar subtítulos (<code>&lt;track kind="captions"&gt;</code>) al video de la clase muestra.</td></tr>
+</table>
+
+<!-- ======================= 5 ======================= -->
+<h2 class="salto">5. Pruebas y validación en laboratorio</h2>
+<p>Pruebas ejecutadas el 24/10/2026 sobre https://wayra.tsdfact.com/ con Google Chrome, controlado con Playwright para repetir exactamente las mismas pulsaciones de teclado y clics. Los resultados crudos están en <code>docs/evidencias-parcial/resultados.json</code>. No hubo errores en la consola del navegador.</p>
+<table>
+  <tr><th style="width:9%">Caso</th><th style="width:31%">Procedimiento</th><th style="width:27%">Resultado esperado</th><th>Resultado obtenido</th></tr>
+  <tr><td>CP-01a</td><td>En <code>/asesor-virtual</code>, pulsar «Ver mi ruta completa» sin responder nada.</td><td>No se envía; se avisa qué falta y el foco va al primer campo inválido.</td><td><span class="ok">Pasa.</span> Aviso: «Te falta completar las preguntas 1, 2, 3, 4, 5, 6 y tu nombre.» Foco en el primer radio. (Fig. 4)</td></tr>
+  <tr><td>CP-01b</td><td>Responder las 6 preguntas (Desarrollo web, 3–6 h, con experiencia…), escribir «Lucía» y enviar.</td><td>Se muestra la ruta personalizada sin recargar.</td><td><span class="ok">Pasa.</span> «Buenos días, Lucía. Empieza por React desde cero… unas 5 semanas, dedicándole de 3 a 6 horas por semana.» (Fig. 5)</td></tr>
+  <tr><td>CP-02</td><td>En <code>/explorador-cursos</code>: elegir la categoría Diseño; volver a Todas; buscar «diseno»; pulsar «Limpiar filtros».</td><td>La lista y el contador se actualizan en vivo; la búsqueda ignora tildes; al limpiar se ven los 16 cursos y el foco vuelve al buscador.</td><td><span class="ok">Pasa.</span> Diseño: «Mostrando 3 de 16». «diseno»: 2 cursos (Diseño UX/UI…, Diseño de interfaces con Figma). Limpiar: «Mostrando 16 de 16», foco en <code>#busqueda-curso</code>. (Fig. 6)</td></tr>
+  <tr><td>CP-03</td><td>En la portada, solo con teclado: Tab hasta «Ingresar», Enter; recorrer con Tab; pulsar Esc.</td><td>El modal se abre, el foco entra y no cae en el contenido de detrás; Esc cierra y el foco vuelve a «Ingresar».</td><td><span class="ok">Pasa.</span> 8 Tab hasta «Ingresar». Foco inicial en «Cerrar ventana». Orden: ✕ → «test del asesor virtual» → correo → «Entendido» → barra del navegador → ✕ (comportamiento nativo de <code>showModal()</code>: la página de fondo es inerte). Esc cierra; foco en «Ingresar». (Fig. 7)</td></tr>
+  <tr><td>CP-04</td><td>Abrir el modal con Enter, enfocar «Entendido» y pulsar Espacio.</td><td>El modal se cierra.</td><td><span class="ok">Pasa.</span></td></tr>
+  <tr><td>CP-05</td><td>Cargar la portada, pulsar Tab y Enter; luego ir a «Cursos».</td><td>El primer Tab ofrece «Saltar al contenido»; al navegar, el foco pasa al título de la nueva página.</td><td><span class="ok">Pasa.</span> Enter lleva a <code>#contenido</code>; tras «Cursos» el foco queda en el <code>h1</code> «Explorador interactivo de cursos». (Fig. 8)</td></tr>
+  <tr><td>CP-06</td><td>En <code>/clase-muestra</code>: Activar 3 s; Detener 2 s; Activar–Detener–Activar rápido y esperar 2 s.</td><td>Cuenta 1 por segundo, se detiene y no se acelera al reactivar (cleanup correcto).</td><td><span class="ok">Pasa.</span> 3 s → «3 s registrados»; detenido sigue en 3 s; tras reactivar y esperar 2 s: 5 s (+2, sin aceleración).</td></tr>
+  <tr><td>CP-07</td><td>Abrir <code>/asesor-virtual</code> directamente en la barra de direcciones y recargar (F5).</td><td>Responde 200 y carga la página correcta.</td><td><span class="ok">Pasa</span> tras subir <code>.htaccess</code>. Antes de la corrección respondía <b>404</b> (ver sección 8, dificultad 1).</td></tr>
+  <tr><td>CP-08</td><td>Auditoría axe-core 4.10 (WCAG 2 A/AA, 2.1 AA, 2.2 AA y buenas prácticas) en 5 rutas × tema claro/oscuro × móvil/escritorio (20 combinaciones).</td><td>Sin violaciones.</td><td><span class="ok">Pasa.</span> 0 violaciones en las 20 combinaciones.</td></tr>
+</table>
+<p><b>Problemas detectados durante las pruebas:</b> (1) rutas internas con 404 al abrirlas directamente o al recargar — corregido y verificado en producción; (2) botón «Empieza gratis» sin estilo en el menú móvil — corregido en el código y verificado en local, falta publicarlo.</p>
+
+<!-- ======================= 6 ======================= -->
+<h2 class="salto">6. Auditoría con Lighthouse</h2>
+<p><b>URL auditada:</b> https://wayra.tsdfact.com/<br>
+<b>Fecha de auditoría:</b> 24/10/2026 (10:20 y 10:32 hora de Lima)<br>
+<b>Entorno/dispositivo:</b> Lighthouse 12.2.1 con Google Chrome sin interfaz (<i>headless</i>) en macOS. Perfil móvil: emulación de Moto G Power con red 4G lenta y CPU 4× más lenta. Perfil escritorio: preset <i>desktop</i>. Reportes completos en <code>docs/lighthouse/</code>.</p>
+
+<table>
+  <tr><th>Categoría</th><th>Puntuación (móvil / escritorio)</th><th>Hallazgo relevante</th><th>Acción o mejora</th></tr>
+  <tr><td>Rendimiento</td><td><b>93 / 98</b><br><small>1.ª medición: 89 / 99</small></td><td>Móvil: FCP 2,0 s, LCP 2,9 s, TBT 10 ms, CLS 0. «Reduce unused JavaScript»: ~47 KiB sin usar en <code>index-*.js</code> (95 KiB comprimido). «Serve static assets with an efficient cache policy»: 2 recursos.</td><td>Dividir el bundle por ruta con <code>React.lazy</code> + <code>Suspense</code>; ampliar la caché de <code>/assets/</code> a 1 año (Hallazgos 1 y 2).</td></tr>
+  <tr><td>Accesibilidad</td><td><b>100 / 100</b></td><td>Sin fallos automáticos. Confirmado por axe-core (0 violaciones) y por las pruebas manuales de teclado CP-03 a CP-05.</td><td>Mantener; agregar subtítulos al video y probar con lector de pantalla.</td></tr>
+  <tr><td>Buenas prácticas</td><td><b>100 / 100</b></td><td>HTTPS, sin errores en consola y sin APIs obsoletas.</td><td>Mantener.</td></tr>
+  <tr><td>SEO (si aplica)</td><td><b>100 / 100</b></td><td><code>lang="es-PE"</code>, <code>meta description</code>, título por página, <code>robots.txt</code> válido.</td><td>Mantener.</td></tr>
+</table>
+
+<figure><img src="../evidencias-parcial/17-lighthouse-movil.png" style="max-height:52mm"><figcaption><b>Figura 14. Lighthouse móvil sobre la versión desplegada (10:32)</b>Rendimiento 93, Accesibilidad 100, Buenas prácticas 100, SEO 100.</figcaption></figure>
+<figure><img src="../evidencias-parcial/18-lighthouse-escritorio.png" style="max-height:52mm"><figcaption><b>Figura 15. Lighthouse escritorio sobre la versión desplegada (10:32)</b>Rendimiento 98, Accesibilidad 100, Buenas prácticas 100, SEO 100.</figcaption></figure>
+
+<h3>Hallazgo 1 — JavaScript sin usar (prioridad media)</h3>
+<p><b>Qué dice:</b> de los 95 KiB comprimidos del archivo <code>index-*.js</code>, unos 47 KiB no se ejecutan al cargar la portada. <b>Por qué ocurre:</b> Vite genera un solo bundle con las 5 páginas; quien entra a la portada también descarga el código del asesor virtual (529 líneas), del explorador y de la clase muestra. <b>Impacto:</b> en móvil con red lenta retrasa la primera pintura (FCP 2,0–2,9 s); es la principal causa de que Rendimiento no llegue a 100. <b>Plan:</b> cargar cada página con <code>React.lazy(() =&gt; import("./paginas/AsesorVirtual.jsx"))</code> dentro de <code>&lt;Suspense&gt;</code>, de modo que Vite cree un archivo por ruta. Se implementará en la semana de optimización y Core Web Vitals.</p>
+
+<h3>Hallazgo 2 — Política de caché de recursos estáticos (prioridad media) — mejora parcial demostrable</h3>
+<p><b>Qué dice:</b> los archivos <code>/assets/index-*.js</code> e <code>index-*.css</code> deberían guardarse en caché por más tiempo. <b>Antes:</b> en la primera medición (10:20) el servidor los entregaba con una caché de solo ~10 s, así que una visita repetida los volvía a pedir. <b>Después:</b> tras la configuración en el servidor, la segunda medición (10:32) muestra <code>Cache-Control: max-age=604800</code> (7 días) y el Rendimiento móvil subió de 89 a 93 (FCP de 2,9 s a 2,0 s; parte de la variación se debe a la red). <b>Pendiente:</b> como Vite agrega un <i>hash</i> al nombre de cada archivo y este cambia en cada compilación, es seguro guardarlos un año con <code>immutable</code>. Se añadirá al <code>.htaccess</code>:</p>
+<pre>&lt;FilesMatch "^index-.*\.(js|css)$"&gt;
+  Header set Cache-Control "public, max-age=31536000, immutable"
+&lt;/FilesMatch&gt;</pre>
+
+<!-- ======================= 7 ======================= -->
+<h2>7. Repositorio y despliegue</h2>
+<table>
+  <tr><th style="width:28%">Recurso</th><th>Enlace / información</th></tr>
+  <tr><td>Repositorio Git</td><td>https://github.com/jtesen00/DesarrolloWebFullStack</td></tr>
+  <tr><td>Aplicación desplegada</td><td>https://wayra.tsdfact.com/ (hosting propio con Apache; abre sin iniciar sesión)</td></tr>
+  <tr><td>Rama / versión entregada</td><td>Rama <code>react-rediseno-v3</code>. Versión desplegada al momento de la auditoría: commit <code>b5d25a9</code> («Rediseño v3 (Tech)…», 23/10/2026). <span class="pend">[PENDIENTE: hash del commit final que incluye .htaccess y la corrección del menú móvil]</span></td></tr>
+  <tr><td>Instrucciones para ejecutar localmente</td><td>Requisitos: Node.js 20 o superior y npm.<br>
+    <code>git clone https://github.com/jtesen00/DesarrolloWebFullStack.git</code><br>
+    <code>cd DesarrolloWebFullStack</code> · <code>git checkout react-rediseno-v3</code><br>
+    <code>npm install</code> → <code>npm run dev</code> (abre http://localhost:5173)<br>
+    Producción: <code>npm run build</code> genera <code>dist/</code> (incluye <code>.htaccess</code>); <code>npm run preview</code> la sirve en local.</td></tr>
+  <tr><td>Dependencias principales</td><td>react 19.3, react-dom 19.3, react-router-dom 7.18; desarrollo: vite 8.3, @vitejs/plugin-react 6.1. Sin dependencias de UI externas. Fuentes Geist y Geist Mono (Google Fonts).</td></tr>
+  <tr><td>Despliegue</td><td>Se compila con <code>npm run build</code> y se sube el contenido de <code>dist/</code> a la raíz del dominio. El archivo <code>.htaccess</code> redirige toda ruta que no sea un archivo real a <code>index.html</code> para que React Router la resuelva.</td></tr>
+</table>
+
+<!-- ======================= 8 ======================= -->
+<h2>8. Dificultades y decisiones técnicas</h2>
+<h3>Dificultad 1 — Las rutas internas devolvían 404 en el servidor</h3>
+<p><b>Causa:</b> la aplicación usa <code>BrowserRouter</code>, que cambia la URL (<code>/asesor-virtual</code>) sin pedir una página nueva. Al navegar con clics funcionaba, pero al abrir un enlace directo o recargar, Apache buscaba un archivo <code>asesor-virtual</code> que no existe y respondía 404. <b>Solución:</b> se creó <code>public/.htaccess</code> con <code>mod_rewrite</code> para servir <code>index.html</code> en cualquier ruta que no sea un archivo o carpeta real; Vite lo copia a <code>dist/</code>. Verificado: las 4 rutas y una inexistente responden 200 y la app muestra la página o el 404 propio. <b>Aprendizaje:</b> una SPA necesita configurar el servidor; probar solo navegando con clics oculta el problema.</p>
+<h3>Dificultad 2 — El botón «Empieza gratis» perdía su estilo en el menú móvil</h3>
+<p><b>Causa:</b> especificidad CSS. La regla <code>.navegacion__lista a</code> (clase + elemento) quitaba el fondo a todos los enlaces del menú y ganaba a <code>.boton--primario</code> (solo clase), así que el botón —que es un <code>&lt;a&gt;</code>— quedaba sin fondo azul. Solo se veía en móvil, porque en escritorio ese botón está fuera del menú. <b>Solución:</b> excluir los botones de las reglas de enlaces del menú con <code>.navegacion__lista a:not(.boton)</code>. Verificado en la compilación local (Fig. 13b). <b>Aprendizaje:</b> revisar cada vista en móvil con el menú abierto, no solo la página.</p>
+<h3>Dificultad 3 — Integrar el <code>&lt;dialog&gt;</code> nativo con el estado de React</h3>
+<p><b>Causa:</b> React controla si el modal está abierto (prop <code>abierto</code>), pero el <code>&lt;dialog&gt;</code> se abre con el método imperativo <code>showModal()</code> y puede cerrarse solo con Esc. Además, seleccionar texto dentro del panel y soltar el mouse fuera lo cerraba por error. <b>Solución:</b> un <code>useEffect</code> con dependencia <code>[abierto]</code> sincroniza ambos mundos; <code>onClose</code> avisa a React cuando el navegador lo cierra; un <code>useRef</code> recuerda si el <code>pointerdown</code> empezó sobre el velo y solo entonces se cierra. <b>Aprendizaje:</b> <code>useEffect</code> es para sincronizar React con sistemas externos al render, y el elemento nativo da gratis el foco atrapado y el cierre con Esc.</p>
+<h3>Dificultad 4 — El monitor se aceleraba en desarrollo</h3>
+<p><b>Causa:</b> <code>StrictMode</code> monta los efectos dos veces en desarrollo y, sin limpieza, quedaban dos <code>setInterval</code> sumando a la vez. <b>Solución:</b> devolver <code>clearInterval</code> en el efecto y usar la forma funcional <code>setSegundos(p =&gt; p + 1)</code>. CP-06 confirma que no se acelera.</p>
+
+<!-- ======================= 9 ======================= -->
+<h2>9. Plan de continuidad del proyecto</h2>
+<table>
+  <tr><th>Mejora / funcionalidad pendiente</th><th>Prioridad</th><th>Semana prevista</th><th>Responsable(s)</th></tr>
+  <tr><td>Publicar la corrección del menú móvil y la caché de 1 año en <code>.htaccess</code></td><td>Alta</td><td>9</td><td><span class="pend">[Integrante]</span></td></tr>
+  <tr><td>Animaciones de rutas y del modal con Framer Motion (respetando «reducir movimiento»)</td><td>Media</td><td>9–10</td><td><span class="pend">[Integrante]</span></td></tr>
+  <tr><td>Estado global con Zustand: favoritos y «mi ruta» guardada</td><td>Alta</td><td>10–11</td><td><span class="pend">[Integrante]</span></td></tr>
+  <tr><td>Tiempo real con WebSockets: preguntas en vivo en la clase y aviso de cupos</td><td>Media</td><td>12–13</td><td><span class="pend">[Integrante]</span></td></tr>
+  <tr><td>Optimización: <code>React.lazy</code> por ruta y medición de Core Web Vitals</td><td>Media</td><td>13–14</td><td><span class="pend">[Integrante]</span></td></tr>
+  <tr><td>Pruebas automatizadas (Vitest + Testing Library) y despliegue continuo</td><td>Media</td><td>14–15</td><td><span class="pend">[Integrante]</span></td></tr>
+  <tr><td>Subtítulos del video y prueba con lector de pantalla</td><td>Baja</td><td>15–16</td><td><span class="pend">[Integrante]</span></td></tr>
+</table>
+
+<!-- ======================= 10 ======================= -->
+<h2>10. Conclusiones</h2>
+<ol>
+  <li>El MVP está operativo y publicado: el flujo principal (asesor virtual → ruta personalizada) se completa de principio a fin sin recargar la página, e integra el trabajo de semanas anteriores (explorador, clase muestra, tema) y el modal accesible de la semana 7.</li>
+  <li>La arquitectura con <code>Layout</code> + <code>Outlet</code>, componentes pequeños con props claras y estado mínimo con valores derivados mantiene el código comprensible y fácil de ampliar; los efectos se limitan a sincronizar con el navegador y limpian sus temporizadores y listeners.</li>
+  <li>La accesibilidad se validó de dos maneras complementarias: auditorías automáticas (Lighthouse 100 y axe-core sin violaciones en 20 combinaciones) y pruebas manuales de teclado, que verifican lo que las herramientas no ven, como el orden y el retorno del foco.</li>
+  <li>Las pruebas en el entorno desplegado revelaron dos fallos que no aparecían en desarrollo (404 en rutas directas y botón sin estilo en el menú móvil); ambos se corrigieron, lo que demuestra el valor de probar la versión publicada y en varios tamaños.</li>
+  <li>El rendimiento en móvil (93) es el principal margen de mejora: dividir el bundle por ruta y aplicar caché larga a los recursos son los siguientes pasos, junto con estado global, tiempo real y pruebas automatizadas en las semanas 9–16.</li>
+</ol>
+
+<!-- ======================= 11 ======================= -->
+<h2>11. Referencias</h2>
+<ul>
+  <li>Meta Open Source. (2026). <i>React documentation</i> (useState, useEffect, useRef, «You Might Not Need an Effect»). https://react.dev/</li>
+  <li>Remix Software. (2026). <i>React Router documentation</i>. https://reactrouter.com/</li>
+  <li>VoidZero. (2026). <i>Vite guide</i>. https://vite.dev/guide/</li>
+  <li>MDN Web Docs. (2026). <i>&lt;dialog&gt;: The Dialog element</i>; <i>Constraint validation</i>. https://developer.mozilla.org/</li>
+  <li>W3C. (2023). <i>Web Content Accessibility Guidelines (WCAG) 2.2</i>. https://www.w3.org/TR/WCAG22/</li>
+  <li>W3C WAI. (2024). <i>ARIA Authoring Practices Guide: Dialog (Modal) Pattern; Carousel Pattern</i>. https://www.w3.org/WAI/ARIA/apg/</li>
+  <li>Deque Systems. (2024). <i>axe-core 4.10</i>. https://github.com/dequelabs/axe-core</li>
+  <li>Google. (2024). <i>Lighthouse 12</i>. https://developer.chrome.com/docs/lighthouse/</li>
+  <li>Microsoft. (2024). <i>Playwright</i>. https://playwright.dev/</li>
+  <li>Vercel. (2024). <i>Geist font family</i>, vía Google Fonts. https://fonts.google.com/specimen/Geist</li>
+</ul>
+
+<!-- ======================= 12 ======================= -->
+<h2>12. Declaración de participación del equipo</h2>
+<table>
+  <tr><th>Integrante</th><th>Responsabilidad principal</th><th>Aporte realizado</th><th>Participación en exposición</th></tr>
+  <tr><td>Chauca, Jhordi</td><td><span class="pend">[PENDIENTE]</span></td><td><span class="pend">[PENDIENTE]</span> <small>(commits: Semanas 2, 3 y 4)</small></td><td><span class="pend">[Sí/No y sección]</span></td></tr>
+  <tr><td>Tesen Tantachuco, José Antonio</td><td><span class="pend">[PENDIENTE]</span></td><td><span class="pend">[PENDIENTE]</span> <small>(commits: repositorio inicial, semana 4, rediseño v3)</small></td><td><span class="pend">[Sí/No y sección]</span></td></tr>
+  <tr><td><span class="pend">[Integrante «azrahel98»]</span></td><td><span class="pend">[PENDIENTE]</span></td><td><span class="pend">[PENDIENTE]</span> <small>(commits: migración a React con Vite, laboratorio monitor/useRef)</small></td><td><span class="pend">[Sí/No y sección]</span></td></tr>
+  <tr><td><span class="pend">[Nombre]</span></td><td><span class="pend">[PENDIENTE]</span></td><td><span class="pend">[PENDIENTE]</span></td><td><span class="pend">[Sí/No y sección]</span></td></tr>
+</table>
+
+<!-- ======================= 13 ======================= -->
+<h2>13. Enlaces de entrega y checklist final</h2>
+<table>
+  <tr><th style="width:8%">Estado</th><th>Ítem</th></tr>
+  <tr><td>☐</td><td>El informe está completo y no contiene marcadores pendientes entre corchetes. <span class="pend">(faltan los datos del equipo y el video)</span></td></tr>
+  <tr><td>☑</td><td>El repositorio es accesible y contiene el código fuente.</td></tr>
+  <tr><td>☑</td><td>La aplicación desplegada abre y permite probar las funcionalidades declaradas.</td></tr>
+  <tr><td>☑</td><td>Se adjuntan capturas del MVP y evidencias de pruebas (Fig. 1–15, sección 5, <code>docs/evidencias-parcial/</code>).</td></tr>
+  <tr><td>☑</td><td>Se incluye el reporte Lighthouse (sección 6, <code>docs/lighthouse/</code>).</td></tr>
+  <tr><td>☐</td><td>Se incluye el enlace al video de exposición y se verifican sus permisos.</td></tr>
+  <tr><td>☑</td><td>Se describen las funcionalidades pendientes para la continuación del proyecto (2.2 y 9).</td></tr>
+  <tr><td>☐</td><td>Todos los integrantes y sus responsabilidades están identificados.</td></tr>
+</table>
+<p><b>Enlace al video de exposición:</b> <span class="pend">[PENDIENTE: pegar URL y verificar que sea visible sin pedir acceso]</span></p>
+<p><b>Observaciones finales del equipo:</b> Los cursos, instructores, fechas de inicio y el nombre «Lucía» usado en las pruebas son datos ficticios de prueba. La aplicación no recoge ni envía datos personales: el nombre del asesor solo se usa para mostrar la ruta en la misma página.</p>
+
+<h2>Declaración del equipo</h2>
+<p>Confirmamos que la aplicación, el repositorio, el informe, las evidencias y el video corresponden al mismo proyecto integrador y que podemos explicar el código y las decisiones presentadas.</p>
+<p>Integrantes: <span class="pend">[PENDIENTE]</span> &nbsp;&nbsp; Fecha de entrega: <span class="pend">[PENDIENTE]</span></p>
+
+</body>
+</html>
