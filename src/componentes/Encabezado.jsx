@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import BotonTema from "./BotonTema.jsx";
+import Chakana from "./Chakana.jsx";
+import Boton from "./Boton.jsx";
 
 const ENLACES = [
-  { texto: "Inicio", destino: "/#contenido" },
-  { texto: "Cursos", destino: "/#experiencias" },
-  { texto: "Talleres en vivo", destino: "/#experiencias" },
+  { texto: "Cursos", destino: "/explorador-cursos" },
+  { texto: "Clase gratis", destino: "/clase-muestra" },
+  { texto: "Asesor virtual", destino: "/asesor-virtual" },
   { texto: "Nosotros", destino: "#pie" },
 ];
 
@@ -17,13 +19,12 @@ export default function Encabezado({ oscuro, onAlternarTema, onAbrirAcceso }) {
 
   return (
     <header className="encabezado">
-      <div className="encabezado__interior">
+      <div className="encabezado__interior contenedor">
 
-        <div className="marca">
-          <img className="marca__logo" src="/img/logo-wayra.svg" alt="" width="40" height="40" />
-          <p className="marca__nombre">Wayra Academy</p>
-          <p className="marca__eslogan">Tu centro de aprendizaje</p>
-        </div>
+        <Link className="marca" to="/" onClick={cerrarMenu}>
+          <Chakana className="marca__logo" />
+          <span className="marca__nombre">wayra</span>
+        </Link>
 
         <BotonTema oscuro={oscuro} onAlternar={onAlternarTema} />
 
@@ -36,7 +37,7 @@ export default function Encabezado({ oscuro, onAlternarTema, onAbrirAcceso }) {
             checked={menuAbierto}
             onChange={(evento) => setMenuAbierto(evento.target.checked)}
           />
-          <label htmlFor="interruptor-menu" className="navegacion__boton">
+          <label htmlFor="interruptor-menu" className="navegacion__boton" aria-hidden="true">
             <span className="navegacion__linea"></span>
             <span className="navegacion__linea"></span>
             <span className="navegacion__linea"></span>
@@ -45,21 +46,25 @@ export default function Encabezado({ oscuro, onAlternarTema, onAbrirAcceso }) {
             {ENLACES.map((enlace) => (
               <li key={enlace.texto}>
                 {enlace.destino.startsWith("#")
-                  ? <a href={enlace.destino} onClick={cerrarMenu}>{enlace.texto}</a>
-                  : <Link to={enlace.destino} onClick={cerrarMenu}>{enlace.texto}</Link>}
+                  ? <Link to={enlace.destino} onClick={cerrarMenu}>{enlace.texto}</Link>
+                  : <NavLink to={enlace.destino} onClick={cerrarMenu}>{enlace.texto}</NavLink>}
               </li>
             ))}
-            <li>
-              <button
-                type="button"
-                className="navegacion__acceso"
-                onClick={() => { cerrarMenu(); onAbrirAcceso(); }}
-              >
-                Ingresar o registrarse
+            <li className="navegacion__solo-movil">
+              <button type="button" className="navegacion__acceso" onClick={() => { cerrarMenu(); onAbrirAcceso(); }}>
+                Ingresar
               </button>
+            </li>
+            <li className="navegacion__solo-movil">
+              <Boton variante="primario" flecha to="/clase-muestra" onClick={cerrarMenu}>Empieza gratis</Boton>
             </li>
           </ul>
         </nav>
+
+        <div className="encabezado__acciones">
+          <button type="button" className="navegacion__acceso" onClick={onAbrirAcceso}>Ingresar</button>
+          <Boton variante="primario" flecha to="/clase-muestra">Empieza gratis</Boton>
+        </div>
 
       </div>
     </header>

@@ -36,14 +36,14 @@ export default function CuentaRegresiva({ inicios }) {
   }, [proximo]);
 
   if (!proximo) {
-    return <p className="lateral__texto">Pronto anunciaremos nuevas fechas de inicio.</p>;
+    return <p className="cuenta__aviso">Pronto anunciaremos nuevas fechas de inicio.</p>;
   }
 
   const partes = desglosar(new Date(proximo.fecha).getTime() - ahora);
 
   return (
     <div className="cuenta">
-      <p className="cuenta__curso">{proximo.curso}</p>
+      <p className="cuenta__curso">Próximo inicio: {proximo.curso}</p>
       {/* aria-hidden en los números: un lector de pantalla no debe leer un
           cambio por segundo. La fecha accesible va en el texto de abajo. */}
       <div className="cuenta__reloj" aria-hidden="true">
@@ -54,7 +54,7 @@ export default function CuentaRegresiva({ inicios }) {
           </span>
         ))}
       </div>
-      <p className="lateral__apunte">
+      <p className="cuenta__aviso">
         Empieza el <time dateTime={proximo.fecha}>{proximo.texto}</time>.
       </p>
     </div>

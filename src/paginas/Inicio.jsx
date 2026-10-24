@@ -1,51 +1,29 @@
 import { useEffect } from "react";
 import Boton from "../componentes/Boton.jsx";
-import Saludo from "../componentes/Saludo.jsx";
-import TarjetaExperiencia from "../componentes/TarjetaExperiencia.jsx";
+import CifraAnimada from "../componentes/CifraAnimada.jsx";
 import Carrusel from "../componentes/Carrusel.jsx";
-import BloqueLateral from "../componentes/BloqueLateral.jsx";
-import ListaLateral from "../componentes/ListaLateral.jsx";
 import CuentaRegresiva from "../componentes/CuentaRegresiva.jsx";
-import Monitor from "../componentes/Monitor.jsx";
-import { CURSOS, PROXIMOS_INICIOS } from "../datos/cursos.js";
+import CursoMosaico from "../componentes/CursoMosaico.jsx";
+import ReproductorMuestra from "../componentes/ReproductorMuestra.jsx";
+import {
+  CATEGORIAS, CURSOS, CURSOS_ADICIONALES, CURSOS_DESTACADOS, PROXIMOS_INICIOS, totalHoras,
+} from "../datos/cursos.js";
 
-const EXPERIENCIAS = [
-  {
-    id: "exp-1",
-    imagen: "/img/explorador-cursos.svg",
-    alt: "Buscador de cursos con los filtros de categoría, nivel y duración activos, mostrando cinco cursos comparables con su temario.",
-    titulo: "Explorador interactivo de cursos",
-    texto: "Filtra por categoría, nivel y duración, compara cursos lado a lado y revisa una vista previa del temario antes de decidir.",
-    destino: "/explorador-cursos",
-    accion: "Explorar cursos",
-  },
-  {
-    id: "exp-2",
-    imagen: "/img/clase-muestra.svg",
-    alt: "Miniatura de una clase muestra en video, con el control de reproducción y la duración de la lección visibles.",
-    titulo: "Clases muestra en video",
-    texto: "Una lección real y completa de un curso del catálogo. Se reproduce en el navegador, sin registro y sin tarjeta, para que compruebes cómo se enseña.",
-    destino: "/clase-muestra",
-    accion: "Ver clase gratis",
-  },
-  {
-    id: "exp-3",
-    imagen: "/img/asesor-virtual.svg",
-    alt: "Pantalla del test de asesor virtual con una pregunta sobre intereses y cuatro opciones de respuesta.",
-    titulo: "Asesor virtual de ruta de aprendizaje",
-    texto: "Seis preguntas sobre tus intereses, tu tiempo disponible y tu objetivo. Al terminar recibes el curso o la ruta de capacitación que te conviene seguir.",
-    destino: "/asesor-virtual",
-    accion: "Hacer el test",
-  },
+/* Color de cada tarjeta del mosaico, en el orden del catálogo destacado. */
+const TONOS = ["accion", "noche", "claro", "suave", "claro"];
+
+const CIFRAS = [
+  { valor: totalHoras(), etiqueta: "horas de clases en vivo" },
+  { valor: CURSOS.length, etiqueta: "cursos en el catálogo" },
+  { valor: Object.keys(CATEGORIAS).length, etiqueta: "áreas de conocimiento" },
+  { valor: 100, sufijo: "%", etiqueta: "con espacio para preguntas" },
 ];
 
-const VENTAJAS = [
-  { dato: "Instructores verificados", apunte: "Cada uno pasa por una revisión de experiencia y de materiales antes de publicar." },
-  { dato: "Clases en vivo, no grabaciones", apunte: "Con espacio para preguntas y revisión de tus ejercicios." },
-  { dato: "Certificado verificable", apunte: "Con código de validación en línea al terminar el curso." },
+const PASOS = [
+  { titulo: "Explora el catálogo", texto: "Filtra por categoría, nivel y duración, y revisa el temario antes de decidir." },
+  { titulo: "Mira una clase gratis", texto: "Una lección real y completa en tu navegador. Sin registro y sin tarjeta." },
+  { titulo: "Haz el test del asesor", texto: "Seis preguntas sobre tus intereses y tu tiempo; recibes el curso o la ruta que te conviene." },
 ];
-
-const FECHAS = PROXIMOS_INICIOS.map((inicio) => ({ dato: inicio.curso, apunte: inicio.texto }));
 
 export default function Inicio() {
   useEffect(() => {
@@ -53,55 +31,129 @@ export default function Inicio() {
   }, []);
 
   return (
-    <>
-      <main id="contenido" className="principal">
+    <main id="contenido">
 
-        <div className="bienvenida">
-          <Saludo nombre="futuro estudiante" mensaje="Te damos la bienvenida a Wayra Academy." />
-          <h1 className="bienvenida__titulo">Aprende con instructores peruanos verificados</h1>
-          <p className="bienvenida__texto">
-            Cursos y talleres en vivo dictados por profesionales que trabajan hoy en lo que enseñan.
-            Cada instructor pasa por una revisión de experiencia y de sus materiales antes de publicar.
-          </p>
-          <Boton href="#experiencias">Ver cursos disponibles</Boton>
-        </div>
-
-        <section id="experiencias" className="experiencias" aria-labelledby="titulo-experiencias">
-          <h2 id="titulo-experiencias" className="experiencias__titulo">Experiencias interactivas</h2>
-          <p className="experiencias__bajada">Tres formas de conocer la plataforma antes de inscribirte.</p>
-
-          <div className="experiencias__grilla">
-            {EXPERIENCIAS.map((experiencia) => (
-              <TarjetaExperiencia key={experiencia.id} {...experiencia} />
-            ))}
+      <section className="hero" aria-labelledby="titulo-hero">
+        <div className="contenedor hero__interior">
+          <div>
+            <p className="hero__etiqueta">Clases en vivo · Perú</p>
+            <h1 className="hero__titulo" id="titulo-hero">
+              Domina lo digital con <span className="resalte">quienes lo hacen.</span>
+            </h1>
+            <p className="hero__texto">
+              Cursos y talleres en vivo de desarrollo web, datos, diseño y negocios, dictados por
+              profesionales peruanos que trabajan hoy en lo que enseñan.
+            </p>
+            <div className="hero__acciones">
+              <Boton to="/explorador-cursos" flecha grande>Explorar cursos</Boton>
+              <Boton to="/clase-muestra" variante="secundario" grande>Ver clase gratis</Boton>
+            </div>
           </div>
-        </section>
+          <ReproductorMuestra />
+        </div>
+      </section>
 
-        <section id="destacados" className="destacados" aria-labelledby="titulo-destacados">
-          <h2 id="titulo-destacados" className="destacados__titulo">Cursos destacados</h2>
-          <p className="destacados__bajada">Los cinco cursos del catálogo, uno a la vez. Usa los botones o las flechas del teclado.</p>
-          <Carrusel cursos={CURSOS} />
-        </section>
+      <section className="seccion--noche" aria-label="Wayra en cifras">
+        <ul className="contenedor cifras">
+          {CIFRAS.map((cifra) => (
+            <li key={cifra.etiqueta}>
+              <CifraAnimada valor={cifra.valor} sufijo={cifra.sufijo} />
+              <span className="cifra__etiqueta">{cifra.etiqueta}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
 
-      </main>
+      <section id="catalogo" className="seccion" aria-labelledby="titulo-catalogo">
+        <div className="contenedor">
+          <div className="seccion__cabecera" data-aparece>
+            <div>
+              <p className="sobretitulo">// Catálogo</p>
+              <h2 className="seccion__titulo" id="titulo-catalogo">Cursos para empezar esta semana</h2>
+            </div>
+            <Boton to="/explorador-cursos" variante="oscuro" flecha>Ver los {CURSOS.length} cursos</Boton>
+          </div>
 
-      <aside className="lateral" aria-label="Información complementaria">
-        <BloqueLateral titulo="Próximo inicio de clases">
-          <CuentaRegresiva inicios={PROXIMOS_INICIOS} />
-        </BloqueLateral>
+          <ul className="mosaico" data-aparece>
+            {CURSOS_DESTACADOS.map((curso, i) => (
+              <CursoMosaico key={curso.id} curso={curso} tono={TONOS[i]} />
+            ))}
+          </ul>
 
-        <BloqueLateral titulo="Tu tiempo de estudio">
-          <Monitor />
-        </BloqueLateral>
+          <h3 className="seccion__subtitulo" id="titulo-mas-cursos">
+            Y {CURSOS_ADICIONALES.length} cursos más
+          </h3>
+          <div data-aparece>
+            <Carrusel cursos={CURSOS_ADICIONALES} idTitulo="titulo-mas-cursos" />
+          </div>
+        </div>
+      </section>
 
-        <BloqueLateral titulo="Próximas fechas de inicio">
-          <ListaLateral elementos={FECHAS} />
-        </BloqueLateral>
+      <section className="seccion seccion--suave" aria-labelledby="titulo-pasos">
+        <div className="contenedor">
+          <div className="seccion__cabecera" data-aparece>
+            <div>
+              <p className="sobretitulo">// Cómo empezar</p>
+              <h2 className="seccion__titulo" id="titulo-pasos">Prueba antes de inscribirte.</h2>
+            </div>
+          </div>
+          <ol className="pasos" data-aparece>
+            {PASOS.map((paso, i) => (
+              <li className="paso" key={paso.titulo}>
+                <span className="paso__numero" aria-hidden="true">0{i + 1}</span>
+                <h3 className="paso__titulo">{paso.titulo}</h3>
+                <p className="paso__texto">{paso.texto}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
 
-        <BloqueLateral titulo="Por qué Wayra Academy">
-          <ListaLateral elementos={VENTAJAS} />
-        </BloqueLateral>
-      </aside>
-    </>
+      <section id="agenda" className="seccion" aria-labelledby="titulo-agenda">
+        <div className="contenedor agenda" data-aparece>
+          <div>
+            <p className="sobretitulo">// Agenda</p>
+            <h2 className="seccion__titulo" id="titulo-agenda">Próximos inicios de clases.</h2>
+            <CuentaRegresiva inicios={PROXIMOS_INICIOS} />
+          </div>
+          <ul className="lista-inicios">
+            {PROXIMOS_INICIOS.slice(0, 4).map((inicio) => (
+              <li className="inicio" key={inicio.cursoId}>
+                <div className="inicio__fecha" aria-hidden="true">
+                  <span className="inicio__dia">{inicio.dia}</span>
+                  <span className="inicio__mes">{inicio.mes}</span>
+                </div>
+                <div>
+                  <h3 className="inicio__titulo">{inicio.curso}</h3>
+                  <p className="inicio__hora"><time dateTime={inicio.fecha}>{inicio.texto}</time></p>
+                </div>
+                <div className="inicio__accion">
+                  <a
+                    className="boton boton--secundario"
+                    href={`mailto:hola@wayraacademy.pe?subject=${encodeURIComponent("Reservar lugar: " + inicio.curso)}`}
+                  >
+                    Reservar lugar
+                  </a>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="seccion--accion" aria-labelledby="titulo-cta">
+        <div className="contenedor cta" data-aparece>
+          <div>
+            <p className="sobretitulo">// Asesor virtual</p>
+            <h2 className="cta__titulo" id="titulo-cta">¿No sabes por dónde empezar?</h2>
+            <p className="cta__texto">
+              Responde seis preguntas y te recomendamos el curso o la ruta ideal para ti.
+            </p>
+          </div>
+          <Boton to="/asesor-virtual" variante="lima" flecha grande>Hacer el test gratis</Boton>
+        </div>
+      </section>
+
+    </main>
   );
 }

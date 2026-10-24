@@ -36,10 +36,23 @@ export function useTema() {
   }, []);
 
   function alternarTema() {
-    setOscuro((actual) => {
-      guardarTema(!actual);
-      return !actual;
-    });
+    const siguiente = !oscuro;
+    guardarTema(siguiente);
+
+    const aplicar = () => {
+      document.documentElement.classList.toggle(CLASE_OSCURA, siguiente);
+      setOscuro(siguiente);
+    };
+
+    // View Transitions: el navegador fotografía la página, aplica el cambio
+    // y hace un fundido entre las dos. Donde no exista (o con «reducir
+    // movimiento») el cambio es instantáneo, igual que antes.
+    const sinMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (document.startViewTransition && !sinMovimiento) {
+      document.startViewTransition(aplicar);
+    } else {
+      aplicar();
+    }
   }
 
   return { oscuro, alternarTema };

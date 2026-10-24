@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { datosDelCurso } from "../datos/cursos.js";
+import Chakana from "./Chakana.jsx";
 
 const TECLAS = {
   ArrowLeft: (actual) => actual - 1,
@@ -9,11 +10,11 @@ const TECLAS = {
   End: (actual, total) => total - 1,
 };
 
-/* Carrusel de cursos destacados (Semana 4, Plan B).
+/* Carrusel de cursos adicionales.
    Estado mínimo: UN número, «actual». Todo lo que se ve (qué diapositiva,
    qué punto, el contador, qué botón está apagado) se deriva de él en el
    render, así que texto y estado visual no pueden desincronizarse. */
-export default function Carrusel({ cursos }) {
+export default function Carrusel({ cursos, idTitulo }) {
   const [actual, setActual] = useState(0);
   const total = cursos.length;
 
@@ -35,7 +36,7 @@ export default function Carrusel({ cursos }) {
 
   return (
     <div className="carrusel" role="group" aria-roledescription="carrusel"
-         aria-labelledby="titulo-destacados" onKeyDown={alPulsarTecla}>
+         aria-labelledby={idTitulo} onKeyDown={alPulsarTecla}>
 
       <div className="carrusel__ventana">
         {/* La posición la dibuja el CSS: translateX(calc(--indice * -100%)). */}
@@ -43,19 +44,21 @@ export default function Carrusel({ cursos }) {
           {cursos.map((curso, i) => (
             <article
               key={curso.id}
-              className={i === actual ? "diapositiva diapositiva--activa" : "diapositiva"}
+              className="diapositiva"
               aria-roledescription="diapositiva"
               aria-label={`${i + 1} de ${total}`}
               inert={i !== actual}
             >
-              <div className="diapositiva__medio">
-                <img src={curso.imagen} width="800" height="500" alt={curso.alt} />
+              <div className="diapositiva__arte" aria-hidden="true">
+                <Chakana />
               </div>
               <div className="diapositiva__cuerpo">
                 <p className="diapositiva__datos">{datosDelCurso(curso)}</p>
                 <h3 className="diapositiva__titulo">{curso.titulo}</h3>
                 <p className="diapositiva__texto">{curso.texto}</p>
-                <Link className="boton boton--secundario" to="/explorador-cursos">Ver en el catálogo</Link>
+                <Link className="boton boton--secundario boton--flecha" to={`/explorador-cursos?curso=${curso.id}`}>
+                  Ver en el catálogo
+                </Link>
               </div>
             </article>
           ))}
@@ -65,14 +68,14 @@ export default function Carrusel({ cursos }) {
       {/* aria-disabled y no disabled: el botón sigue enfocable en los
           extremos y quien navega con teclado no pierde el foco. */}
       <div className="carrusel__controles">
-        <button type="button" className="carrusel__boton" aria-controls="carrusel-pista"
+        <button type="button" className="carrusel__boton" id="carrusel-anterior" aria-controls="carrusel-pista"
                 aria-disabled={actual === 0} onClick={() => irA(actual - 1)}>
           <span aria-hidden="true">←</span> Anterior
         </button>
         <p className="carrusel__contador" aria-live="polite">
           Curso {actual + 1} de {total}: {cursos[actual].titulo}
         </p>
-        <button type="button" className="carrusel__boton" aria-controls="carrusel-pista"
+        <button type="button" className="carrusel__boton" id="carrusel-siguiente" aria-controls="carrusel-pista"
                 aria-disabled={actual === total - 1} onClick={() => irA(actual + 1)}>
           Siguiente <span aria-hidden="true">→</span>
         </button>

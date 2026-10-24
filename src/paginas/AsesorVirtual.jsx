@@ -3,25 +3,18 @@ import { Link } from "react-router-dom";
 import CabeceraPagina from "../componentes/CabeceraPagina.jsx";
 import BloqueLateral from "../componentes/BloqueLateral.jsx";
 import Saludo from "../componentes/Saludo.jsx";
+import { CURSOS } from "../datos/cursos.js";
+
+/* Título de un curso del catálogo a partir de su id: así la recomendación
+   nunca queda desfasada si el catálogo cambia el nombre de un curso. */
+const tituloDe = (id) => CURSOS.find((curso) => curso.id === id).titulo;
 
 /* Catálogo de recomendaciones según área e inicio o experiencia. */
 const CURSOS_ASESOR = {
-  "desarrollo-web": {
-    inicial: "Frontend con HTML5, CSS3 y JavaScript",
-    avanzado: "React desde cero",
-  },
-  "datos-ia": {
-    inicial: "Fundamentos de análisis de datos",
-    avanzado: "Fundamentos de análisis de datos",
-  },
-  diseno: {
-    inicial: "Diseño UX/UI para producto digital",
-    avanzado: "Diseño UX/UI para producto digital",
-  },
-  negocios: {
-    inicial: "Marketing digital para emprendedores",
-    avanzado: "Marketing digital para emprendedores",
-  },
+  "desarrollo-web": { inicial: tituloDe("frontend"), avanzado: tituloDe("react") },
+  "datos-ia": { inicial: tituloDe("datos"), avanzado: tituloDe("python") },
+  diseno: { inicial: tituloDe("ux-ui"), avanzado: tituloDe("usabilidad") },
+  negocios: { inicial: tituloDe("marketing"), avanzado: tituloDe("finanzas") },
 };
 
 /* Ritmo estimado de dedicación semanal. */
@@ -164,14 +157,15 @@ export default function AsesorVirtual() {
   }
 
   return (
-    <>
-      <main id="contenido" className="pagina">
-        <CabeceraPagina titulo="Asesor virtual de ruta de aprendizaje">
+    <div className="contenedor disposicion">
+      <main id="contenido" className="pagina pagina--en-rejilla">
+        <CabeceraPagina titulo="Asesor virtual de ruta de aprendizaje" miga="Asesor virtual">
           Seis preguntas sobre tus intereses, tu tiempo disponible y tu objetivo. La última te muestra
           una recomendación apenas la respondes; cuando las hayas contestado todas y nos digas tu nombre,
           el botón del final cruza las seis y te propone una ruta con curso y ritmo de estudio.
         </CabeceraPagina>
 
+        <div className="pagina__contenido">
         <form
           ref={refFormulario}
           className="test"
@@ -467,7 +461,7 @@ export default function AsesorVirtual() {
           </div>
 
           <div className="test__accion">
-            <button type="submit" className="boton boton--primario" id="ver-ruta">
+            <button type="submit" className="boton boton--primario boton--flecha boton--grande" id="ver-ruta">
               Ver mi ruta completa
             </button>
             <p
@@ -479,10 +473,11 @@ export default function AsesorVirtual() {
             </p>
           </div>
         </form>
+        </div>
       </main>
 
       <aside className="lateral" aria-label="Tu recomendación">
-        <div className="lateral__bloque lateral__bloque--fijo">
+        <div className="lateral__bloque lateral__bloque--fijo lateral__bloque--recomendacion">
           <h2 className="lateral__titulo">Tu recomendación</h2>
 
           <p className="lateral__texto test__aviso">
@@ -529,6 +524,6 @@ export default function AsesorVirtual() {
           </p>
         </BloqueLateral>
       </aside>
-    </>
+    </div>
   );
 }
