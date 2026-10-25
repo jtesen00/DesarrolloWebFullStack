@@ -1,0 +1,393 @@
+{
+  "capturas": [
+    "01-inicio-escritorio",
+    "02-explorador-escritorio",
+    "03-clase-muestra-escritorio",
+    "04-asesor-escritorio",
+    "05-404-escritorio",
+    "06-asesor-validacion",
+    "07-asesor-ruta",
+    "08-explorador-busqueda",
+    "09-modal-abierto",
+    "10-foco-visible",
+    "11-inicio-movil",
+    "12-menu-movil",
+    "13-explorador-movil",
+    "14-asesor-movil",
+    "15-explorador-tableta",
+    "16-inicio-oscuro"
+  ],
+  "casos": [
+    {
+      "id": "CP-01a",
+      "nombre": "Enviar el test vacío",
+      "ok": true,
+      "obtenido": "Aviso: «Te falta completar las preguntas 1, 2, 3, 4, 5, 6 y tu nombre.». Foco en input «»"
+    },
+    {
+      "id": "CP-01b",
+      "nombre": "Completar las 6 preguntas y el nombre",
+      "ok": true,
+      "obtenido": "Ruta mostrada sin recargar: «Buenos días, Lucía. Esta es tu ruta:Empieza por React desde cero. Al ritmo que indicaste, te llevaría unas 5 semanas, dedicándole de 3 a 6 horas por semana.»"
+    },
+    {
+      "id": "CP-02",
+      "nombre": "Filtrar y buscar en el explorador",
+      "ok": true,
+      "obtenido": "Categoría Diseño: «Mostrando 3 de 16 cursos». Búsqueda «diseno»: «Mostrando 2 de 16 cursos» (Diseño UX/UI para producto digital; Diseño de interfaces con Figma). Limpiar: «Mostrando 16 de 16 cursos», foco en input#busqueda-curso «»"
+    },
+    {
+      "id": "CP-03",
+      "nombre": "Abrir y cerrar el modal solo con teclado",
+      "ok": false,
+      "obtenido": "Tab ×8 hasta «Ingresar», Enter abre (open=true), foco inicial en button «Cerrar ventana»; 6 Tab seguidos quedan dentro del modal: false; Escape cierra (true); el foco vuelve a button «Ingresar»"
+    },
+    {
+      "id": "CP-04",
+      "nombre": "Cerrar el modal con el botón «Entendido» y Espacio",
+      "ok": true,
+      "obtenido": "Modal cerrado: true"
+    },
+    {
+      "id": "CP-05",
+      "nombre": "Enlace «Saltar al contenido» y foco al navegar",
+      "ok": true,
+      "obtenido": "Primer Tab: a «Saltar al contenido principal»; Enter lleva a #contenido. Al pulsar «Cursos» el foco pasa a h1 «Explorador interactivo de cursos»"
+    },
+    {
+      "id": "CP-06",
+      "nombre": "Monitor de estudio: activar, detener, reactivar",
+      "ok": true,
+      "obtenido": "Tras 3 s activo: «Monitor activo · 3 s registrados». Detenido 2 s: «Monitor detenido · 3 s registrados». Activar/Detener/Activar y 2 s: «Monitor activo · 5 s registrados» (no se acelera)"
+    },
+    {
+      "id": "CP-07",
+      "nombre": "Abrir una ruta interna directo y recargar",
+      "ok": true,
+      "obtenido": "HTTP 200, título «Asesor virtual de ruta de aprendizaje»"
+    }
+  ],
+  "axe": [
+    {
+      "vista": "escritorio",
+      "tema": "light",
+      "ruta": "/",
+      "violaciones": [],
+      "pasan": 40
+    },
+    {
+      "vista": "escritorio",
+      "tema": "light",
+      "ruta": "/explorador-cursos",
+      "violaciones": [],
+      "pasan": 45
+    },
+    {
+      "vista": "escritorio",
+      "tema": "light",
+      "ruta": "/clase-muestra",
+      "violaciones": [],
+      "pasan": 39
+    },
+    {
+      "vista": "escritorio",
+      "tema": "light",
+      "ruta": "/asesor-virtual",
+      "violaciones": [],
+      "pasan": 44
+    },
+    {
+      "vista": "escritorio",
+      "tema": "light",
+      "ruta": "/no-existe",
+      "violaciones": [],
+      "pasan": 34
+    },
+    {
+      "vista": "escritorio",
+      "tema": "dark",
+      "ruta": "/",
+      "violaciones": [],
+      "pasan": 40
+    },
+    {
+      "vista": "escritorio",
+      "tema": "dark",
+      "ruta": "/explorador-cursos",
+      "violaciones": [],
+      "pasan": 45
+    },
+    {
+      "vista": "escritorio",
+      "tema": "dark",
+      "ruta": "/clase-muestra",
+      "violaciones": [],
+      "pasan": 39
+    },
+    {
+      "vista": "escritorio",
+      "tema": "dark",
+      "ruta": "/asesor-virtual",
+      "violaciones": [],
+      "pasan": 44
+    },
+    {
+      "vista": "escritorio",
+      "tema": "dark",
+      "ruta": "/no-existe",
+      "violaciones": [],
+      "pasan": 34
+    },
+    {
+      "vista": "movil",
+      "tema": "light",
+      "ruta": "/",
+      "violaciones": [],
+      "pasan": 43
+    },
+    {
+      "vista": "movil",
+      "tema": "light",
+      "ruta": "/explorador-cursos",
+      "violaciones": [],
+      "pasan": 45
+    },
+    {
+      "vista": "movil",
+      "tema": "light",
+      "ruta": "/clase-muestra",
+      "violaciones": [],
+      "pasan": 42
+    },
+    {
+      "vista": "movil",
+      "tema": "light",
+      "ruta": "/asesor-virtual",
+      "violaciones": [],
+      "pasan": 44
+    },
+    {
+      "vista": "movil",
+      "tema": "light",
+      "ruta": "/no-existe",
+      "violaciones": [],
+      "pasan": 37
+    },
+    {
+      "vista": "movil",
+      "tema": "dark",
+      "ruta": "/",
+      "violaciones": [],
+      "pasan": 43
+    },
+    {
+      "vista": "movil",
+      "tema": "dark",
+      "ruta": "/explorador-cursos",
+      "violaciones": [],
+      "pasan": 45
+    },
+    {
+      "vista": "movil",
+      "tema": "dark",
+      "ruta": "/clase-muestra",
+      "violaciones": [],
+      "pasan": 42
+    },
+    {
+      "vista": "movil",
+      "tema": "dark",
+      "ruta": "/asesor-virtual",
+      "violaciones": [],
+      "pasan": 44
+    },
+    {
+      "vista": "movil",
+      "tema": "dark",
+      "ruta": "/no-existe",
+      "violaciones": [],
+      "pasan": 37
+    }
+  ],
+  "responsive": [
+    {
+      "nombre": "Móvil 375×812",
+      "rutas": [
+        {
+          "ruta": "/",
+          "desborde": 0,
+          "pequenos": [],
+          "fuenteMin": 12,
+          "menu": true
+        },
+        {
+          "ruta": "/explorador-cursos",
+          "desborde": 0,
+          "pequenos": [
+            "Buscar por nombre",
+            "Categoría",
+            "Nivel",
+            "Duración"
+          ],
+          "fuenteMin": 12,
+          "menu": true
+        },
+        {
+          "ruta": "/clase-muestra",
+          "desborde": 0,
+          "pequenos": [],
+          "fuenteMin": 12,
+          "menu": true
+        },
+        {
+          "ruta": "/asesor-virtual",
+          "desborde": 0,
+          "pequenos": [
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "Por último, ¿cómo te llam"
+          ],
+          "fuenteMin": 12,
+          "menu": true
+        }
+      ]
+    },
+    {
+      "nombre": "Tableta 768×1024",
+      "rutas": [
+        {
+          "ruta": "/",
+          "desborde": 0,
+          "pequenos": [],
+          "fuenteMin": 12,
+          "menu": false
+        },
+        {
+          "ruta": "/explorador-cursos",
+          "desborde": 0,
+          "pequenos": [
+            "Buscar por nombre",
+            "Categoría",
+            "Nivel",
+            "Duración"
+          ],
+          "fuenteMin": 12,
+          "menu": false
+        },
+        {
+          "ruta": "/clase-muestra",
+          "desborde": 0,
+          "pequenos": [],
+          "fuenteMin": 12,
+          "menu": false
+        },
+        {
+          "ruta": "/asesor-virtual",
+          "desborde": 0,
+          "pequenos": [
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "Por último, ¿cómo te llam"
+          ],
+          "fuenteMin": 12,
+          "menu": false
+        }
+      ]
+    },
+    {
+      "nombre": "Escritorio 1366×820",
+      "rutas": [
+        {
+          "ruta": "/",
+          "desborde": 0,
+          "pequenos": [],
+          "fuenteMin": 12,
+          "menu": false
+        },
+        {
+          "ruta": "/explorador-cursos",
+          "desborde": 0,
+          "pequenos": [
+            "Buscar por nombre",
+            "Categoría",
+            "Nivel",
+            "Duración"
+          ],
+          "fuenteMin": 12,
+          "menu": false
+        },
+        {
+          "ruta": "/clase-muestra",
+          "desborde": 0,
+          "pequenos": [],
+          "fuenteMin": 12,
+          "menu": false
+        },
+        {
+          "ruta": "/asesor-virtual",
+          "desborde": 0,
+          "pequenos": [
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "INPUT",
+            "Por último, ¿cómo te llam"
+          ],
+          "fuenteMin": 12,
+          "menu": false
+        }
+      ]
+    }
+  ],
+  "erroresConsola": [],
+  "fecha": "2026-10-24T15:30:08.073Z"
+}

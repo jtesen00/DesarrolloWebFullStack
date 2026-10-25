@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img">
+  <title>Clase muestra de Wayra Academy</title>
+  <rect width="800" height="500" fill="#0A1226"/>
+  <g transform="translate(250 50) scale(25)">
+    <path fill="#131F3D" fill-rule="evenodd" d="M4 0H8V2H10V4H12V8H10V10H8V12H4V10H2V8H0V4H2V2H4Z M5 5H7V7H5Z"/>
+  </g>
+  <rect x="352" y="202" width="96" height="96" fill="#C6F432"/>
+  <path d="M385 226v48l38-24z" fill="#0A1226"/>
+  <text x="40" y="450" fill="#F4F6FA" font-family="system-ui, sans-serif" font-size="26" font-weight="600">Clase 1: Semántica</text>
+  <text x="40" y="478" fill="#A9B4CC" font-family="system-ui, sans-serif" font-size="16">Frontend con HTML5, CSS3 y JavaScript · 12 min</text>
+</svg>

@@ -1,0 +1,70 @@
+{
+  "fecha": "2026-10-10T22:06:01.190Z",
+  "pruebas": [
+    {
+      "prueba": "Existe bloque 'Tu tiempo de estudio' con el monitor",
+      "medido": {
+        "presente": true
+      },
+      "resultado": "pasa"
+    },
+    {
+      "prueba": "1a. Activar, 5 s reales",
+      "medido": {
+        "inicial": 0,
+        "valor": 5,
+        "segundosReales": 5.063,
+        "texto": "Monitor activo · 5 s registrados"
+      },
+      "resultado": "pasa"
+    },
+    {
+      "prueba": "1b. Detener/Activar x3 rápido, 5 s más",
+      "medido": {
+        "ciclos": 3,
+        "antes": 5,
+        "despues": 10,
+        "incremento": 5,
+        "segundosReales": 5.283
+      },
+      "resultado": "pasa"
+    },
+    {
+      "prueba": "1c. Detenido 3 s sin cambios",
+      "medido": {
+        "antes": 10,
+        "despues": 10,
+        "texto": "Monitor detenido · 10 s registrados"
+      },
+      "resultado": "pasa"
+    },
+    {
+      "prueba": "1d. Reiniciar → 00:00 y 'Monitor detenido'",
+      "medido": {
+        "reloj": "00:00",
+        "texto": "Monitor detenido · 0 s registrados"
+      },
+      "resultado": "pasa"
+    },
+    {
+      "prueba": "2a. Buscar 'diseno' encuentra 'Diseño'",
+      "medido": {
+        "valor": "diseno",
+        "tarjetas": [
+          "Diseño UX/UI para producto digital"
+        ],
+        "aviso": "1 curso coincide"
+      },
+      "resultado": "pasa"
+    },
+    {
+      "prueba": "2b. Limpiar búsqueda: campo vacío y foco en input",
+      "medido": {
+        "valor": "",
+        "foco": "busqueda-curso"
+      },
+      "resultado": "pasa"
+    }
+  ],
+  "global": "pasa"
+}

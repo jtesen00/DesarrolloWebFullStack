@@ -1,0 +1,10 @@
+# La app usa BrowserRouter: toda ruta que no sea un archivo real se sirve con index.html
+# para que React Router la resuelva (evita el 404 al recargar o abrir un enlace directo).
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
