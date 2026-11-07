@@ -1,6 +1,6 @@
 import BloqueLateral from "../componentes/BloqueLateral.jsx";
-import Boton from "../componentes/Boton.jsx";
-import CabeceraPagina from "../componentes/CabeceraPagina.jsx";
+import Boton from "../componentes/Boton.tsx";
+import CabeceraPagina from "../componentes/CabeceraPagina.tsx";
 import ListaLateral from "../componentes/ListaLateral.jsx";
 import Monitor from "../componentes/Monitor.jsx";
 

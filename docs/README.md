@@ -22,6 +22,10 @@ ESTRUCTURA  →  ADAPTABILIDAD  →  INTERACCIÓN  →  INTEGRACIÓN
 | [`SEMANA-3-INTERACCION.md`](SEMANA-3-INTERACCION.md) | Primera capa de JavaScript: filtrado del catálogo y validación del asesor | Semana 3 |
 | [`SEMANA-4-INTEGRACION.md`](SEMANA-4-INTEGRACION.md) | Evaluación grupal: teoría, matriz RF1–RF5, tema oscuro, formulario validado, modal animado, 21 pruebas y guion del video. Versión Word: `SEMANA-4-INTEGRACION.docx` | Semana 4 |
 | [`evidencias-semana-4/`](evidencias-semana-4/) | 14 capturas y `resultados.json` de las pruebas automatizadas | Semana 4 |
+| [`SEMANA-9-TYPESCRIPT.md`](SEMANA-9-TYPESCRIPT.md) | Migración a TypeScript, `ExperienceCard`, criterios de aceptación, comentario y reflexión | Semana 9 |
+| [`evidencias-semana-9/`](evidencias-semana-9/) | 5 capturas y `resultados.json` de las pruebas en navegador | Semana 9 |
+| [`LABORATORIO-MOTION.md`](LABORATORIO-MOTION.md) | Animación de la Card con Motion, protocolo de 8 pruebas, reflexión y preguntas de análisis | Semana 9 |
+| [`evidencias-motion/`](evidencias-motion/) | 5 capturas y `resultados.json` del protocolo, axe y Lighthouse | Semana 9 |
 
 ---
 
@@ -33,6 +37,8 @@ ESTRUCTURA  →  ADAPTABILIDAD  →  INTERACCIÓN  →  INTEGRACIÓN
 | 2 | Layout responsive con CSS Grid, Flexbox, media queries y unidades relativas | Cerrada |
 | 3 | Interacción con JavaScript: DOM, eventos, condicionales, bucles y validación | Cerrada |
 | 4 | Integración: tema claro/oscuro global, formulario con Constraint Validation API, modal con Web Animations API | Cerrada (falta grabar el video) |
+| 9 | TypeScript en React: tipos, props, estado, custom hook y `ExperienceCard` | Implementada (falta grabar el video) |
+| 9 | Laboratorio: `ExperienceCard` animada con Motion | Implementado (falta grabar el video) |
 
 ### Cifras actuales
 

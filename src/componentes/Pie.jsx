@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Chakana from "./Chakana.jsx";
+import Chakana from "./Chakana.tsx";
 
 const BLOQUES = [
   {

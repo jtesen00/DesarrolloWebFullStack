@@ -1,9 +1,16 @@
 import { useEffect } from "react";
+import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
+
+interface CabeceraPaginaProps {
+  titulo: string;
+  miga?: string;
+  children: ReactNode;
+}
 
 /* Cabecera de las páginas internas: ruta de migas, <h1> e intro.
    También pone el título de la pestaña, que antes iba en cada <head>. */
-export default function CabeceraPagina({ titulo, miga, children }) {
+export default function CabeceraPagina({ titulo, miga, children }: CabeceraPaginaProps) {
   useEffect(() => {
     document.title = `${titulo} — Wayra Academy`;
   }, [titulo]);

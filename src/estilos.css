@@ -87,6 +87,7 @@
   --ancho-lectura: 42rem;
   --ancho-lateral: 22.5rem;
   --toque-minimo:  2.75rem;  /* 44px */
+  --portada-tarjeta: 7rem;
   --margen-pagina: clamp(1.25rem, 5vw, 7.5rem);
 
   /* --- Foco ---------------------------------------------------- */
@@ -245,8 +246,12 @@ video:focus-visible {
 .boton--primario:active { background-color: var(--color-accion-firme); }
 
 .boton--secundario { background-color: var(--color-suave); color: var(--color-texto); }
-.boton--secundario:hover,
+/* En táctil, :hover se queda pegado tras el toque y un botón ya desmarcado
+   seguiría azul: el cambio de color solo aplica con puntero real. */
 .boton--secundario:active { background-color: var(--color-accion); color: var(--color-sobre-accion); }
+@media (hover: hover) {
+  .boton--secundario:hover { background-color: var(--color-accion); color: var(--color-sobre-accion); }
+}
 
 .boton--lima { background-color: var(--color-lima); color: var(--color-tinta-fija); }
 .boton--lima:hover,
@@ -1171,7 +1176,27 @@ video:focus-visible {
   color: var(--color-texto-suave);
 }
 
-.curso__categoria svg { width: 1.5rem; height: 1.5rem; color: var(--color-acento-texto); }
+.curso__valoracion { color: var(--color-acento-texto); white-space: nowrap; }
+
+/* Banda superior: imagen del curso o, si no tiene, la chakana sobre fondo suave.
+   Los márgenes negativos la llevan hasta los bordes de la tarjeta. */
+.curso__portada {
+  display: grid;
+  place-items: center;
+  height: var(--portada-tarjeta);
+  margin: calc(var(--espacio-5) * -1) calc(var(--espacio-5) * -1) 0;
+  overflow: hidden;
+  color: var(--color-acento-texto);
+  background-color: var(--color-suave);
+}
+
+.curso__portada img { width: 100%; height: var(--portada-tarjeta); object-fit: cover; }
+.curso__portada svg { width: var(--espacio-7); height: var(--espacio-7); }
+
+.curso__acciones { display: flex; flex-wrap: wrap; gap: var(--espacio-2); }
+
+/* inline-block: un transform no se aplica a un elemento en línea. */
+.curso__estrella { display: inline-block; }
 
 .curso__titulo { font-size: var(--texto-600); }
 
@@ -1522,8 +1547,9 @@ h1:focus, main:focus, [tabindex="-1"]:focus { outline: none; }
 .boton--flecha:hover::after,
 .enlace-flecha:hover::after { transform: translateX(0.3rem); }
 
-.boton { transition: background-color var(--transicion), color var(--transicion), transform var(--transicion); }
-.boton:active { transform: translateY(1px); }
+/* Solo los enlaces: los <button> responden al pulsar con Motion (Boton.tsx). */
+a.boton { transition: background-color var(--transicion), color var(--transicion), transform var(--transicion); }
+a.boton:active { transform: translateY(1px); }
 
 .navegacion__lista a:not(.boton) { position: relative; }
 
@@ -1547,23 +1573,25 @@ h1:focus, main:focus, [tabindex="-1"]:focus { outline: none; }
 .curso-mosaico { transition: background-color var(--transicion), transform 250ms ease-out, box-shadow 250ms ease-out; }
 .curso-mosaico:hover { transform: translateY(-0.25rem); box-shadow: var(--sombra-panel); z-index: 1; }
 
-.curso { transition: transform 250ms ease-out, box-shadow 250ms ease-out; }
-.curso:hover { transform: translateY(-0.125rem); box-shadow: var(--sombra-panel); }
+/* El desplazamiento de .curso lo hace Motion; aquí solo queda la sombra, que
+   también señala la tarjeta cuando el foco de teclado está dentro de ella. */
+.curso { transition: box-shadow 250ms ease-out; }
+.curso:has(:focus-visible) { box-shadow: var(--sombra-panel); }
+@media (hover: hover) {
+  .curso:hover { box-shadow: var(--sombra-panel); }
+}
 
 .paso, .inicio { transition: transform 250ms ease-out; }
 .paso:hover, .inicio:hover { transform: translateY(-0.125rem); }
 
-/* --- Entrada escalonada de las tarjetas del explorador --------- */
-
-@keyframes entrada-tarjeta {
-  from { opacity: 0; transform: translateY(1rem); }
-  to   { opacity: 1; transform: none; }
+/* Motion deja ocultas las tarjetas que aún no llegaron a la pantalla: al
+   imprimir tienen que verse todas. */
+@media print {
+  .curso { opacity: 1 !important; transform: none !important; }
 }
 
-.cursos__grilla > .curso:not(.curso--cargando) {
-  animation: entrada-tarjeta 450ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
-  animation-delay: calc(var(--i, 0) * 45ms);
-}
+/* Lo mismo si no pudo cargarse Motion (App.jsx). */
+.sin-animaciones .curso { opacity: 1 !important; transform: none !important; }
 
 /* --- Temario desplegable (details) ----------------------------- */
 

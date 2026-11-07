@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { CATEGORIAS, NIVELES } from "../datos/cursos.js";
-import Chakana from "./Chakana.jsx";
+import { CATEGORIAS, NIVELES } from "../datos/cursos.ts";
+import Chakana from "./Chakana.tsx";
 
 /* Tarjeta del mosaico de la portada. Todo el rectángulo es clicable gracias a
    un ::after del enlace del título, sin anidar controles interactivos. */

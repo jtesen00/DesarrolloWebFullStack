@@ -1,0 +1,141 @@
+{
+  "entrada": {
+    "montadaMs": 1441,
+    "completaMs": 1756,
+    "duracionMs": 315,
+    "framesIntermedios": 17
+  },
+  "hover": {
+    "y": -3,
+    "escala": 1,
+    "sombra": true,
+    "saltoLayout": false,
+    "yTrasSalir": 0
+  },
+  "tap": {
+    "escalaPulsado": 0.97,
+    "escalaFinal": 1,
+    "url": "?curso=react",
+    "temario": true
+  },
+  "viewport": {
+    "visiblesAlCargar": 2,
+    "ocultasAlCargar": 14,
+    "visiblesTrasRecorrer": 16,
+    "noSeRepiteAlVolver": true
+  },
+  "teclado": {
+    "paradas": 24,
+    "conAnillo": 24,
+    "sombraEnTarjeta": 24,
+    "enTarjeta": 24,
+    "invisiblesConFoco": 0,
+    "ultimaTarjeta": "node",
+    "enterFavorito": "true",
+    "focoConservado": true,
+    "enterVer": "?curso=datos"
+  },
+  "movimientoReducido": {
+    "todasVisiblesSinDesplazar": true,
+    "hover": "none",
+    "tap": "none",
+    "estrella": "none",
+    "favoritoFunciona": "true"
+  },
+  "responsive": {
+    "escritorio": {
+      "sinScrollHorizontal": true
+    },
+    "tableta": {
+      "sinScrollHorizontal": true
+    },
+    "movil": {
+      "sinScrollHorizontal": true
+    },
+    "toque": {
+      "antes": "true",
+      "despues": "false",
+      "tarjetaSinHoverPegado": "none",
+      "sombraTrasToque": "none",
+      "claseBoton": "boton boton--secundario",
+      "fondoBoton": "rgb(231, 236, 245)",
+      "hoverDisponible": false
+    },
+    "deslizarConToquesReales": {
+      "sobreFiltrosControlPx": 204,
+      "sobreTituloTarjetaPx": 206,
+      "sobreBotonFavoritoPx": 203,
+      "sobreBotonVerPx": 203,
+      "botonesActivadosPorError": 0
+    }
+  },
+  "integracion": {
+    "enlaceProfundo": {
+      "temario": true,
+      "opacidad": 1,
+      "enPantalla": true
+    },
+    "tarjetas": 16,
+    "conImagen": 1,
+    "favoritoPersistido": "false",
+    "filtro": 3,
+    "filtradasVisibles": false,
+    "focoTrasLimpiar": "busqueda-curso",
+    "busquedaSinTilde": 2,
+    "nota": "filtradasVisibles es false porque la tercera tarjeta queda fuera de pantalla; al bajar llega a opacidad 1."
+  },
+  "rutas": {
+    "/": "Domina lo digital con quienes lo hacen.",
+    "/explorador-cursos": "Explorador interactivo de cursos",
+    "/clase-muestra": "Clases muestra en video",
+    "/asesor-virtual": "Asesor virtual de ruta de aprendizaje",
+    "/ruta-inexistente": "Esta página no existe."
+  },
+  "erroresConsola": [],
+  "falloDeCarga": {
+    "tarjetas": 16,
+    "todasVisibles": true,
+    "clase": true,
+    "favorito": true,
+    "favoritoCambia": "★Quitar de favoritos: React desde cero"
+  },
+  "axeResumen": {
+    "combinaciones": 20,
+    "violaciones": 0,
+    "porRegla": {}
+  },
+  "axeDetalle": {},
+  "peso": {
+    "jsPrincipalGzipKbAntes": 96.86,
+    "jsPrincipalGzipKbDespues": 110.63,
+    "animacionesGzipKbArchivoAparte": 18.9,
+    "motionCompletoGzipKb": 142.13,
+    "lazyMotionSincronoGzipKb": 127.75
+  },
+  "lighthouse": {
+    "explorador-cursos-escritorio": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "explorador-cursos-movil": {
+      "performance": 97,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "inicio-escritorio": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "inicio-movil": {
+      "performance": 97,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    }
+  }
+}

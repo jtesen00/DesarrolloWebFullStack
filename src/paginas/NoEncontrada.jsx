@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Boton from "../componentes/Boton.jsx";
+import Boton from "../componentes/Boton.tsx";
 
 /* Ruta desconocida: en vez de redirigir en silencio al inicio, se explica
    qué pasó y se ofrecen caminos para seguir. */

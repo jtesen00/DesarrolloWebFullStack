@@ -1,9 +1,9 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import CabeceraPagina from "../componentes/CabeceraPagina.jsx";
+import CabeceraPagina from "../componentes/CabeceraPagina.tsx";
 import BloqueLateral from "../componentes/BloqueLateral.jsx";
 import Saludo from "../componentes/Saludo.jsx";
-import { CURSOS } from "../datos/cursos.js";
+import { CURSOS } from "../datos/cursos.ts";
 
 /* Título de un curso del catálogo a partir de su id: así la recomendación
    nunca queda desfasada si el catálogo cambia el nombre de un curso. */

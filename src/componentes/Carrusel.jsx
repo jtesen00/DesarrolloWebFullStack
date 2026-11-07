@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { datosDelCurso } from "../datos/cursos.js";
-import Chakana from "./Chakana.jsx";
+import { datosDelCurso } from "../datos/cursos.ts";
+import Chakana from "./Chakana.tsx";
 
 const TECLAS = {
   ArrowLeft: (actual) => actual - 1,

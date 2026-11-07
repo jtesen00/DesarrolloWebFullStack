@@ -1,0 +1,44 @@
+{
+  "imagen": {
+    "completa": true,
+    "ancho": 800
+  },
+  "tarjetas": 16,
+  "chakanas": 15,
+  "favorito": {
+    "pulsado": "true",
+    "etiqueta": "Quitar de favoritos: React desde cero"
+  },
+  "favoritoTrasRecarga": "true",
+  "verExperiencia": {
+    "url": "?curso=sql",
+    "temario": true
+  },
+  "enlaceProfundo": true,
+  "movilSinScroll": true,
+  "rutas": {
+    "/": {
+      "h1": "Domina lo digital con quienes lo hacen.",
+      "botones": 22
+    },
+    "/explorador-cursos": {
+      "h1": "Explorador interactivo de cursos",
+      "botones": 35
+    },
+    "/clase-muestra": {
+      "h1": "Clases muestra en video",
+      "botones": 7
+    },
+    "/asesor-virtual": {
+      "h1": "Asesor virtual de ruta de aprendizaje",
+      "botones": 4
+    },
+    "/ruta-inexistente": {
+      "h1": "Esta página no existe.",
+      "botones": 5
+    }
+  },
+  "mosaicoAExplorador": "/explorador-cursos?curso=frontend",
+  "errores": [],
+  "erroresTotales": 0
+}

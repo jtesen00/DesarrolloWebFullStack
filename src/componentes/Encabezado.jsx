@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import BotonTema from "./BotonTema.jsx";
-import Chakana from "./Chakana.jsx";
-import Boton from "./Boton.jsx";
+import Chakana from "./Chakana.tsx";
+import Boton from "./Boton.tsx";
 
 const ENLACES = [
   { texto: "Cursos", destino: "/explorador-cursos" },

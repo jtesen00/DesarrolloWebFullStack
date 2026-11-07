@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import Boton from "./Boton.jsx";
+import Boton from "./Boton.tsx";
 
 const ENTRADA = [
   { opacity: 0, transform: "translateY(1.5rem) scale(0.96)" },

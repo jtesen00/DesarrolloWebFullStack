@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Boton from "../componentes/Boton.jsx";
+import Boton from "../componentes/Boton.tsx";
 import CifraAnimada from "../componentes/CifraAnimada.jsx";
 import Carrusel from "../componentes/Carrusel.jsx";
 import CuentaRegresiva from "../componentes/CuentaRegresiva.jsx";
@@ -7,7 +7,7 @@ import CursoMosaico from "../componentes/CursoMosaico.jsx";
 import ReproductorMuestra from "../componentes/ReproductorMuestra.jsx";
 import {
   CATEGORIAS, CURSOS, CURSOS_ADICIONALES, CURSOS_DESTACADOS, PROXIMOS_INICIOS, totalHoras,
-} from "../datos/cursos.js";
+} from "../datos/cursos.ts";
 
 /* Color de cada tarjeta del mosaico, en el orden del catálogo destacado. */
 const TONOS = ["accion", "noche", "claro", "suave", "claro"];

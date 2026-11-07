@@ -1,25 +1,39 @@
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import CabeceraPagina from "../componentes/CabeceraPagina.jsx";
-import TarjetaCurso from "../componentes/TarjetaCurso.jsx";
-import Boton from "../componentes/Boton.jsx";
-import { CURSOS } from "../datos/cursos.js";
-import { useCargaSimulada } from "../hooks/useCargaSimulada.js";
+import CabeceraPagina from "../componentes/CabeceraPagina.tsx";
+import { ExperienceCard } from "../componentes/ExperienceCard.tsx";
+import Boton from "../componentes/Boton.tsx";
+import { CURSOS } from "../datos/cursos.ts";
+import { useCargaSimulada } from "../hooks/useCargaSimulada.ts";
+import { useFavoritos } from "../hooks/useFavoritos.ts";
+import type { Experience, ExperienceCategory, ExperienceLevel } from "../types/experience.ts";
+
+type RangoDuracion = "corta" | "media" | "larga";
+type FiltroCategoria = ExperienceCategory | "todas";
+type FiltroNivel = ExperienceLevel | "todos";
+type FiltroDuracion = RangoDuracion | "cualquiera";
+
+interface Filtros {
+  categoria: FiltroCategoria;
+  nivel: FiltroNivel;
+  duracion: FiltroDuracion;
+  busqueda: string;
+}
 
 /* Tramos de duración unificados para mantener la misma regla que en vanilla JS. */
-const RANGOS = {
+const RANGOS: Record<RangoDuracion, (horas: number) => boolean> = {
   corta: (horas) => horas < 10,
   media: (horas) => horas >= 10 && horas <= 30,
   larga: (horas) => horas > 30,
 };
 
 /* Pasa a minúsculas y quita las tildes para que "diseno" encuentre "Diseño". */
-function normalizar(texto) {
+function normalizar(texto: string): string {
   return texto.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
 }
 
 /* Evalúa si un curso cumple simultáneamente con todos los filtros activos. */
-function coincide(curso, filtros) {
+function coincide(curso: Experience, filtros: Filtros): boolean {
   if (filtros.categoria !== "todas" && curso.categoria !== filtros.categoria) {
     return false;
   }
@@ -27,8 +41,7 @@ function coincide(curso, filtros) {
     return false;
   }
   if (filtros.duracion !== "cualquiera") {
-    const horas = Number(curso.horas);
-    if (!RANGOS[filtros.duracion](horas)) return false;
+    if (!RANGOS[filtros.duracion](curso.horas)) return false;
   }
   if (filtros.busqueda !== "") {
     const titulo = normalizar(curso.titulo);
@@ -37,25 +50,35 @@ function coincide(curso, filtros) {
   return true;
 }
 
+/* Abre el temario de un curso y lo centra en pantalla. */
+function abrirCurso(id: string): void {
+  const tarjeta = document.getElementById(id);
+  if (!tarjeta) return;
+  tarjeta.querySelector("details")?.setAttribute("open", "");
+  tarjeta.scrollIntoView({ block: "center" });
+}
+
 export default function ExploradorCursos() {
-  const [categoria, setCategoria] = useState("todas");
-  const [nivel, setNivel] = useState("todos");
-  const [duracion, setDuracion] = useState("cualquiera");
-  const [busqueda, setBusqueda] = useState("");
+  const [categoria, setCategoria] = useState<FiltroCategoria>("todas");
+  const [nivel, setNivel] = useState<FiltroNivel>("todos");
+  const [duracion, setDuracion] = useState<FiltroDuracion>("cualquiera");
+  const [busqueda, setBusqueda] = useState<string>("");
 
   // Los enlaces de la portada llegan con ?curso=id: al cargar la lista se
   // abre y se muestra ese curso.
-  const [parametros] = useSearchParams();
+  const [parametros, setParametros] = useSearchParams();
   const cursoPedido = parametros.get("curso");
 
   // useRef guarda el <input> para devolverle el foco al limpiar: sin él, el foco se perdería
   // porque el botón "Limpiar filtros" desaparece al volver todo a su valor inicial.
-  const inputBusqueda = useRef(null);
+  const inputBusqueda = useRef<HTMLInputElement>(null);
 
   // useCargaSimulada mantiene la referencia estática de CURSOS para no reejecutar el efecto.
   const { cargando, datos: cursos } = useCargaSimulada(CURSOS);
 
-  const filtros = {
+  const { esFavorito, alternarFavorito } = useFavoritos();
+
+  const filtros: Filtros = {
     categoria,
     nivel,
     duracion,
@@ -70,16 +93,20 @@ export default function ExploradorCursos() {
     setNivel("todos");
     setDuracion("cualquiera");
     setBusqueda("");
-    inputBusqueda.current.focus();
+    inputBusqueda.current?.focus();
   }
 
   useEffect(() => {
     if (cargando || !cursoPedido) return;
-    const tarjeta = document.getElementById(cursoPedido);
-    if (!tarjeta) return;
-    tarjeta.querySelector("details")?.setAttribute("open", "");
-    tarjeta.scrollIntoView({ block: "center" });
+    abrirCurso(cursoPedido);
   }, [cargando, cursoPedido]);
+
+  // Deja el curso en la URL para compartirlo y abre su temario aunque ya
+  // estuviera seleccionado (en ese caso el efecto de arriba no se repite).
+  function verExperiencia(id: string) {
+    setParametros({ curso: id }, { replace: true });
+    abrirCurso(id);
+  }
 
   // Se calculan los cursos visibles derivando el estado sin duplicar datos.
   const cursosFiltrados = cursos.filter((curso) => coincide(curso, filtros));
@@ -122,7 +149,7 @@ export default function ExploradorCursos() {
           <select
             id="filtro-categoria"
             value={categoria}
-            onChange={(evento) => setCategoria(evento.target.value)}
+            onChange={(evento) => setCategoria(evento.target.value as FiltroCategoria)}
           >
             <option value="todas">Todas las categorías</option>
             <option value="desarrollo-web">Desarrollo web</option>
@@ -137,7 +164,7 @@ export default function ExploradorCursos() {
           <select
             id="filtro-nivel"
             value={nivel}
-            onChange={(evento) => setNivel(evento.target.value)}
+            onChange={(evento) => setNivel(evento.target.value as FiltroNivel)}
           >
             <option value="todos">Todos los niveles</option>
             <option value="principiante">Principiante</option>
@@ -151,7 +178,7 @@ export default function ExploradorCursos() {
           <select
             id="filtro-duracion"
             value={duracion}
-            onChange={(evento) => setDuracion(evento.target.value)}
+            onChange={(evento) => setDuracion(evento.target.value as FiltroDuracion)}
           >
             <option value="cualquiera">Cualquier duración</option>
             <option value="corta">Menos de 10 horas</option>
@@ -184,7 +211,14 @@ export default function ExploradorCursos() {
               </div>
             ))
           : cursosFiltrados.map((curso, posicion) => (
-              <TarjetaCurso key={curso.id} curso={curso} posicion={posicion} />
+              <ExperienceCard
+                key={curso.id}
+                item={curso}
+                posicion={posicion}
+                onSelect={verExperiencia}
+                esFavorito={esFavorito(curso.id)}
+                onAlternarFavorito={alternarFavorito}
+              />
             ))}
       </div>
     </main>

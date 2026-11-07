@@ -1,7 +1,11 @@
+interface ChakanaProps {
+  className?: string;
+}
+
 /* Chakana: la cruz escalonada andina que usa Wayra como marca. Se dibuja con
    currentColor, así que toma el color del texto que la rodea. Es decorativa:
    el nombre accesible lo da el texto vecino. */
-export default function Chakana({ className }) {
+export default function Chakana({ className }: ChakanaProps) {
   return (
     <svg className={className} viewBox="0 0 12 12" aria-hidden="true" focusable="false">
       <path
