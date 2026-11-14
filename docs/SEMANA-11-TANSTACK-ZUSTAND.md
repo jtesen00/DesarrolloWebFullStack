@@ -54,7 +54,7 @@ El recorrido de una notificación es: servidor WebSocket → evento `notificatio
 
 - **Endpoint:** `GET https://jsonplaceholder.typicode.com/posts?_page={page}&_limit=6`. La API tiene 100 publicaciones, así que salen 17 páginas (la última con 4). Se puede cambiar la base con `VITE_API_URL`.
 - **queryKey `['experiences', page]`:** cada página tiene su propia entrada en la caché. Para la prueba de error se usa `['experiences', page, 'error-simulado']`, que es otra clave: así el error no ensucia la caché de las páginas buenas.
-- **queryFn:** `({ signal }) => getExperiences(page, { signal })`. El `signal` cancela la petición si el usuario pasa de página antes de que llegue la respuesta.
+- **queryFn:** `() => getExperiences(page)`. A propósito no se pasa el `signal` de cancelación a `fetch`. Con él, el doble montaje de `StrictMode` en desarrollo cancelaba la primera petición y la pestaña Network mostraba una petición «fallida» (`net::ERR_ABORTED`) seguida de otra correcta. Sin él, TanStack Query reutiliza la petición en curso: hay una sola petición por página. Si el usuario cambia de página antes de que llegue la respuesta, igual queda guardada en la caché.
 - **staleTime de 60 s:** durante un minuto la página se considera fresca. Volver a ella no genera una petición nueva. Pasado ese minuto, se muestra lo que hay en caché y se vuelve a pedir en segundo plano.
 - **Otras opciones:** `gcTime` es de 5 minutos (una página sin uso se borra de la memoria después) y `retry` es 1 (un reintento antes de mostrar el error).
 

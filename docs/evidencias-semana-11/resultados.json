@@ -22,7 +22,7 @@
       "guia": "A",
       "nombre": "Caché: volver a la página 1 reutiliza los datos",
       "ok": true,
-      "evidencia": "peticiones nuevas: 0, esqueletos: 0, «Datos de las 15:16:45 · frescos: se reutilizan desde la caché»"
+      "evidencia": "peticiones nuevas: 0, esqueletos: 0, «Datos de las 15:29:28 · frescos: se reutilizan desde la caché»"
     },
     {
       "guia": "A",
@@ -94,7 +94,7 @@
       "guia": "B",
       "nombre": "Conexión única: navegar y re-renderizar no duplica sockets ni listeners",
       "ok": true,
-      "evidencia": "miembros en la sala: 2 → 2 (página + observador); un evento suma exactamente 1"
+      "evidencia": "miembros en la sala: 3 → 3 (no crece al navegar); un evento suma exactamente 1"
     },
     {
       "guia": "B",
@@ -112,7 +112,7 @@
       "guia": "A",
       "nombre": "Catálogo desde JSONPlaceholder, no de un arreglo local",
       "ok": true,
-      "evidencia": "3 peticiones reales a jsonplaceholder"
+      "evidencia": "2 peticiones reales a jsonplaceholder"
     },
     {
       "guia": "B",
@@ -129,7 +129,6 @@
   ],
   "detalle": {
     "peticionesTrasCache": [
-      "https://jsonplaceholder.typicode.com/posts?_page=1&_limit=6",
       "https://jsonplaceholder.typicode.com/posts?_page=1&_limit=6",
       "https://jsonplaceholder.typicode.com/posts?_page=2&_limit=6"
     ],
