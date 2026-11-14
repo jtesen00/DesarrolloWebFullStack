@@ -11,12 +11,12 @@ import { getExperiences } from "./api.ts";
      pestaña Network aparecía una petición «fallida» (net::ERR_ABORTED).
      Sin signal, la petición en curso se reutiliza; y si el usuario cambia de
      página antes de que llegue, la respuesta igual queda en caché.
-   · simularError usa otra clave: la prueba de error no ensucia la caché de
-     las páginas buenas. */
-export function useExperiences(page: number, simularError = false) {
+   · staleTime 60 s: la página se reutiliza sin volver a pedirla durante un
+     minuto. */
+export function useExperiences(page: number) {
   return useQuery({
-    queryKey: simularError ? ["experiences", page, "error-simulado"] : ["experiences", page],
-    queryFn: () => getExperiences(page, { simularError }),
+    queryKey: ["experiences", page],
+    queryFn: () => getExperiences(page),
     staleTime: 60_000,
   });
 }

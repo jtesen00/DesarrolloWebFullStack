@@ -1637,18 +1637,11 @@ a.boton:active { transform: translateY(1px); }
 /* ============================================================
    Catálogo de experiencias con TanStack Query (semana 11)
    Reutiliza .resultados-barra, .cursos__grilla y .curso; aquí solo
-   va lo nuevo: estado de la caché, error, paginación y pruebas.
+   va lo nuevo: error y paginación.
    ============================================================ */
 
 /* En el explorador, la grilla deja aire antes del pie; aquí la sigue la paginación. */
 .catalogo__grilla { padding-bottom: 0; }
-
-.catalogo__cache {
-  font-family: var(--fuente-codigo);
-  font-size: var(--texto-100);
-  letter-spacing: var(--tracking-codigo);
-  color: var(--color-texto-suave);
-}
 
 .catalogo__error {
   display: flex;
@@ -1664,6 +1657,9 @@ a.boton:active { transform: translateY(1px); }
 
 .catalogo__error p { flex: 1 1 18rem; }
 
+/* Si falla la primera carga no hay paginación debajo: el aviso deja el aire. */
+.catalogo__error:last-child { margin-bottom: var(--espacio-9); }
+
 /* Celular: el indicador arriba y los dos botones debajo, a lo ancho.
    Desde 30em, los tres en una sola fila. */
 .paginacion {
@@ -1672,7 +1668,7 @@ a.boton:active { transform: translateY(1px); }
   grid-template-areas: "actual actual" "anterior siguiente";
   align-items: center;
   gap: var(--espacio-3);
-  padding-block: var(--espacio-6) var(--espacio-4);
+  padding-block: var(--espacio-6) var(--espacio-9);
 }
 
 .paginacion .boton:first-child { grid-area: anterior; }
@@ -1682,6 +1678,7 @@ a.boton:active { transform: translateY(1px); }
 @media (min-width: 30em) {
   .paginacion { grid-template-columns: auto 1fr auto; grid-template-areas: "anterior actual siguiente"; }
 }
+
 .paginacion .boton:disabled { opacity: 0.45; cursor: not-allowed; }
 
 .paginacion__actual {
@@ -1693,34 +1690,6 @@ a.boton:active { transform: translateY(1px); }
 }
 
 .paginacion__actual strong { color: var(--color-texto); font-size: var(--texto-300); }
-
-.catalogo__pruebas {
-  margin-block: var(--espacio-4) var(--espacio-8);
-  padding: var(--espacio-4) var(--espacio-5);
-  background-color: var(--color-suave);
-}
-
-.catalogo__pruebas summary {
-  display: flex;
-  align-items: center;
-  min-height: var(--toque-minimo);
-  font-weight: var(--peso-firme);
-  cursor: pointer;
-}
-
-.catalogo__pruebas[open] { display: flex; flex-direction: column; gap: var(--espacio-3); }
-.catalogo__pruebas p { max-width: var(--ancho-lectura); color: var(--color-texto-suave); }
-
-.catalogo__interruptor {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--espacio-3);
-  min-height: var(--toque-minimo);
-  font-weight: var(--peso-medio);
-  cursor: pointer;
-}
-
-.catalogo__interruptor input { width: 1.25rem; height: 1.25rem; margin: 0; accent-color: var(--color-accion); }
 
 /* ============================================================
    Notificaciones en tiempo real (semana 10)

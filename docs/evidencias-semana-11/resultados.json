@@ -4,7 +4,13 @@
       "guia": "A",
       "nombre": "Carga: indicador role=status y luego tarjetas",
       "ok": true,
-      "evidencia": "«Cargando experiencias de la página 1…», 6 esqueletos → 6 tarjetas"
+      "evidencia": "«Cargando experiencias…», 6 esqueletos → 6 tarjetas («Mostrando 1–6 de 100 experiencias»)"
+    },
+    {
+      "guia": "A",
+      "nombre": "Interfaz limpia: sin textos de caché ni secciones de prueba",
+      "ok": true,
+      "evidencia": "la página no menciona caché ni pruebas"
     },
     {
       "guia": "A",
@@ -20,15 +26,15 @@
     },
     {
       "guia": "A",
-      "nombre": "Caché: volver a la página 1 reutiliza los datos",
+      "nombre": "Caché: volver a la página 1 reutiliza los datos (0 peticiones)",
       "ok": true,
-      "evidencia": "peticiones nuevas: 0, esqueletos: 0, «Datos de las 15:29:28 · frescos: se reutilizan desde la caché»"
+      "evidencia": "peticiones nuevas: 0, esqueletos: 0"
     },
     {
       "guia": "A",
       "nombre": "Paginación: Siguiente deshabilitado en la última página (17)",
       "ok": true,
-      "evidencia": "«Página 17 de 17 · 4 experiencias de 100», 4 tarjetas"
+      "evidencia": "«Mostrando 97–100 de 100 experiencias», «Página 17 de 17», 4 tarjetas"
     },
     {
       "guia": "A",
@@ -38,21 +44,21 @@
     },
     {
       "guia": "A",
-      "nombre": "Error: URL inválida muestra role=alert comprensible",
+      "nombre": "Error: URL inválida (404) muestra role=alert comprensible",
       "ok": true,
-      "evidencia": "No pudimos cargar el catálogo. El servidor respondió con el código HTTP 404. Revisa tu conexión e inténtalo de nuevo."
+      "evidencia": "No pudimos cargar las experiencias. Revisa tu conexión a internet e inténtalo de nuevo. (el código 404 va a la consola, no al usuario)"
     },
     {
       "guia": "A",
-      "nombre": "Error: al restaurar el endpoint vuelven los datos",
+      "nombre": "Error: al restaurar el endpoint, «Reintentar» recupera los datos",
       "ok": true,
-      "evidencia": "página 17 restaurada"
+      "evidencia": "página 1 restaurada"
     },
     {
       "guia": "A",
       "nombre": "Error: falla de red → mensaje y «Reintentar» recupera",
       "ok": true,
-      "evidencia": "No pudimos cargar el catálogo. No hay conexión con el servidor del catálogo. Revisa tu conexión e inténtalo de nuevo."
+      "evidencia": "No pudimos cargar las experiencias. Revisa tu conexión a internet e inténtalo de nuevo."
     },
     {
       "guia": "A",
@@ -135,9 +141,11 @@
     "localStorage": "{\"state\":{\"theme\":\"dark\"},\"version\":1}"
   },
   "erroresProvocados": [
-    "Failed to load resource: the server responded with a status of 404 ()",
-    "Failed to load resource: the server responded with a status of 404 ()",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Catálogo de experiencias: El servidor respondió con el código HTTP 404.",
     "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
-    "Failed to load resource: net::ERR_INTERNET_DISCONNECTED"
+    "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+    "Catálogo de experiencias: No hay conexión con el servidor del catálogo."
   ]
 }

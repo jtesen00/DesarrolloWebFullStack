@@ -18,9 +18,6 @@ export const EXPERIENCES_PER_PAGE = 6;
 
 const API_URL = import.meta.env.VITE_API_URL || "https://jsonplaceholder.typicode.com";
 
-/* Ruta inexistente para la prueba de error del catálogo: responde 404. */
-const RUTA_INVALIDA = "/posts-ruta-invalida";
-
 function esExperience(valor: unknown): valor is Experience {
   const v = valor as Partial<Experience> | null;
   return (
@@ -30,21 +27,15 @@ function esExperience(valor: unknown): valor is Experience {
   );
 }
 
-interface Opciones {
-  signal?: AbortSignal;
-  simularError?: boolean;
-}
-
 /* GET /posts?_page={page}&_limit=6. JSONPlaceholder devuelve el total en la
-   cabecera X-Total-Count; con él se sabe cuál es la última página. */
-export async function getExperiences(page: number, { signal, simularError = false }: Opciones = {}): Promise<ExperiencesPage> {
-  const ruta = simularError ? RUTA_INVALIDA : "/posts";
+   cabecera X-Total-Count; con él se sabe cuál es la última página.
+   Para probar el error: VITE_API_URL con una dirección incorrecta, o
+   DevTools → Network → Offline. */
+export async function getExperiences(page: number): Promise<ExperiencesPage> {
   let response: Response;
   try {
-    response = await fetch(`${API_URL}${ruta}?_page=${page}&_limit=${EXPERIENCES_PER_PAGE}`, { signal });
-  } catch (error) {
-    // Una cancelación no es un fallo: TanStack Query la gestiona solo.
-    if (error instanceof DOMException && error.name === "AbortError") throw error;
+    response = await fetch(`${API_URL}/posts?_page=${page}&_limit=${EXPERIENCES_PER_PAGE}`);
+  } catch {
     // fetch solo lanza si no hubo respuesta (sin red, servidor caído, CORS).
     throw new Error("No hay conexión con el servidor del catálogo.");
   }

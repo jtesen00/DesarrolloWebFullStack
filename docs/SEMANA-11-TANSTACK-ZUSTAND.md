@@ -48,12 +48,12 @@ El recorrido de una notificación es: servidor WebSocket → evento `notificatio
 | 3. Hook | [`src/features/catalog/useExperiences.ts`](../src/features/catalog/useExperiences.ts) | `useQuery({ queryKey: ['experiences', page], queryFn })` |
 | 4. Vista | [`src/paginas/CatalogoExperiencias.tsx`](../src/paginas/CatalogoExperiencias.tsx), [`TarjetaExperiencia.tsx`](../src/features/catalog/TarjetaExperiencia.tsx) | Ruta `/experiencias` con enlace «Experiencias» en el menú. Las tarjetas reutilizan el estilo `.curso` y las animaciones de Motion de la semana 9. `key={item.id}` |
 | 5. Paginación | `CatalogoExperiencias.tsx` | `useState(1)` y botones Anterior y Siguiente. Anterior se desactiva en la página 1 y Siguiente en la 17 |
-| 6. Caché y errores | `main.jsx`, `CatalogoExperiencias.tsx` | `staleTime: 60_000`. La interfaz muestra la hora en que se obtuvieron los datos y si están frescos o vencidos. Hay un interruptor «Simular URL inválida» y un botón «Reintentar» |
+| 6. Caché y errores | `main.jsx`, `CatalogoExperiencias.tsx` | `staleTime: 60_000`. El error se muestra en lenguaje simple con un botón «Reintentar»; el detalle técnico va a la consola. La caché se demuestra con las Devtools de TanStack Query y la pestaña Network, no en la interfaz |
 
 ### Endpoint, queryKey, queryFn y staleTime
 
 - **Endpoint:** `GET https://jsonplaceholder.typicode.com/posts?_page={page}&_limit=6`. La API tiene 100 publicaciones, así que salen 17 páginas (la última con 4). Se puede cambiar la base con `VITE_API_URL`.
-- **queryKey `['experiences', page]`:** cada página tiene su propia entrada en la caché. Para la prueba de error se usa `['experiences', page, 'error-simulado']`, que es otra clave: así el error no ensucia la caché de las páginas buenas.
+- **queryKey `['experiences', page]`:** cada página tiene su propia entrada en la caché.
 - **queryFn:** `() => getExperiences(page)`. A propósito no se pasa el `signal` de cancelación a `fetch`. Con él, el doble montaje de `StrictMode` en desarrollo cancelaba la primera petición y la pestaña Network mostraba una petición «fallida» (`net::ERR_ABORTED`) seguida de otra correcta. Sin él, TanStack Query reutiliza la petición en curso: hay una sola petición por página. Si el usuario cambia de página antes de que llegue la respuesta, igual queda guardada en la caché.
 - **staleTime de 60 s:** durante un minuto la página se considera fresca. Volver a ella no genera una petición nueva. Pasado ese minuto, se muestra lo que hay en caché y se vuelve a pedir en segundo plano.
 - **Otras opciones:** `gcTime` es de 5 minutos (una página sin uso se borra de la memoria después) y `retry` es 1 (un reintento antes de mostrar el error).
@@ -63,7 +63,9 @@ El recorrido de una notificación es: servidor WebSocket → evento `notificatio
 - **Ruta nueva en lugar de reemplazar el explorador.** Los 16 cursos propios de Wayra siguen en `/explorador-cursos`, con sus filtros, búsqueda y favoritos. La API de práctica devuelve textos en latín, así que alimenta una sección aparte, el «Catálogo de experiencias», en lugar de borrar el catálogo real. El tipo `Experience` de la API vive en `features/catalog` y no se mezcla con el `Experience` de los cursos (`src/types/experience.ts`).
 - **`getExperiences` devuelve `{ items, page, total, totalPages }`.** Sin el total no hay forma de desactivar Siguiente en la última página.
 - **Sin `placeholderData`.** Si se mostrara la página anterior mientras carga la nueva, la lista no correspondería a la página actual. Además, la diferencia entre una página nueva (indicador de carga) y una visitada (aparece al instante) es justamente lo que demuestra la caché.
-- **Mensajes de error en español.** Los errores de red de `fetch` llegan como «Failed to fetch», en inglés; se convierten en «No hay conexión con el servidor del catálogo».
+- **Interfaz de producto, no de laboratorio.** La página no muestra la hora de los datos, si la caché está fresca ni interruptores de prueba: nada de eso le sirve a quien visita el sitio. La caché se demuestra con las Devtools de TanStack Query, que solo aparecen en `npm run dev` y no entran en el build. El error se provoca como indica la guía: con una URL incorrecta (`VITE_API_URL`) o desconectando la red.
+- **Errores en lenguaje simple.** El usuario ve «No pudimos cargar las experiencias. Revisa tu conexión a internet e inténtalo de nuevo.» y un botón «Reintentar». El detalle técnico («El servidor respondió con el código HTTP 404», «No hay conexión con el servidor del catálogo») va a la consola, para quien depura.
+- **Paginación solo con total conocido.** Si la primera carga falla, no se sabe si existe una página 2, así que la paginación aparece recién con la primera respuesta.
 - **Foco con teclado.** Cuando un botón de paginación se desactiva, el foco pasa al otro botón para no perderse.
 
 ### Por qué la caché no es una base de datos
@@ -103,6 +105,7 @@ La caché de TanStack Query vive en la memoria de la pestaña. Se pierde al reca
 - **Se migró también el Context de la conexión.** El estado de la conexión pasó al store, y el envío de acciones a un servicio (`socketExperiencias.ts`) que guarda la referencia a la única conexión. Ya no queda ningún `createContext` en `src`.
 - **Las acciones del store se leen con `getState()` dentro de los listeners.** El efecto del socket depende solo de la URL, así que ningún render cierra ni vuelve a abrir la conexión.
 - **Se reemplazó el evento `storage` de `useTema` por `BroadcastChannel`.** Además se migra la clave antigua: si alguien tenía guardado `wayra-tema`, se respeta la primera vez.
+- **Herramientas de prueba solo en desarrollo.** El botón «Generar notificación de prueba» que pidió la guía de la semana 10 (como botón *temporal*), el cambio de sala, el envío de un payload inválido y los datos técnicos de la conexión (sala y miembros) aparecen en el panel bajo «Herramientas de desarrollo» solo con `npm run dev`. Vite reemplaza `import.meta.env.DEV` por `false` al compilar y ese código no llega al sitio publicado. El visitante solo ve sus notificaciones y si están «En vivo».
 - **El cambio de tema mantiene la View Transition** (el fundido) de semanas anteriores. La pestaña que recibe el aviso no lo vuelve a enviar, así que no se produce un eco infinito.
 
 ### Qué se guarda en localStorage
@@ -117,15 +120,16 @@ Solo el tema. No se guardan tokens, contraseñas, notificaciones ni datos de la 
 
 ## Pruebas obligatorias (las dos guías)
 
-Se probaron en el navegador real: dos pestañas de Edge controladas con Playwright, el servidor `ws` del equipo y la API real. A las respuestas de la API se les sumó un retraso de 0,9 s para que se viera el estado de carga. Resultado: **21/21 criterios cumplidos** ([`resultados.json`](evidencias-semana-11/resultados.json)). Además, la prueba de dos clientes de la semana 10 y las 12 pruebas del servidor (`npm test`) siguen pasando.
+Se probaron en el navegador real: dos pestañas de Edge controladas con Playwright, el servidor `ws` del equipo y la API real. A las respuestas de la API se les sumó un retraso de 0,9 s para que se viera el estado de carga. Resultado: **22/22 criterios cumplidos** ([`resultados.json`](evidencias-semana-11/resultados.json)). Además, la prueba de dos clientes de la semana 10 y las 12 pruebas del servidor (`npm test`) siguen pasando.
 
 | Guía | Prueba | Resultado medido | Cumple |
 |---|---|---|---|
 | A | Carga | «Cargando experiencias de la página 1…» con `role="status"` y 6 esqueletos, luego 6 tarjetas | Sí |
 | A | API | La página 1 trae los ids 1–6 y la página 2 los ids 7–12 | Sí |
 | A | Paginación | Anterior desactivado en la 1. Siguiente desactivado en la 17 (4 tarjetas). El foco no se pierde | Sí |
-| A | Caché | Al volver a la 1: 0 peticiones nuevas, sin indicador de carga y misma hora de obtención («frescos») | Sí |
-| A | Error | URL inválida: `role="alert"` con «El servidor respondió con el código HTTP 404». Red caída: mensaje y «Reintentar» recupera los datos | Sí |
+| A | Caché | Al volver a la 1: 0 peticiones nuevas y sin indicador de carga. En las Devtools, `["experiences",1]` aparece como *Fresh* | Sí |
+| A | Interfaz limpia | La página no muestra textos de caché ni secciones de prueba | Sí |
+| A | Error | Con 404 o sin red: `role="alert"` con «No pudimos cargar las experiencias…», sin códigos técnicos. «Reintentar» recupera los datos al restaurar el endpoint | Sí |
 | A | Responsive | A 375 px no hay desplazamiento horizontal y los botones miden 44 px | Sí |
 | A | Un solo provider | 1 `new QueryClient()` y 1 `<QueryClientProvider>`, en `main.jsx` | Sí |
 | A | Datos reales | Peticiones a jsonplaceholder, no a un arreglo local | Sí |
@@ -144,7 +148,7 @@ Capturas en [`evidencias-semana-11/`](evidencias-semana-11/):
 | `01` | Estado de carga |
 | `02` | Página 1 cargada |
 | `03` | Página 2 |
-| `04` | Vuelta a la página 1 servida desde la caché |
+| `04` | Devtools de TanStack Query: página 1 *Fresh* y página 2 en caché |
 | `05` | Error por URL inválida |
 | `06` | Error por red caída |
 | `07` | Vista móvil |
@@ -155,11 +159,11 @@ Capturas en [`evidencias-semana-11/`](evidencias-semana-11/):
 ### Cómo repetir las pruebas a mano (para el video)
 
 1. Terminal 1: `cd server && npm start`. Terminal 2: `npm run dev`.
-2. **Caché:** abre `/experiencias`, pasa a la página 2 y vuelve a la 1. La 1 aparece al instante y con la misma hora. En las Devtools de TanStack Query (el botón abajo a la izquierda) se ven las claves `["experiences",1]` y `["experiences",2]`.
-3. **Error:** abre «Pruebas de caché y errores» y marca «Simular URL inválida». Otra forma: en DevTools → Network → Offline, ve a una página que aún no hayas visitado y luego pulsa «Reintentar».
+2. **Caché:** abre `/experiencias` con la pestaña Network a la vista y filtra por `posts`. Pasa a la página 2 (sale una petición) y vuelve a la 1: aparece al instante y **sin** petición nueva. Abre las Devtools de TanStack Query (el botón abajo a la izquierda): `["experiences",1]` está *Fresh* y pasa a *Stale* al minuto.
+3. **Error:** en DevTools → Network elige **Offline** y recarga la página: aparece el aviso con «Reintentar». Vuelve a **No throttling** y pulsa «Reintentar». Otra forma: pon `VITE_API_URL=https://jsonplaceholder.typicode.com/no-existe` en `.env.local`, reinicia `npm run dev` y luego quítala.
 4. **Persistencia:** cambia el tema y recarga. En DevTools → Application → Local Storage revisa `experiencias-app-store`.
 5. **Pestañas:** abre dos pestañas y cambia el tema en una. La otra cambia sola.
-6. **WebSocket:** abre la campana y pulsa «Generar notificación de prueba». Con dos ventanas se ve llegar en las dos.
+6. **WebSocket:** abre la campana y, en «Herramientas de desarrollo», pulsa «Generar notificación de prueba». Con dos ventanas se ve llegar en las dos.
 
 ## Preguntas de reflexión (guía A, sección 10)
 
