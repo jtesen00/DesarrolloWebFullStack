@@ -1,0 +1,23 @@
+Servidor WebSocket escuchando en ws://localhost:3001
+Cliente conectado (1 en total)
+Cliente desconectado (0 en total)
+Cliente conectado (1 en total)
+Cliente unido a la sala «experiencias»
+Cliente conectado (2 en total)
+Cliente desconectado (1 en total)
+Cliente conectado (2 en total)
+Cliente unido a la sala «experiencias»
+Notificación NEW_EXPERIENCE enviada a «experiencias» (2 cliente/s)
+Notificación SCHEDULE_CHANGE enviada a «experiencias» (2 cliente/s)
+Cliente unido a la sala «experiencias-equipo-a»
+Cliente unido a la sala «experiencias-equipo-b»
+Notificación REMINDER enviada a «experiencias-equipo-a» (1 cliente/s)
+Notificación NEW_EXPERIENCE enviada a «experiencias-equipo-b» (1 cliente/s)
+Cliente desconectado (1 en total)
+Cliente conectado (2 en total)
+Cliente desconectado (1 en total)
+Cliente conectado (2 en total)
+Cliente unido a la sala «experiencias-equipo-a»
+Notificación NEW_EXPERIENCE enviada a «experiencias-equipo-a» (1 cliente/s)
+Cliente desconectado (1 en total)
+Cliente desconectado (0 en total)

@@ -3,6 +3,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import Encabezado from "./Encabezado.jsx";
 import Pie from "./Pie.jsx";
 import ModalAcceso from "./ModalAcceso.jsx";
+import NotificationToast from "./NotificationToast.tsx";
 import { useTema } from "../hooks/useTema.js";
 import { useAparicion } from "../hooks/useAparicion.js";
 
@@ -74,6 +75,8 @@ export default function Layout() {
       <Pie />
 
       <ModalAcceso abierto={accesoAbierto} onCerrar={() => setAccesoAbierto(false)} />
+
+      <NotificationToast />
     </>
   );
 }

@@ -1,0 +1,18 @@
+{
+  "name": "wayra-servidor-notificaciones",
+  "version": "1.0.0",
+  "description": "Servidor WebSocket propio (ws) que distribuye notificaciones en tiempo real por salas.",
+  "main": "server.js",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "test": "node pruebas.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "ws": "^8.23.0"
+  }
+}

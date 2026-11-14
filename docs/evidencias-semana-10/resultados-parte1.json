@@ -1,0 +1,39 @@
+{
+  "conexionA": "EN VIVO · SALA\nexperiencias\n(2 CONECTADOS)",
+  "etiquetaInicial": "Notificaciones",
+  "eventoValido": {
+    "etiquetaA": "Notificaciones: 1 sin leer",
+    "etiquetaB": "Notificaciones: 1 sin leer",
+    "contadorB": "1",
+    "toastB": "NUEVA EXPERIENCIA\n\nNueva experiencia\n\nSe publicó «SEO y contenido para emprendedores» en el catálogo.\n\nMarcar como leída\n×",
+    "toastAriaLive": "polite",
+    "itemsPanelA": 1
+  },
+  "panelB": [
+    "CAMBIO DE HORARIO\n14:58\n\nSin leer:\nCambio de horario\n\nLa sesión en vivo de «SEO y contenido para emprendedores» pasa al jueves a las 19:00.\n\nMarcar como leída\n: Cambio de horario",
+    "NUEVA EXPERIENCIA\n14:58\n\nSin leer:\nNueva experiencia\n\nSe publicó «SEO y contenido para emprendedores» en el catálogo.\n\nMarcar como leída\n: Nueva experiencia"
+  ],
+  "invalido": {
+    "errorA": "Servidor: Payload de notificación incompleto: falta message, createdAt, type",
+    "contadorB": "2"
+  },
+  "trasMarcarB": "Notificaciones",
+  "salas": {
+    "estadoA": "EN VIVO · SALA\nexperiencias-equipo-a\n(1 CONECTADO)",
+    "estadoB": "EN VIVO · SALA\nexperiencias-equipo-b\n(1 CONECTADO)",
+    "itemsA": [
+      2,
+      3
+    ],
+    "itemsB_trasEnvioDeA": [
+      2,
+      2
+    ],
+    "itemsA_trasEnvioDeB": 3
+  },
+  "escapeCierra": true,
+  "focoEnCampana": true,
+  "trasNavegar": "EN VIVO · SALA\nexperiencias-equipo-a\n(1 CONECTADO)",
+  "movilSinScrollHorizontal": true,
+  "erroresConsola": []
+}

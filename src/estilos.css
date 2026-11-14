@@ -1635,6 +1635,247 @@ a.boton:active { transform: translateY(1px); }
 .test__ruta, .test__resultado, .test__grupo--falta { animation: aparecer 350ms ease-out; }
 
 /* ============================================================
+   Notificaciones en tiempo real (semana 10)
+   Campana con contador en el encabezado, panel desplegable y aviso
+   breve abajo a la derecha. Todo lee NotificationContext.
+   ============================================================ */
+
+.notificaciones__boton {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: var(--toque-minimo);
+  height: var(--toque-minimo);
+  padding: 0;
+  color: var(--color-texto);
+  background-color: var(--color-suave);
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.notificaciones__boton:hover,
+.notificaciones__boton[aria-expanded="true"] { background-color: var(--color-accion); color: var(--color-sobre-accion); }
+.notificaciones__boton svg { width: 1.25rem; height: 1.25rem; }
+
+/* Contador: lima con texto tinta, igual en ambos temas. El número también
+   está en el nombre del botón, por eso este se oculta al lector. */
+.notificaciones__contador {
+  position: absolute;
+  top: -0.375rem;
+  right: -0.375rem;
+  min-width: 1.375rem;
+  height: 1.375rem;
+  padding-inline: 0.3rem;
+  font-family: var(--fuente-codigo);
+  font-size: var(--texto-100);
+  font-weight: var(--peso-firme);
+  line-height: 1.375rem;
+  text-align: center;
+  color: var(--color-tinta-fija);
+  background-color: var(--color-lima);
+}
+
+/* El panel se posiciona respecto a .encabezado__interior: en celular ocupa
+   el ancho del contenedor; desde tableta, una columna a la derecha. */
+.notificaciones__capa {
+  position: absolute;
+  top: 100%;
+  left: var(--margen-pagina);
+  right: var(--margen-pagina);
+  z-index: 30;
+}
+
+@media (min-width: 48em) {
+  .notificaciones__capa { left: auto; width: min(26rem, calc(100% - 2 * var(--margen-pagina))); }
+}
+
+.notificaciones__panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-4);
+  max-height: min(36rem, calc(100dvh - 6rem));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: var(--espacio-5);
+  background-color: var(--color-superficie);
+  box-shadow: var(--sombra-panel);
+}
+
+.notificaciones__cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--espacio-2) var(--espacio-4);
+}
+
+.notificaciones__titulo { font-size: var(--texto-500); letter-spacing: var(--tracking-titulo); }
+
+/* Botón con aspecto de enlace: acciones secundarias del panel y del aviso. */
+.notificaciones__enlace {
+  align-self: flex-start;
+  min-height: 2rem;
+  padding: 0;
+  font: inherit;
+  font-size: var(--texto-200);
+  font-weight: var(--peso-medio);
+  color: var(--color-acento-texto);
+  text-decoration: underline;
+  text-underline-offset: var(--foco-margen);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.notificaciones__enlace:disabled { color: var(--color-texto-suave); text-decoration: none; cursor: default; }
+
+.notificaciones__estado,
+.notificaciones__meta,
+.aviso__tipo {
+  font-family: var(--fuente-codigo);
+  font-size: var(--texto-100);
+  letter-spacing: var(--tracking-codigo);
+  text-transform: uppercase;
+  color: var(--color-texto-suave);
+}
+
+.notificaciones__estado { display: flex; flex-wrap: wrap; align-items: center; gap: var(--espacio-2); }
+.notificaciones__estado strong { color: var(--color-texto); font-weight: var(--peso-firme); text-transform: none; }
+
+/* El estado se dice con texto; el punto solo lo refuerza. */
+.notificaciones__punto { width: 0.5rem; height: 0.5rem; background-color: var(--color-texto-suave); }
+.notificaciones__estado--conectado .notificaciones__punto { background-color: #1F9D55; }
+.notificaciones__estado--desconectado .notificaciones__punto,
+.notificaciones__estado--sin-configurar .notificaciones__punto { background-color: var(--color-error); }
+
+.notificaciones__vacio { color: var(--color-texto-suave); }
+
+.notificaciones__lista {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-2);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.notificaciones__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-1);
+  padding: var(--espacio-3) var(--espacio-4);
+  background-color: var(--color-pagina);
+  border-left: 3px solid transparent;
+}
+
+/* No leída: barra de acento y título firme (no solo color). */
+.notificaciones__item--nueva { border-left-color: var(--color-accion); background-color: var(--color-suave); }
+
+.notificaciones__meta { display: flex; justify-content: space-between; gap: var(--espacio-3); }
+
+.notificaciones__item-titulo { font-size: var(--texto-300); font-weight: var(--peso-medio); letter-spacing: 0; line-height: 1.35; }
+.notificaciones__item--nueva .notificaciones__item-titulo { font-weight: var(--peso-firme); }
+
+.notificaciones__mensaje { font-size: var(--texto-200); color: var(--color-texto-suave); }
+
+.notificaciones__pruebas {
+  padding-top: var(--espacio-4);
+  border-top: 1px solid var(--color-suave);
+}
+
+.notificaciones__pruebas summary {
+  display: flex;
+  align-items: center;
+  min-height: var(--toque-minimo);
+  font-weight: var(--peso-firme);
+  cursor: pointer;
+}
+
+.notificaciones__pruebas[open] { display: flex; flex-direction: column; gap: var(--espacio-3); }
+
+.notificaciones__fila { display: flex; flex-wrap: wrap; align-items: center; gap: var(--espacio-2); }
+.notificaciones__fila .boton { flex: 1 1 auto; }
+
+.notificaciones__fila label {
+  font-family: var(--fuente-codigo);
+  font-size: var(--texto-100);
+  letter-spacing: var(--tracking-codigo);
+  text-transform: uppercase;
+  color: var(--color-texto-suave);
+}
+
+.notificaciones__fila select,
+.notificaciones__fila input {
+  flex: 1 1 9rem;
+  min-width: 0;
+  min-height: var(--toque-minimo);
+  padding: var(--espacio-2) var(--espacio-3);
+  font-family: var(--fuente-texto);
+  font-size: var(--texto-200);
+  color: var(--color-texto);
+  background-color: var(--color-suave);
+  border: 0;
+  border-radius: 0;
+}
+
+.notificaciones .boton:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.notificaciones__error { min-height: 1.5em; font-size: var(--texto-200); color: var(--color-error); }
+
+/* Aviso (Toast): la región está siempre, vacía, para que el lector anuncie
+   lo que entra en ella. No bloquea clics cuando no hay aviso. */
+.aviso-region {
+  position: fixed;
+  right: var(--espacio-4);
+  bottom: var(--espacio-4);
+  left: var(--espacio-4);
+  z-index: 40;
+  display: flex;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+
+.aviso {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-1);
+  width: min(24rem, 100%);
+  padding: var(--espacio-4) var(--espacio-5);
+  color: var(--color-texto);
+  background-color: var(--color-superficie);
+  border-left: 4px solid var(--color-lima);
+  box-shadow: var(--sombra-panel);
+  pointer-events: auto;
+}
+
+.aviso__tipo { color: var(--color-acento-texto); }
+.aviso__titulo { font-weight: var(--peso-firme); }
+.aviso__mensaje { font-size: var(--texto-200); color: var(--color-texto-suave); }
+.aviso__acciones { display: flex; align-items: center; justify-content: space-between; gap: var(--espacio-3); margin-top: var(--espacio-2); }
+
+.aviso__cerrar {
+  display: inline-grid;
+  place-items: center;
+  width: var(--toque-minimo);
+  height: var(--toque-minimo);
+  margin: calc(-1 * var(--espacio-2)) calc(-1 * var(--espacio-3)) calc(-1 * var(--espacio-2)) 0;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--color-texto);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.aviso__cerrar:hover { background-color: var(--color-suave); }
+
+@media print {
+  .notificaciones, .aviso-region { display: none; }
+}
+
+
+/* ============================================================
    Movimiento reducido (debe ir al final: gana a todo lo anterior)
    ============================================================ */
 

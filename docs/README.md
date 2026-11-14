@@ -26,6 +26,8 @@ ESTRUCTURA  →  ADAPTABILIDAD  →  INTERACCIÓN  →  INTEGRACIÓN
 | [`evidencias-semana-9/`](evidencias-semana-9/) | 5 capturas y `resultados.json` de las pruebas en navegador | Semana 9 |
 | [`LABORATORIO-MOTION.md`](LABORATORIO-MOTION.md) | Animación de la Card con Motion, protocolo de 8 pruebas, reflexión y preguntas de análisis | Semana 9 |
 | [`evidencias-motion/`](evidencias-motion/) | 5 capturas y `resultados.json` del protocolo, axe y Lighthouse | Semana 9 |
+| [`SEMANA-10-WEBSOCKET.md`](SEMANA-10-WEBSOCKET.md) | Servidor WebSocket propio (`ws`), contrato JSON, eventos, salas, pruebas y limitaciones | Semana 10 |
+| [`evidencias-semana-10/`](evidencias-semana-10/) | 10 capturas, resultados de dos clientes y de desconexión, y registro del servidor | Semana 10 |
 
 ---
 
@@ -38,6 +40,7 @@ ESTRUCTURA  →  ADAPTABILIDAD  →  INTERACCIÓN  →  INTEGRACIÓN
 | 3 | Interacción con JavaScript: DOM, eventos, condicionales, bucles y validación | Cerrada |
 | 4 | Integración: tema claro/oscuro global, formulario con Constraint Validation API, modal con Web Animations API | Cerrada (falta grabar el video) |
 | 9 | TypeScript en React: tipos, props, estado, custom hook y `ExperienceCard` | Implementada (falta grabar el video) |
+| 10 | Servidor WebSocket propio y notificaciones en tiempo real con `NotificationContext` | Implementada (falta grabar el video) |
 | 9 | Laboratorio: `ExperienceCard` animada con Motion | Implementado (falta grabar el video) |
 
 ### Cifras actuales

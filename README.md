@@ -1,6 +1,6 @@
 # Wayra Academy — Plataforma de Cursos y Talleres en Línea
 
-Wayra Academy es una plataforma educativa web peruana para el aprendizaje interactivo de tecnología, diseño y negocios con instructores locales verificados. Esta versión corresponde a la migración a **React 19 + Vite 8 + React Router DOM 7** con el **rediseño v3 («Tech»)**: interfaz rectangular, tipografía Geist, tema claro/oscuro y animaciones que respetan «reducir movimiento». Desde la semana 9 se migra de forma progresiva a **TypeScript** ([detalle](docs/SEMANA-9-TYPESCRIPT.md)) y la tarjeta de cursos se anima con **Motion** ([detalle](docs/LABORATORIO-MOTION.md)).
+Wayra Academy es una plataforma educativa web peruana para el aprendizaje interactivo de tecnología, diseño y negocios con instructores locales verificados. Esta versión corresponde a la migración a **React 19 + Vite 8 + React Router DOM 7** con el **rediseño v3 («Tech»)**: interfaz rectangular, tipografía Geist, tema claro/oscuro y animaciones que respetan «reducir movimiento». Desde la semana 9 se migra de forma progresiva a **TypeScript** ([detalle](docs/SEMANA-9-TYPESCRIPT.md)) y la tarjeta de cursos se anima con **Motion** ([detalle](docs/LABORATORIO-MOTION.md)). En la semana 10 recibe **notificaciones en tiempo real** desde un servidor WebSocket propio con Node.js y `ws` ([detalle](docs/SEMANA-10-WEBSOCKET.md)).
 
 ## Requisitos y ejecución
 
@@ -26,12 +26,20 @@ Para ejecutar o compilar el proyecto en un entorno local con Node.js instalado:
    ```bash
    npm run preview
    ```
+6. **Servidor de notificaciones en tiempo real** (en otra terminal; ver [semana 10](docs/SEMANA-10-WEBSOCKET.md)):
+   ```bash
+   cd server
+   npm install
+   npm start      # ws://localhost:3001
+   npm test       # pruebas de aceptación del servidor
+   ```
+   El frontend lee la dirección de `VITE_WS_URL` en `.env.local` (plantilla: `.env.example`).
 
 ## Estructura de carpetas (`src/`)
 
 ```
 src/
-├── App.jsx                     # Enrutador principal, rutas y página 404
+├── App.jsx                     # Enrutador, rutas, 404, NotificationProvider y LiveNotificationFeed
 ├── main.jsx                    # Punto de entrada de React con StrictMode y hoja de estilos
 ├── estilos.css                 # Sistema de diseño v3: tokens claro/oscuro, componentes y animaciones
 ├── animaciones/
@@ -42,6 +50,7 @@ src/
 │   ├── Boton.tsx               # Botón reutilizable (<Link>, <a> o <button>) con variantes
 │   ├── BotonTema.jsx           # Interruptor accesible (aria-pressed) para modo claro/oscuro
 │   ├── CabeceraPagina.tsx      # Cabecera de páginas internas: migas, h1 e intro
+│   ├── CentroNotificaciones.tsx # Campana con contador de no leídas que abre el panel
 │   ├── Carrusel.jsx            # Carrusel accesible con teclado, puntos y aria-live
 │   ├── Chakana.tsx             # Marca andina en SVG (usa currentColor)
 │   ├── CifraAnimada.jsx        # Contador que sube hasta el valor al entrar en pantalla
@@ -51,20 +60,29 @@ src/
 │   ├── Encabezado.jsx          # Navegación, enlace activo (NavLink), tema y menú móvil
 │   ├── Layout.jsx              # Estructura común; al navegar: scroll arriba y foco al <h1>
 │   ├── ListaLateral.jsx        # Lista de datos y apuntes (numerada o simple)
+│   ├── LiveNotificationFeed.tsx # Monta una sola vez el cliente WebSocket
+│   ├── NotificationPanel.tsx   # Historial, estado de la conexión y pruebas en tiempo real
+│   ├── NotificationToast.tsx   # Aviso breve en región aria-live="polite"
 │   ├── ModalAcceso.jsx         # <dialog> nativo con animación de entrada
 │   ├── Monitor.jsx             # Monitor de tiempo de estudio (setInterval + controles)
 │   ├── Pie.jsx                 # Pie de página institucional
 │   ├── ReproductorMuestra.jsx  # Maqueta animada de la clase en vivo (portada)
 │   └── Saludo.jsx              # Saludo según la hora, con props
+├── context/
+│   └── NotificationContext.tsx # Único almacén de notificaciones: Provider, useNotifications, addNotification
 ├── datos/
 │   └── cursos.ts               # 16 cursos, categorías, niveles y fechas de inicio (formato automático)
 ├── hooks/
 │   ├── useAparicion.js         # Aparición de bloques al desplazarse (IntersectionObserver)
 │   ├── useCargaSimulada.ts     # Simulación asíncrona de carga con temporizador (genérico)
+│   ├── useExperienceSocket.ts  # Conexión WebSocket: sala, validación, envío y reconexión
 │   ├── useFavoritos.ts         # Favoritos recordados con localStorage
 │   └── useTema.js              # Persistencia del tema; cambio con View Transitions
+├── servicios/
+│   └── adaptadorNotificaciones.ts # Valida el evento recibido y lo convierte en AppNotification
 ├── types/
-│   └── experience.ts           # Contrato de datos: Experience y sus uniones
+│   ├── experience.ts           # Contrato de datos: Experience y sus uniones
+│   └── notification.ts         # Contrato de notificación compartido con el servidor
 └── paginas/
     ├── AsesorVirtual.jsx       # Test interactivo con validación y ruta recomendada
     ├── ClaseMuestra.jsx        # Clase de muestra en video, contenido y monitor de estudio
