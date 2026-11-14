@@ -1,12 +1,11 @@
 import { useId, useState } from "react";
 import type { FormEvent } from "react";
 import { AnimatePresence, m, useReducedMotion } from "motion/react";
-import { useNotifications } from "../context/NotificationContext.tsx";
-import { useConexionEnVivo } from "./LiveNotificationFeed.tsx";
+import { selectUnreadCount, useAppStore } from "../store/appStore.ts";
+import type { EstadoConexion } from "../store/appStore.ts";
 import { ETIQUETAS_TIPO } from "../servicios/adaptadorNotificaciones.ts";
-import { SALA_POR_DEFECTO } from "../hooks/useExperienceSocket.ts";
+import { cambiarSala, getSalaPedida, publicarIncompleta, publicarNotificacion } from "../servicios/socketExperiencias.ts";
 import { NOTIFICATION_TYPES } from "../types/notification.ts";
-import type { EstadoConexion } from "../hooks/useExperienceSocket.ts";
 import type { NotificationType } from "../types/notification.ts";
 
 const TEXTO_ESTADO: Record<EstadoConexion, string> = {
@@ -22,14 +21,18 @@ interface NotificationPanelProps {
   id: string;
 }
 
-/* Historial de notificaciones (lee NotificationContext) y herramientas de
-   prueba de la semana 10 (envían por la conexión de LiveNotificationFeed). */
+/* Historial de notificaciones y estado de la conexión (los dos en el store
+   Zustand) y herramientas de prueba que envían por la única conexión. */
 export default function NotificationPanel({ id }: NotificationPanelProps) {
-  const { notifications, unreadCount, markAsRead, markAllAsRead } = useNotifications();
-  const { estado, sala, miembros, ultimoError, publicarNotificacion, publicarIncompleta, cambiarSala } = useConexionEnVivo();
+  const notifications = useAppStore((s) => s.notifications);
+  const unreadCount = useAppStore(selectUnreadCount);
+  const markAsRead = useAppStore((s) => s.markAsRead);
+  const markAllAsRead = useAppStore((s) => s.markAllAsRead);
+  const clearNotifications = useAppStore((s) => s.clearNotifications);
+  const { estado, sala, miembros, ultimoError } = useAppStore((s) => s.conexion);
   const reducirMovimiento = useReducedMotion();
   const [tipo, setTipo] = useState<NotificationType>("NEW_EXPERIENCE");
-  const [salaEscrita, setSalaEscrita] = useState(sala ?? SALA_POR_DEFECTO);
+  const [salaEscrita, setSalaEscrita] = useState(() => sala ?? getSalaPedida());
   const idTitulo = useId();
   const idTipo = useId();
   const idSala = useId();
@@ -44,9 +47,14 @@ export default function NotificationPanel({ id }: NotificationPanelProps) {
     <section id={id} className="notificaciones__panel" aria-labelledby={idTitulo}>
       <div className="notificaciones__cabecera">
         <h2 id={idTitulo} className="notificaciones__titulo">Notificaciones</h2>
-        <button type="button" className="notificaciones__enlace" onClick={markAllAsRead} disabled={unreadCount === 0}>
-          Marcar todas como leídas
-        </button>
+        <div className="notificaciones__acciones">
+          <button type="button" className="notificaciones__enlace" onClick={markAllAsRead} disabled={unreadCount === 0}>
+            Marcar todas como leídas
+          </button>
+          <button type="button" className="notificaciones__enlace" onClick={clearNotifications} disabled={notifications.length === 0}>
+            Limpiar
+          </button>
+        </div>
       </div>
 
       <p className={`notificaciones__estado notificaciones__estado--${estado}`}>

@@ -20,7 +20,7 @@ export interface ExperienceNotificationEvent {
   type: NotificationType;
 }
 
-/* Lo que guarda NotificationContext: el mismo evento más el estado de
+/* Lo que guarda el store (appStore.ts): el mismo evento más el estado de
    lectura, que solo existe en el navegador. Se llama AppNotification y no
    Notification para no tapar la API Notification del propio navegador. */
 export interface AppNotification extends ExperienceNotificationEvent {

@@ -1,13 +1,13 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence, m, useReducedMotion } from "motion/react";
-import { useNotifications } from "../context/NotificationContext.tsx";
+import { selectUnreadCount, useAppStore } from "../store/appStore.ts";
 import NotificationPanel from "./NotificationPanel.tsx";
 
 /* Campana del encabezado: muestra el contador de no leídas y abre el panel.
    Patrón de divulgación: aria-expanded en el botón y el panel justo después
    en el orden de tabulación. Escape o un clic fuera lo cierran. */
 export default function CentroNotificaciones() {
-  const { unreadCount } = useNotifications();
+  const unreadCount = useAppStore(selectUnreadCount);
   const [abierto, setAbierto] = useState(false);
   const reducirMovimiento = useReducedMotion();
   const contenedorRef = useRef<HTMLDivElement>(null);

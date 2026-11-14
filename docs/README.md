@@ -28,6 +28,8 @@ ESTRUCTURA  →  ADAPTABILIDAD  →  INTERACCIÓN  →  INTEGRACIÓN
 | [`evidencias-motion/`](evidencias-motion/) | 5 capturas y `resultados.json` del protocolo, axe y Lighthouse | Semana 9 |
 | [`SEMANA-10-WEBSOCKET.md`](SEMANA-10-WEBSOCKET.md) | Servidor WebSocket propio (`ws`), contrato JSON, eventos, salas, pruebas y limitaciones | Semana 10 |
 | [`evidencias-semana-10/`](evidencias-semana-10/) | 10 capturas, resultados de dos clientes y de desconexión, y registro del servidor | Semana 10 |
+| [`SEMANA-11-TANSTACK-ZUSTAND.md`](SEMANA-11-TANSTACK-ZUSTAND.md) | Catálogo con TanStack Query y migración a Zustand: arquitectura, decisiones, 21 pruebas, reflexión | Semana 11 |
+| [`evidencias-semana-11/`](evidencias-semana-11/) | 10 capturas, `resultados.json` y ejemplo de respuesta de la API | Semana 11 |
 
 ---
 
@@ -41,6 +43,7 @@ ESTRUCTURA  →  ADAPTABILIDAD  →  INTERACCIÓN  →  INTEGRACIÓN
 | 4 | Integración: tema claro/oscuro global, formulario con Constraint Validation API, modal con Web Animations API | Cerrada (falta grabar el video) |
 | 9 | TypeScript en React: tipos, props, estado, custom hook y `ExperienceCard` | Implementada (falta grabar el video) |
 | 10 | Servidor WebSocket propio y notificaciones en tiempo real con `NotificationContext` | Implementada (falta grabar el video) |
+| 11 | Catálogo con TanStack Query y estado global con Zustand (tema persistido y sincronizado) | Implementada (falta grabar el video) |
 | 9 | Laboratorio: `ExperienceCard` animada con Motion | Implementado (falta grabar el video) |
 
 ### Cifras actuales

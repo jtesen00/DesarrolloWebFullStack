@@ -4,7 +4,7 @@ import type { AppNotification, ExperienceNotificationEvent, NotificationType } f
 
 /* Adaptador de eventos: lo que llega por el WebSocket es texto que cualquiera
    pudo escribir. TypeScript no lo revisa al ejecutar, así que aquí se
-   comprueba campo por campo antes de que entre en NotificationContext. */
+   comprueba campo por campo antes de que entre en el store Zustand. */
 
 export const ETIQUETAS_TIPO: Record<NotificationType, string> = {
   NEW_EXPERIENCE: "Nueva experiencia",

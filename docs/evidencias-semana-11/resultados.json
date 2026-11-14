@@ -1,0 +1,144 @@
+{
+  "criterios": [
+    {
+      "guia": "A",
+      "nombre": "Carga: indicador role=status y luego tarjetas",
+      "ok": true,
+      "evidencia": "«Cargando experiencias de la página 1…», 6 esqueletos → 6 tarjetas"
+    },
+    {
+      "guia": "A",
+      "nombre": "Paginación: Anterior deshabilitado en la página 1",
+      "ok": true,
+      "evidencia": "disabled=true"
+    },
+    {
+      "guia": "A",
+      "nombre": "API: páginas 1 y 2 muestran datos distintos",
+      "ok": true,
+      "evidencia": "p1: Experiencia n.º 1…Experiencia n.º 6 · p2: Experiencia n.º 7…Experiencia n.º 12"
+    },
+    {
+      "guia": "A",
+      "nombre": "Caché: volver a la página 1 reutiliza los datos",
+      "ok": true,
+      "evidencia": "peticiones nuevas: 0, esqueletos: 0, «Datos de las 15:16:45 · frescos: se reutilizan desde la caché»"
+    },
+    {
+      "guia": "A",
+      "nombre": "Paginación: Siguiente deshabilitado en la última página (17)",
+      "ok": true,
+      "evidencia": "«Página 17 de 17 · 4 experiencias de 100», 4 tarjetas"
+    },
+    {
+      "guia": "A",
+      "nombre": "Accesibilidad: el foco no se pierde al deshabilitarse Siguiente",
+      "ok": true,
+      "evidencia": "foco pasa a «Anterior»"
+    },
+    {
+      "guia": "A",
+      "nombre": "Error: URL inválida muestra role=alert comprensible",
+      "ok": true,
+      "evidencia": "No pudimos cargar el catálogo. El servidor respondió con el código HTTP 404. Revisa tu conexión e inténtalo de nuevo."
+    },
+    {
+      "guia": "A",
+      "nombre": "Error: al restaurar el endpoint vuelven los datos",
+      "ok": true,
+      "evidencia": "página 17 restaurada"
+    },
+    {
+      "guia": "A",
+      "nombre": "Error: falla de red → mensaje y «Reintentar» recupera",
+      "ok": true,
+      "evidencia": "No pudimos cargar el catálogo. No hay conexión con el servidor del catálogo. Revisa tu conexión e inténtalo de nuevo."
+    },
+    {
+      "guia": "A",
+      "nombre": "Responsive: móvil 375 px usable",
+      "ok": true,
+      "evidencia": "sin scroll horizontal, botones de 44px"
+    },
+    {
+      "guia": "B",
+      "nombre": "Persistencia: el tema se conserva al recargar",
+      "ok": true,
+      "evidencia": "claro → oscuro → recarga: oscuro (aria-pressed=true)"
+    },
+    {
+      "guia": "B",
+      "nombre": "localStorage: experiencias-app-store guarda solo el tema",
+      "ok": true,
+      "evidencia": "{\"state\":{\"theme\":\"dark\"},\"version\":1}"
+    },
+    {
+      "guia": "B",
+      "nombre": "Sincronización: dos pestañas comparten el tema (BroadcastChannel)",
+      "ok": true,
+      "evidencia": "A→claro se refleja en B; B→oscuro se refleja en A, sin recargar"
+    },
+    {
+      "guia": "B",
+      "nombre": "WebSocket: evento del servidor actualiza badge y panel sin recargar",
+      "ok": true,
+      "evidencia": "«Notificaciones» → «Notificaciones: 1 sin leer», 1 en panel, aviso visible"
+    },
+    {
+      "guia": "B",
+      "nombre": "Panel: «Limpiar» vacía las notificaciones del store",
+      "ok": true,
+      "evidencia": "0 en panel, contador vacío"
+    },
+    {
+      "guia": "B",
+      "nombre": "Conexión única: navegar y re-renderizar no duplica sockets ni listeners",
+      "ok": true,
+      "evidencia": "miembros en la sala: 2 → 2 (página + observador); un evento suma exactamente 1"
+    },
+    {
+      "guia": "B",
+      "nombre": "Migración: tema y notificaciones funcionan sin Providers antiguos",
+      "ok": true,
+      "evidencia": "0 usos de createContext / NotificationProvider / useTema en src"
+    },
+    {
+      "guia": "A",
+      "nombre": "Un solo QueryClient y un solo QueryClientProvider",
+      "ok": true,
+      "evidencia": "1 new QueryClient(), 1 <QueryClientProvider>, en src/main.jsx"
+    },
+    {
+      "guia": "A",
+      "nombre": "Catálogo desde JSONPlaceholder, no de un arreglo local",
+      "ok": true,
+      "evidencia": "3 peticiones reales a jsonplaceholder"
+    },
+    {
+      "guia": "B",
+      "nombre": "Regresión: explorador, favoritos, Motion y responsive siguen funcionando",
+      "ok": true,
+      "evidencia": "16 cursos, favorito OK, Motion activo, móvil sin scroll"
+    },
+    {
+      "guia": "A+B",
+      "nombre": "Consola sin errores inesperados",
+      "ok": true,
+      "evidencia": "solo los errores provocados a propósito (404 y red caída)"
+    }
+  ],
+  "detalle": {
+    "peticionesTrasCache": [
+      "https://jsonplaceholder.typicode.com/posts?_page=1&_limit=6",
+      "https://jsonplaceholder.typicode.com/posts?_page=1&_limit=6",
+      "https://jsonplaceholder.typicode.com/posts?_page=2&_limit=6"
+    ],
+    "localStorage": "{\"state\":{\"theme\":\"dark\"},\"version\":1}"
+  },
+  "erroresProvocados": [
+    "Failed to load resource: the server responded with a status of 404 ()",
+    "Failed to load resource: the server responded with a status of 404 ()",
+    "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+    "Failed to load resource: net::ERR_INTERNET_DISCONNECTED"
+  ]
+}

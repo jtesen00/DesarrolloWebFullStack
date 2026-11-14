@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, m, useReducedMotion } from "motion/react";
-import { useNotifications } from "../context/NotificationContext.tsx";
+import { useAppStore } from "../store/appStore.ts";
 import { ETIQUETAS_TIPO } from "../servicios/adaptadorNotificaciones.ts";
 
 const DURACION_MS = 6000;
 
 /* Aviso breve de la última notificación recibida. No guarda notificaciones:
-   lee la más reciente de NotificationContext y solo recuerda cuál se cerró.
+   lee la más reciente del store Zustand y solo recuerda cuál se cerró.
 
    La región aria-live="polite" está siempre en la página (vacía al
    principio): un lector de pantalla solo anuncia los cambios dentro de una
    región que ya existía. «polite» espera a que termine lo que se está
    leyendo, porque ninguna de estas novedades es urgente. */
 export default function NotificationToast() {
-  const { notifications, markAsRead } = useNotifications();
+  const notifications = useAppStore((s) => s.notifications);
+  const markAsRead = useAppStore((s) => s.markAsRead);
   const reducirMovimiento = useReducedMotion();
   const ultima = notifications[0];
   // La que había al montar no se anuncia: no es una novedad.
