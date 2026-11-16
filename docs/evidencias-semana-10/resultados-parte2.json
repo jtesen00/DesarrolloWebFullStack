@@ -1,0 +1,13 @@
+{
+  "inicial": "EN VIVO · SALA\nexperiencias-equipo-a\n(1 CONECTADO)",
+  "trasDetener": "SIN CONEXIÓN · REINTENTANDO",
+  "botonDeshabilitado": true,
+  "trasReiniciar": "EN VIVO · SALA\nexperiencias-equipo-a\n(1 CONECTADO)",
+  "recibeTrasReconectar": 1,
+  "consola": [
+    "warning: WebSocket connection to 'ws://localhost:3001/' failed: WebSocket is closed before the connection is established.",
+    "info: Conectado al servidor WebSocket",
+    "info: Conexión WebSocket cerrada",
+    "info: Conectado al servidor WebSocket"
+  ]
+}

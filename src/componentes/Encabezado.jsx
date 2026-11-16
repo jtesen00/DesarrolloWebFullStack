@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import BotonTema from "./BotonTema.jsx";
 import Chakana from "./Chakana.tsx";
 import Boton from "./Boton.tsx";
+import CentroNotificaciones from "./CentroNotificaciones.tsx";
 
 const ENLACES = [
   { texto: "Cursos", destino: "/explorador-cursos" },
@@ -25,6 +26,8 @@ export default function Encabezado({ oscuro, onAlternarTema, onAbrirAcceso }) {
           <Chakana className="marca__logo" />
           <span className="marca__nombre">wayra</span>
         </Link>
+
+        <CentroNotificaciones />
 
         <BotonTema oscuro={oscuro} onAlternar={onAlternarTema} />
 
