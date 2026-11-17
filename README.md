@@ -1,6 +1,6 @@
 # Wayra Academy — Plataforma de Cursos y Talleres en Línea
 
-Wayra Academy es una plataforma educativa web peruana para el aprendizaje interactivo de tecnología, diseño y negocios con instructores locales verificados. Esta versión corresponde a la migración a **React 19 + Vite 8 + React Router DOM 7** con el **rediseño v3 («Tech»)**: interfaz rectangular, tipografía Geist, tema claro/oscuro y animaciones que respetan «reducir movimiento». Desde la semana 9 se migra de forma progresiva a **TypeScript** ([detalle](docs/SEMANA-9-TYPESCRIPT.md)) y la tarjeta de cursos se anima con **Motion** ([detalle](docs/LABORATORIO-MOTION.md)). En la semana 10 recibe **notificaciones en tiempo real** desde un servidor WebSocket propio con Node.js y `ws` ([detalle](docs/SEMANA-10-WEBSOCKET.md)).
+Wayra Academy es una plataforma educativa web peruana para el aprendizaje interactivo de tecnología, diseño y negocios con instructores locales verificados. Esta versión corresponde a la migración a **React 19 + Vite 8 + React Router DOM 7** con el **rediseño v3 («Tech»)**: interfaz rectangular, tipografía Geist, tema claro/oscuro y animaciones que respetan «reducir movimiento». Desde la semana 9 se migra de forma progresiva a **TypeScript** ([detalle](docs/SEMANA-9-TYPESCRIPT.md)) y la tarjeta de cursos se anima con **Motion** ([detalle](docs/LABORATORIO-MOTION.md)). En la semana 10 recibe **notificaciones en tiempo real** desde un servidor WebSocket propio con Node.js y `ws` ([detalle](docs/SEMANA-10-WEBSOCKET.md)). En la semana 11 el catálogo de experiencias se carga desde una API con **TanStack Query** (carga, error, caché y paginación) y el estado global pasa de Context API a **Zustand**, con el tema persistido y sincronizado entre pestañas ([detalle](docs/SEMANA-11-TANSTACK-ZUSTAND.md)).
 
 ## Requisitos y ejecución
 
@@ -39,8 +39,8 @@ Para ejecutar o compilar el proyecto en un entorno local con Node.js instalado:
 
 ```
 src/
-├── App.jsx                     # Enrutador, rutas, 404, NotificationProvider y LiveNotificationFeed
-├── main.jsx                    # Punto de entrada de React con StrictMode y hoja de estilos
+├── App.jsx                     # Enrutador, rutas, 404, LiveNotificationFeed y sincronización del tema
+├── main.jsx                    # Punto de entrada: StrictMode, único QueryClient/QueryClientProvider y estilos
 ├── estilos.css                 # Sistema de diseño v3: tokens claro/oscuro, componentes y animaciones
 ├── animaciones/
 │   ├── caracteristicas.ts      # Funciones de Motion, cargadas en un archivo aparte
@@ -60,7 +60,7 @@ src/
 │   ├── Encabezado.jsx          # Navegación, enlace activo (NavLink), tema y menú móvil
 │   ├── Layout.jsx              # Estructura común; al navegar: scroll arriba y foco al <h1>
 │   ├── ListaLateral.jsx        # Lista de datos y apuntes (numerada o simple)
-│   ├── LiveNotificationFeed.tsx # Monta una sola vez el cliente WebSocket
+│   ├── LiveNotificationFeed.tsx # Monta una sola vez el cliente WebSocket (no dibuja nada)
 │   ├── NotificationPanel.tsx   # Historial, estado de la conexión y pruebas en tiempo real
 │   ├── NotificationToast.tsx   # Aviso breve en región aria-live="polite"
 │   ├── ModalAcceso.jsx         # <dialog> nativo con animación de entrada
@@ -68,23 +68,29 @@ src/
 │   ├── Pie.jsx                 # Pie de página institucional
 │   ├── ReproductorMuestra.jsx  # Maqueta animada de la clase en vivo (portada)
 │   └── Saludo.jsx              # Saludo según la hora, con props
-├── context/
-│   └── NotificationContext.tsx # Único almacén de notificaciones: Provider, useNotifications, addNotification
 ├── datos/
 │   └── cursos.ts               # 16 cursos, categorías, niveles y fechas de inicio (formato automático)
 ├── hooks/
 │   ├── useAparicion.js         # Aparición de bloques al desplazarse (IntersectionObserver)
 │   ├── useCargaSimulada.ts     # Simulación asíncrona de carga con temporizador (genérico)
 │   ├── useExperienceSocket.ts  # Conexión WebSocket: sala, validación, envío y reconexión
-│   ├── useFavoritos.ts         # Favoritos recordados con localStorage
-│   └── useTema.js              # Persistencia del tema; cambio con View Transitions
+│   └── useFavoritos.ts         # Favoritos recordados con localStorage
+├── features/catalog/           # Catálogo remoto (TanStack Query)
+│   ├── api.ts                  # Tipo Experience de la API y getExperiences(page) con response.ok
+│   ├── useExperiences.ts       # useQuery con queryKey ['experiences', page] y staleTime
+│   └── TarjetaExperiencia.tsx  # Tarjeta de una experiencia remota (estilo y Motion de la semana 9)
+├── store/
+│   └── appStore.ts             # Store Zustand: tema (persistido), notificaciones y conexión
 ├── servicios/
-│   └── adaptadorNotificaciones.ts # Valida el evento recibido y lo convierte en AppNotification
+│   ├── adaptadorNotificaciones.ts # Valida el evento recibido y lo convierte en AppNotification
+│   ├── sincronizacionTema.ts   # cambiarTema + BroadcastChannel entre pestañas
+│   └── socketExperiencias.ts   # Envío por la única conexión WebSocket (sala, pruebas)
 ├── types/
 │   ├── experience.ts           # Contrato de datos: Experience y sus uniones
 │   └── notification.ts         # Contrato de notificación compartido con el servidor
 └── paginas/
     ├── AsesorVirtual.jsx       # Test interactivo con validación y ruta recomendada
+    ├── CatalogoExperiencias.tsx # /experiencias: datos de la API, carga, error y paginación
     ├── ClaseMuestra.jsx        # Clase de muestra en video, contenido y monitor de estudio
     ├── ExploradorCursos.tsx    # Filtros en vivo, búsqueda sin tildes y enlace profundo ?curso=id
     ├── Inicio.jsx              # Portada: hero, cifras, mosaico, carrusel, pasos, agenda y CTA

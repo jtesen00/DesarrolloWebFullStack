@@ -7,6 +7,7 @@ import CentroNotificaciones from "./CentroNotificaciones.tsx";
 
 const ENLACES = [
   { texto: "Cursos", destino: "/explorador-cursos" },
+  { texto: "Experiencias", destino: "/experiencias" },
   { texto: "Clase gratis", destino: "/clase-muestra" },
   { texto: "Asesor virtual", destino: "/asesor-virtual" },
   { texto: "Nosotros", destino: "#pie" },

@@ -19,12 +19,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@500&display=swap" rel="stylesheet">
   <link rel="icon" href="/img/logo-wayra.svg" type="image/svg+xml">
 
-  <!-- Aplica el tema oscuro antes del primer cuadro para evitar parpadeos visuales -->
+  <!-- Aplica el tema oscuro antes del primer cuadro para evitar parpadeos visuales.
+       Lee la preferencia que guarda el store Zustand (experiencias-app-store);
+       «wayra-tema» es la clave anterior a la semana 11 y solo se usa si no hay otra. -->
   <script>
     try {
-      var temaGuardado = localStorage.getItem("wayra-tema");
+      var guardado = JSON.parse(localStorage.getItem("experiencias-app-store") || "null");
+      var tema = guardado && guardado.state && guardado.state.theme;
+      if (tema !== "light" && tema !== "dark") {
+        var anterior = localStorage.getItem("wayra-tema");
+        tema = anterior === "oscuro" ? "dark" : anterior === "claro" ? "light" : null;
+      }
       var prefiereOscuro = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      if (temaGuardado === "oscuro" || (temaGuardado === null && prefiereOscuro)) {
+      if (tema === "dark" || (tema === null && prefiereOscuro)) {
         document.documentElement.classList.add("tema-oscuro");
       }
     } catch (e) {

@@ -6,8 +6,9 @@ import ExploradorCursos from "./paginas/ExploradorCursos.tsx";
 import ClaseMuestra from "./paginas/ClaseMuestra.jsx";
 import AsesorVirtual from "./paginas/AsesorVirtual.jsx";
 import NoEncontrada from "./paginas/NoEncontrada.jsx";
-import { NotificationProvider } from "./context/NotificationContext.tsx";
+import CatalogoExperiencias from "./paginas/CatalogoExperiencias.tsx";
 import { LiveNotificationFeed } from "./componentes/LiveNotificationFeed.tsx";
+import { useSincronizacionTema } from "./servicios/sincronizacionTema.ts";
 
 /* Las funciones de Motion llegan en un archivo aparte. Si esa carga falla, la
    clase hace visibles las tarjetas: sin ella se quedarían ocultas esperando una
@@ -26,27 +27,31 @@ function cargarAnimaciones() {
    LazyMotion carga solo las animaciones y gestos que se usan, y fuera del archivo
    principal. «strict» avisa si alguien usa «motion» en lugar de «m» y anula ese
    ahorro.
-   NotificationProvider es el único almacén de notificaciones; dentro,
-   LiveNotificationFeed abre una sola conexión WebSocket para toda la
-   aplicación (no se vuelve a abrir al cambiar de ruta). */
+   Desde la semana 11 no hay Providers de estado: tema y notificaciones viven
+   en el store Zustand. LiveNotificationFeed abre una sola conexión WebSocket
+   y useSincronizacionTema el canal entre pestañas; los dos se montan aquí una
+   vez y no se reabren al cambiar de ruta. (QueryClientProvider está en
+   main.jsx, también una sola vez.) */
 export default function App() {
+  useSincronizacionTema();
+
   return (
-    <NotificationProvider>
-      <LiveNotificationFeed>
-        <LazyMotion features={cargarAnimaciones} strict>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Layout />}>
-                <Route index element={<Inicio />} />
-                <Route path="explorador-cursos" element={<ExploradorCursos />} />
-                <Route path="clase-muestra" element={<ClaseMuestra />} />
-                <Route path="asesor-virtual" element={<AsesorVirtual />} />
-                <Route path="*" element={<NoEncontrada />} />
-              </Route>
-            </Routes>
-          </BrowserRouter>
-        </LazyMotion>
-      </LiveNotificationFeed>
-    </NotificationProvider>
+    <>
+      <LiveNotificationFeed />
+      <LazyMotion features={cargarAnimaciones} strict>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Inicio />} />
+              <Route path="explorador-cursos" element={<ExploradorCursos />} />
+              <Route path="experiencias" element={<CatalogoExperiencias />} />
+              <Route path="clase-muestra" element={<ClaseMuestra />} />
+              <Route path="asesor-virtual" element={<AsesorVirtual />} />
+              <Route path="*" element={<NoEncontrada />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </LazyMotion>
+    </>
   );
 }

@@ -4,7 +4,8 @@ import Encabezado from "./Encabezado.jsx";
 import Pie from "./Pie.jsx";
 import ModalAcceso from "./ModalAcceso.jsx";
 import NotificationToast from "./NotificationToast.tsx";
-import { useTema } from "../hooks/useTema.js";
+import { selectEsOscuro, useAppStore } from "../store/appStore.ts";
+import { cambiarTema } from "../servicios/sincronizacionTema.ts";
 import { useAparicion } from "../hooks/useAparicion.js";
 
 const MOVIMIENTO_REDUCIDO = "(prefers-reduced-motion: reduce)";
@@ -17,7 +18,9 @@ const MOVIMIENTO_REDUCIDO = "(prefers-reduced-motion: reduce)";
    cambiar de ruta: volver arriba y mover el foco al contenido nuevo para que
    teclado y lector de pantalla sepan que la página cambió. */
 export default function Layout() {
-  const { oscuro, alternarTema } = useTema();
+  // El tema vive en el store Zustand (persistido y sincronizado entre pestañas).
+  const oscuro = useAppStore(selectEsOscuro);
+  const alternarTema = () => cambiarTema(oscuro ? "light" : "dark");
   const [accesoAbierto, setAccesoAbierto] = useState(false);
   const { pathname, hash } = useLocation();
   const rutaAnterior = useRef(pathname);
